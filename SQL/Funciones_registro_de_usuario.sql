@@ -1,0 +1,2 @@
+--Funciones y disparadores para el proceso de registro de usuario
+--de acuerdo a los privilegios de los casos de uso y de la base de datos.

@@ -1,0 +1,55 @@
+/* 
+    Estilos hechos por: Elías Ramón Estrabao Quijada
+    Contacto: eestrabao46@gmail.com
+    Fecha de inicio: Martes 13 de Agosto 2019.
+*/
+
+/*
+    Primer paleta: 464159, 6c7b95, 8bbabb, c7f0db
+    Segunda paleta: https://colorhunt.co/palette/155006
+    Tercer paleta: https://colorhunt.co/palette/154210
+    Cuarta paleta: https://colorhunt.co/palette/144399
+    Quinta paleta: https://colorhunt.co/palette/156756
+    Sexta paleta: https://colorhunt.co/palette/42568
+    Septima paleta: https://www.color-hex.com/color-palette/81563
+    Octava paleta: https://www.color-hex.com/color-palette/80564
+*/
+
+.navbar{
+    background-color: #202a38;
+}
+
+body{     
+    background-color: #eef4f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+hr {
+    background-color: #ce3f3f;
+}
+
+a {
+    color: #5588a3;
+}
+
+.tabla thead{
+    color: #eeeeee;
+    background-color: #ce3f3f;
+}
+
+.tabla td {
+    border: none;
+}
+
+.tabla th {
+    border: none;
+}
+
+.tabla thead {
+    border: none;
+}
+
+.boton-de-envio{
+    background-color: #202a38;
+    color: #e8e8e8;
+}

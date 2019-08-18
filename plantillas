@@ -1,0 +1,273 @@
+<div class="card">
+  <div class="card-header" id="headingTwo">
+    <h2 class="mb-0">
+      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Direccion y telefono
+      </button>
+    </h2>
+  </div>
+  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+    <div class="card-body">
+
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header" id="headingThree">
+    <h2 class="mb-0">
+      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Datos del estudiante
+      </button>
+    </h2>
+  </div>
+  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+    <div class="card-body">
+      <h4>Datos de estudiante</h4>
+      <hr>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="ci_escolar">Cedula escolar</label>
+          <input type="text" class="form-control" id="ci_escolar" name="ci_escolar" aria-describedby="emailHelp" placeholder="Cedula escolar">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="ci_escolar">Numero de pasaporte</label>
+          <input type="text" class="form-control" id="ci_escolar" name="pasaporte" aria-describedby="emailHelp" placeholder="Cedula escolar">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="ci_escolar">Cedula diplomatica</label>
+          <input type="text" class="form-control" id="ci_escolar" name="ci_diplomatica" aria-describedby="emailHelp" placeholder="Cedula escolar">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="tipo_est">Tipo de estudiante</label>
+          <input type="text" class="form-control" id="tipo_est" name="tipo_est" aria-describedby="emailHelp" placeholder="Tipo de estudiante">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-2"></div>
+        <div class="form-group col-md-3">
+          <label for="fechaN">Fecha de nacimiento</label>
+          <input type="date" class="form-control" id="fechaN" name="fecha_n" aria-describedby="emailHelp" placeholder="Fecha de nacimiento">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="lugar_n">Lugar de nacimiento</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" name="lugar_n"  rows="3"></textarea>
+        </div>
+      </div>
+      <hr>
+      <h4>Correo</h4>
+      <hr>
+      <div class="form-row">
+        <div class="col-md-2"></div>
+        <div class="form-group col-md-3">
+          <label for="exampleFormControlTextarea1">Correo</label>
+          <input type="password" class="form-control" id="segnombre" name="correo" placeholder="Segundo nombre">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState">Tipo de correo</label>
+          <select id="inputState" class="form-control">
+            <option selected>Eleija...</option>
+            <option>Gmail</option>
+            <option>Hotmail</option>
+            <option>yahoo</option>
+            <option>outlok</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header" id="headingFour">
+    <h2 class="mb-0">
+      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        Datos del estudiante
+      </button>
+    </h2>
+  </div>
+  <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+    <div class="card-body">
+      <h4>Datos de estudiante</h4>
+      <hr>
+      <div class="form-group">
+        <label for="ci_escolar">Cedula escolar</label>
+        <input type="text" class="form-control" id="ci_escolar" name="ci_escolar" aria-describedby="emailHelp" placeholder="Cedula escolar">
+      </div>
+      <div class="form-group">
+        <label for="ci_escolar">Numero de pasaporte</label>
+        <input type="text" class="form-control" id="ci_escolar" name="pasaporte" aria-describedby="emailHelp" placeholder="Cedula escolar">
+      </div>
+      <div class="form-group">
+        <label for="ci_escolar">Cedula diplomatica</label>
+        <input type="text" class="form-control" id="ci_escolar" name="ci_diplomatica" aria-describedby="emailHelp" placeholder="Cedula escolar">
+      </div>
+      <div class="form-group">
+        <label for="tipo_est">Tipo de estudiante</label>
+        <input type="text" class="form-control" id="tipo_est" name="tipo_est" aria-describedby="emailHelp" placeholder="Tipo de estudiante">
+      </div>
+      <div class="form-group">
+        <label for="fechaN">Fecha de nacimiento</label>
+        <input type="text" class="form-control" id="fechaN" name="fecha_n" aria-describedby="emailHelp" placeholder="Fecha de nacimiento">
+      </div>
+      <hr>
+      <h4>Lugar de nacimiento</h4>
+      <hr>
+      <div class="form-group">
+        <label for="lugar_n">Lugar de nacimiento</label>
+        <input type="text" class="form-control" id="lugar_n" name="lugar_n" aria-describedby="emailHelp" placeholder="Ciudad de nacimiento">
+      </div>
+      <br>
+      <hr>
+      <h4>Correo</h4>
+      <hr>
+      <div class="form-row">
+        <div class="col-md-2"></div>
+        <div class="form-group col-md-3">
+          <label for="exampleFormControlTextarea1">Correo</label>
+          <input type="password" class="form-control" id="segnombre" name="correo" placeholder="Segundo nombre">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState">Tipo de correo</label>
+          <select id="inputState" class="form-control">
+            <option selected>Eleija...</option>
+            <option>Gmail</option>
+            <option>Hotmail</option>
+            <option>yahoo</option>
+            <option>outlok</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+/*
+
+'correo' => trim($_POST['correo']),
+'tipo_correo' => trim($_POST['tipo_correo']),
+
+'ci_escolar' => trim($_POST['ci_escolar']),
+'tipo_est' => trim($_POST['tipo_est']),
+'fechaN' => trim($_POST['fechaN']),
+
+'ciudad' => trim($_POST['ciudad']),
+'estado' => trim($_POST['estado']),
+'municipio' => trim($_POST['municipio']),
+
+'tipo_beca' => trim($_POST['tipo_beca']),
+
+'posee' => trim($_POST['posee']),
+'codigo' => trim($_POST['codigo']),
+'condicion' => trim($_POST['condicion']),
+'modelo' => trim($_POST['modelo']),
+
+'talla_z' => trim($_POST['talla_z']),
+'talla_c' => trim($_POST['talla_c']),
+'talla_p' => trim($_POST['talla_p']),
+
+'altura' => trim($_POST['altura']),
+'peso' => trim($_POST['peso'])
+*/
+
+
+
+
+
+
+
+
+
+				//Consulta de insersion en la tabla direccion para el registro de estudiante
+				$this -> db -> query("INSERT INTO direccion (n_casa, pto_ref, calle, tipo_v, sector)
+				VALUES(:n_casa, :pto_ref, :calle, :tipo_v, :sector)");
+
+				$this -> db -> bind(':n_casa', $datos['n_casa']);
+				$this -> db -> bind(':pto_ref', $datos['pto_ref']);
+				$this -> db -> bind(':calle', $datos['calle']);
+				$this -> db -> bind(':tipo_v', $datos['tipo_v']);
+				$this -> db -> bind(':sector', $datos['sector']);
+
+				$this -> db -> execute();
+				$id_dir = $this -> db -> lastInsertId();
+
+				//Consulta de insersion en la tabla persona para el registro de estudiante
+				$this -> db -> query("INSERT INTO persona (ci, pNombre, segNombre, pApellido, segApellido, sexo, nacionalidad, id_dir)
+				VALUES(:ci, :pNombre, :segNombre, :pApellido, :segApellido, :sexo, :nacionalidad, :id_dir)");
+
+				$this -> db -> bind(':ci', $datos['ci']);
+				$this -> db -> bind(':pNombre', $datos['pNombre']);
+				$this -> db -> bind(':segNombre', $datos['segNombre']);
+				$this -> db -> bind(':pApellido', $datos['pApellido']);
+				$this -> db -> bind(':segApellido', $datos['segApellido']);
+				$this -> db -> bind(':sexo', $datos['sexo']);
+				$this -> db -> bind(':nacionalidad', $datos['nacionalidad']);
+				$this -> db -> bind(':id_dir', $id_dir, PDO::PARAM_INT);
+
+				$this -> db -> execute();
+
+				//Consulta de insersion en la tabla email para el registro de estudiante
+				$this -> db -> query("INSERT INTO email (correo, tipo_correo)
+				VALUES(:correo, :tipo_correo)");
+
+				$this -> db -> bind(':correo', $datos['correo']);
+				$this -> db -> bind(':tipo_correo', $datos['tipo_correo']);
+
+				$this -> db -> execute();
+				$id_correo = $this -> db -> lastInsertId();
+
+				//Consulta de insersion en la tabla lugarN para el registro de estudiante
+				$this -> db -> query("INSERT INTO lugarN (ciudad, estado, municipio)
+				VALUES(:ciudad, :estado, :municipio)");
+
+				$this -> db -> bind(':ciudad', $datos['ciudad']);
+				$this -> db -> bind(':estado', $datos['estado']);
+				$this -> db -> bind(':municipio', $datos['municipio']);
+
+				$this -> db -> execute();
+				$id_n = $this -> db -> lastInsertId();
+
+				//Consulta de insersion en la tabla estudiante para el registro de estudiante
+				$this -> db -> query("INSERT INTO estudiante (ci_escolar, tipo_est, fechaN, id_na, ci_est, id_correoE)
+				VALUES(:ci_escolar, :tipo_est, :fechaN, :id_na, :ci_est, :id_correoE)");
+
+				$this -> db -> bind(':ci_escolar', $datos['ci_escolar']);
+				$this -> db -> bind(':tipo_est', $datos['tipo_est']);
+				$this -> db -> bind(':fechaN', $datos['fechaN']);
+				$this -> db -> bind(':id_na', $id_n, PDO::PARAM_INT);
+				$this -> db -> bind(':ci_est', $datos['ci']);
+				$this -> db -> bind(':id_correoE', $id_correo, PDO::PARAM_INT);
+				$this -> db -> execute();
+/*
+				//Consulta de insersion en la tabla beca  para el registro de estudiante
+				$this -> db -> query("INSERT INTO beca (tipo_beca, ci_estb)
+				VALUES(:tipo_beca, :ci_estb)");
+
+				$this -> db -> bind(':tipo_beca', $datos['tipo_beca']);
+				$this -> db -> bind(':ci_estb', $datos['ci_escolar']);
+
+				//Consulta de insersion en la tabla uniforme  para el registro de estudiante
+				$this -> db -> query("INSERT INTO uniforme (talla_z, talla_c, talla_p)
+				VALUES(:talla_z, :talla_c, :talla_p)");
+
+				$this -> db -> bind(':talla_z', $datos['talla_z']);
+				$this -> db -> bind(':talla_c', $datos['talla_c']);
+				$this -> db -> bind(':talla_p', $datos['talla_p']);
+
+				$this -> db -> execute();
+
+				//Consulta de insersion en la tabla tasgos fisicos  para el registro de estudiante
+				$this -> db -> query("INSERT INTO rasgosFisicos (altura, peso, ci_estr)
+				VALUES(:altura, :peso, :ci_estr)");
+
+				$this -> db -> bind(':altura', $datos['altura']);
+				$this -> db -> bind(':peso', $datos['peso']);
+				$this -> db -> bind(':ci_estr', $datos['ci_escolar']);
+
+				$this -> db -> execute();
+*/
+				$this -> db -> commit();

@@ -1,0 +1,197 @@
+*{
+	margin: 0;/*margen externo del documento*/
+	padding: 0; /*margen interno del documento*/
+}
+
+	/*Declarando Variables Globales De Colores*/
+/*Paleta de Colores #1*/
+:root{
+	--color1:#F8F8FF;
+	--color2:#ff5252;
+	--color3:#1E2D38;
+	--color4:#FFFFFF;
+	--color5:#03A9F4;
+	--color6:#212121;
+	--color7:#757575;
+    --color8:#00CBFF;
+    --color9:#cad2dc;
+}
+
+/*icono de la navbar*/
+.fa-bars{
+	color: var(--color1); /*color del icono*/
+	font-size: 25px !important; /*tamaño del icono*/
+}
+
+a,
+a:hover,
+a:focus{
+   color: inherit;
+   text-decoration: none;
+   transition: all 0.3s;
+}
+
+.navbar{
+   position: sticky;
+   padding: 15px 10px;
+   background: var(--color3) !important;
+   border: none;
+   border-radius: 0;
+   margin-bottom: 40px;
+   box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.navbar-btn{
+   box-shadow: none;
+   outline: none!important;
+   border: none;
+}
+
+.line{
+   width: 100%;
+   height: 1px;
+   border-bottom: 1px dashed #ddd;
+}
+
+.wrapper {
+   display: flex;
+   width: 100%;
+   align-items: stretch;
+}
+
+#sidebar {
+   min-width: 250px;
+   max-width: 250px;
+   background: var(--color3) !important;
+   color: #fff;
+   transition: all 0.3s;
+}
+
+#sidebar.active{
+   margin-left: -250px;
+}
+
+#sidebar ul.components{
+   padding: 20px 0px;
+   border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p{
+   padding: 10px;
+   font-size: 1.1em;
+   display: block;
+}
+
+#sidebar ul li a{
+   padding: 10px;
+   font-size: 1.1em;
+   display: block;
+}
+#sidebar ul li a:hover {
+   color:var(--color5);
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+   color:var(--color5);
+}
+
+a[data-toggle="collapse"] {
+   position: relative;
+}
+
+.dropdown-toggle::after {
+   display: block;
+   position: absolute;
+   top: 50%;
+   right: 20px;
+   transform: translateY(-50%);
+}
+
+ul ul a {
+   font-size: 0.9em !important;
+   padding-left: 30px !important;
+}
+
+ul.CTAs {
+   padding: 20px;
+}
+
+ul.CTAs a {
+   text-align: center;
+   font-size: 0.9em !important;
+   display: block;
+   border-radius: 5px;
+   margin-bottom: 5px;
+}
+#content {
+   width: 100%;
+   padding: 20px;
+   min-height: 100vh;
+   transition: all 0.3s;
+}
+
+@media(maz-width:768px){
+   #sidebar{margin-left: -250px;}
+   #sidebar.active{
+       margin-left: 0px;
+   }
+   #sidebarCollapse span{
+       display: none;
+   }
+}
+
+.btn{
+    background: none;
+}
+
+/*--------------------------------------Footer - inicio-----------------------------------------------------------*/
+
+
+#footer{
+	background:Var(--color1);
+	color: var(--color7);	
+}
+
+.footer-img{
+	width: 100%;
+}
+
+
+/*Selector del id servicios*/
+#servicios{
+	padding: 80px 0; /*margen interno*/
+}
+
+/*Selector de las imagenes del servicio*/
+.img-servicios{
+	width: 100px; /*ancho de la imagen*/
+}
+
+/*Selector de la clase servicios*/
+.servicios{
+	padding: 20px; /*margen interno*/
+}
+
+/*Seletor de los subtitulos de cada servicio*/
+.servicios h4{
+	padding: 5px; /*margen interno*/
+	margin-top:25px; /*margen externo arriba*/
+}
+
+/*selector antes del titulo*/
+.title::before{
+	height: 5px; /*altura del elemento*/
+   width: 300px; /*ancho del elemento*/
+	margin-right: auto; /*margen derecho*/
+	margin-left: auto; /*margen izquierdo*/
+	display: block; /*convertir a un elemento en block*/
+}	
+
+.mision{
+   color: var(--color8)
+}
+
+.titulo{
+   color: #fff
+}
