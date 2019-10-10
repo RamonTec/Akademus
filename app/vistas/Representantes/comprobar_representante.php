@@ -1,16 +1,6 @@
 <?php require_once RUTA_APP . '/vistas/inc/header.php'; ?>
 <!---------------------------------------------------Formulario----------------------------------------->
-<div class="container formulario pt-5">
-   <div class="titulo-formulario col-md-8 col-xs-12  m-auto">
-        <div class="row text-center">            
-            <div class="col-xs-12 col-md-8">
-                <h2></h2>
-                <?php 
-                  print_r($datos); 
-                ?>
-            </div> 
-        </div> 
-    </div>
+<div class="container formulario pt-5">   
     <form class="formulario-login col-md-8 col-xs-12 m-auto" action="<?php echo RUTA_URL; ?>/Representantes/index" method="POST">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -22,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
                 <div class="form-group">
-                    <button type="submit" class="btn boton-de-envio">Comprobar cedula</button>
+                    <button type="submit" id="btn_enviar" class="btn boton-de-envio">Comprobar cedula</button>
                 </div>
             </div>
         </div>
@@ -30,4 +20,5 @@
     <hr>
 </div>
 <!---------------------------------------------------Footer---------------------------------------------->
+<script src="<?php echo RUTA_URL ?>/js/validacion_comprobar_representante.js"></script>
 <?php require_once RUTA_APP . '/vistas/inc/footer.php'; ?>

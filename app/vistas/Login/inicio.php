@@ -5,16 +5,29 @@
     <div class="container mt-5"><!--- Primer container ---->
         <div class="row"><!--- Inicio del segundo row --->                          
             <div class="col-8">
-                <h3>Mision - vision</h3>
-                <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quis illo, vel, blanditiis facilis in eum cum fugit, reprehenderit nesciunt inventore dolorum esse commodi obcaecati maxime ullam? Vel, doloribus quia!</p>
-                
-                <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi ratione quo harum, fugit laudantium dolorum tenetur dolor alias deleniti quae atque provident corrupti ipsam magnam, voluptas sit soluta. Perferendis, omnis?</p>
+                <h3>Misión - visión</h3>
+                <p class="text-justify">
+                    Educar a jóvenes y adolescentes ofreciéndoles innovaciones pedagógicas
+                    necesarias que les permite obtener experiencias enriquecedoras, con el fin de 
+                    prepararlos para la vida y puedan asumir los nuevos retos educativos a través 
+                    del reforzamiento de los diferentes valores éticos y morales inculcados por el docente.
+                </p>
+                <p class="text-justify">
+                    Formar adolescentes y jóvenes con capacidad integral y de clidad en las 
+                    especialidades de Ciencias, Humanidades y Áreas comerciales (en sus tres menciones:
+                    Contabilidad, Secretariado y Mercadeo), para asumir el compromiso de formar seres 
+                    sociales, humanistas, dignos y luchadores por nuestro país.
+                </p>
             </div>
             <div class="col-4">
-                <h4>Barra lateral</h4>
-                <p class="text-justify">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error laudantium eius nesciunt. Ratione hic ipsam iure eaque soluta beatae natus magnam temporibus, quaerat nostrum ex molestiae eius molestias reprehenderit itaque?</p>
-                
-                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, praesentium! Perferendis, enim et. Odio quam nisi, voluptates provident illum cumque quo nam beatae dolorum nulla, magnam ducimus commodi, veniam molestias.</p>
+                <h4>Los sistemas informaticos.</h4>
+                <p class="text-justify">
+                    Las Tecnologías de la Información han sido conceptualizadas como la integración y convergencia de la computación, 
+                    las telecomunicaciones y la técnica para el procesamiento de datos, donde sus principales componentes son: 
+                    el factor humano, los contenidos de la información, el equipamiento, la infraestructura, el software y los 
+                    mecanismos de intercambio de información, los elementos de política y regulaciones, 
+                    además de los recursos financieros.
+                </p>                                
             </div>
         </div><!--- Cierre del row --->    
     <hr>
@@ -24,15 +37,23 @@
         <div class="row"><!--- Inicio del segundo row --->                                      
             <div class="col-md-4 text-center">                       
                 <img class="img-fluid pb-2" src="<?php echo RUTA_URL; ?>/img/icono_busqueda.png" width="150" alt="">               
-                <p class="text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut voluptates alias ab sequi quos? Ipsum nesciunt officiis culpa hic vitae itaque modi eligendi incidunt quae ea voluptates, aliquam, quod facere?</p>
+                <p class="text-justify">
+                    Podra buscar información relacionada en cuanto a los esutdiantes, representantes, usuarios y secciones registradas 
+                    en el sistema, contando con un filtro para las busquedas en tiempo real.
+                </p>
+            </div>                 
+            <div class="col-md-4 text-center">     
+                <img class="img-fluid mt-1 pb-3" src="<?php echo RUTA_URL; ?>/img/icono_registro_estudiante.png" width="150" alt="">                
+                <p class="text-justify">
+                    Contara con el servicio de registro de estudiantes para la agilización del proceso de inscripción estudiantil.
+                </p>
             </div>
             <div class="col-md-4 text-center">
-                <img class="img-fluid pb-2" src="<?php echo RUTA_URL; ?>/img/icono_control_de_notas.png" width="150" alt="">
-                <p class="text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut voluptates alias ab sequi quos? Ipsum nesciunt officiis culpa hic vitae itaque modi eligendi incidunt quae ea voluptates, aliquam, quod facere?</p>
-            </div>     
-            <div class="col-md-4 text-center">     
-                <img class="img-fluid pb-2" src="<?php echo RUTA_URL; ?>/img/icono_registro_estudiante.png" width="150" alt="">                
-                <p class="text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut voluptates alias ab sequi quos? Ipsum nesciunt officiis culpa hic vitae itaque modi eligendi incidunt quae ea voluptates, aliquam, quod facere?</p>
+                <img class="img-fluid pb-3" src="<?php echo RUTA_URL; ?>/img/icono_control_de_notas.png" width="150" alt="">
+                <p class="text-justify">
+                    El sistema le permitira poder gestional todo lo relacionado al proceso de control de notas y evaluaciones que se impartan
+                    a los estudiantes.
+                </p>
             </div>           
         </div><!--- Cierre del row --->
     <hr>

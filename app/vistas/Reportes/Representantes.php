@@ -8,7 +8,7 @@
                         <img class="" src="<?php echo RUTA_URL ?>;/img/logo-inschool.png" width="80" alt="">
                     </div>
                 </div>
-        <form id="inicio_sesion" class="mx-auto" action="<?php echo RUTA_URL; ?>/Reportes/actaRepresentante" method="POST">
+        <form id="inicio_sesion" target="_blank" class="mx-auto" action="<?php echo RUTA_URL; ?>/Reportes/actaRepresentante" method="POST">
             <div class="form-group mx-auto">
                 <label for="ci">Ingrese la cedula del representante</label>
                 <input type="text" class="text-center form-control" name="ci" id="ci" placeholder="Cedula de identidad">

@@ -3,7 +3,7 @@
     <div class="bn">
         <section id="banner">
             <div class="container pb-5">
-                <div class="row pb-5">
+                <div class="row pb-5"> 
                     <!-- carrousel -->
                     <div class="col-md-6 mt-5 pt-5 pb-5">                              
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -49,12 +49,9 @@
                             </div>
                             <div class="form-group mx-auto">                            
                                 <input type="password" class="text-center form-control" name="clave" id="clave" placeholder="Ingrese su clave">
-                            </div>
-                            <?php 
-                                
-                            ?>                                          
+                            </div>                                        
                             <div class="form-group mx-auto">
-                                <button class="btn w-100 mx-auto boton-de-envio" type="submit">Iniciar Sesión</button>
+                                <button class="btn w-100 mx-auto boton-de-envio" id="btn_enviar" type="submit">Iniciar Sesión</button>
                             </div>
                             <hr>
                             <a href="<?php echo RUTA_URL ?>/Usuarios/registrar_usuario">¿Quieres registrarte?</a> ó <a href="<?php echo RUTA_URL ?>/Usuarios/recuperar_usuario">¿Quieres recuperar tú usuario?</a>
@@ -63,5 +60,6 @@
                 </div>
             </div>
         </section class="pb-5">
-    </div class="pb-5">    
+    </div class="pb-5">
+<script src="<?php echo RUTA_URL ?>/js/Validacion_inicio_sesion/validacion_inicio_sesion.js"></script>
 <?php require_once RUTA_APP . '/vistas/inc/footer.php' ?>

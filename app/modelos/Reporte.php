@@ -8,16 +8,13 @@ class Reporte{
 		$this ->db = new Base;
 	}
 
-	public function constanciaEstudiante($ci){
+	public function constanciaEstudiante($ci_est){
 		$this -> db -> query("
-			SELECT persona.ci, persona.pnombre, persona.segnombre, persona.papellido, persona.sexo, persona.nacionalidad,
-		 		   estudiante.tipo_est, estudiante.fecha_n
-	    	FROM persona
-	        JOIN estudiante
-	        ON persona.ci = estudiante.ci_escolar
-	        WHERE persona.ci = :ci						
+			SELECT estudiante.ci_est, estudiante.pnom, estudiante.segnom, estudiante.pape, estudiante.sexo, 
+			estudiante.nacionalidad_e, estudiante.tipo_est, estudiante.fecha_n
+	    	FROM estudiante	WHERE estudiante.ci_est = :ci_est						
 		");
-		$this -> db -> bind(':ci',$ci);
+		$this -> db -> bind(':ci_est',$ci_est);
 		$resultado = $this -> db -> registro();
 		return $resultado;
 	}

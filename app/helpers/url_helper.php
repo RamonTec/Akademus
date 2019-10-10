@@ -9,7 +9,7 @@ class Helper{
 
 
 	public static function session(){
-		//session_start();
+		session_start();
 		if (empty($_SESSION['nom_u'])){
 			self::redireccionar('/Login/Login');
 		} 

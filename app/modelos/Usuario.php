@@ -3,7 +3,7 @@
 	class Usuario{
 		private $db; 
 		public $mensaje; 
-		public $resultadoU;
+		public $resultado_usuario;
 
 		public function __construct(){
 			$this -> db = new Base;
@@ -17,7 +17,7 @@
 			// Habilitando las transacciones a la base de datos con el metodo beginTransaction.
 			$this -> db -> beginTransaction();
 
-			try {
+			
 				// Insertando registro de usuario -> persona.															
 				$this -> db -> query("INSERT INTO persona(ci, pnombre, segnombre, papellido, segapellido, nacionalidad)
 						VALUES(:ci, :pnombre, :segnombre, :papellido, :segapellido, :nacionalidad)");
@@ -86,9 +86,7 @@
 				// Guardando la consulta con el metodo commit.
 				$this -> db -> commit();
 
-			} catch (PDOException $e) {
-				
-			}
+			
 		}
 
 		// Metodo que se encarga de la validación de datos para la recuperación de usuario
@@ -147,7 +145,7 @@
 					$this -> db -> bind(':id_u', $id_usuario);
 					$this -> db -> bind(':clave', $datos['clave']);
 					$this -> db -> bind(':nom_u', $datos['nom_u']);
-
+ 
 					$this -> db -> execute();
 					$this -> db -> commit();
 
@@ -189,11 +187,28 @@
 			return $resultados; 
 		} 
 
-		public function obtenerUsuario($nombre_u){
-			$this -> db -> query('SELECT * FROM usuario WHERE nom_u = :nom_u');
-			$this -> db -> bind(':nom_u', $nombre_u);
+		public function comprobar_usuario_existente($datos){
+			
+			$this -> db -> query('SELECT * FROM persona WHERE ci = :ci');
+			$this -> db -> bind(':ci', $datos['ci']);
 
 			$fila = $this -> db -> registro();
+			$id_usuario_persona = $fila -> id_per;
+
+			$this -> db -> query('SELECT * FROM usuario WHERE id_pu = :id_pu');
+			$this -> db -> bind(':id_pu', $id_usuario_persona);
+			
+			$usuario_existente = $this -> db -> registro();
+			
+			if ($usuario_existente == true) {
+				// 0 El usuario ya esta registrado.
+				return $this -> resultado_usuario = "0";
+			} else {
+				// 1 El usuario no esta registrado.
+				return $this -> resultado_usuario = "1";
+			}
+			
+
 			return $fila;
 		}
 

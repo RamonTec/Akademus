@@ -231,3 +231,20 @@ BEGIN
   RETURN;
 END;
 $$ LANGUAGE plpgsql;
+
+--Funcion para obetener a los representantes
+CREATE OR REPLACE FUNCTION representante_persona()
+RETURNS TABLE (ci varchar, pnombre varchar, papellido varchar, sexo_p char, nacionalidad char, tutor_legal varchar) AS $$
+BEGIN
+  FOR ci, pnombre, papellido, sexo_p, nacionalidad, tutor_legal, representante IN
+    SELECT persona.ci, persona.pnombre, persona.papellido, persona.sexo_p, persona.nacionalidad,
+		 				representante.tutor_legal
+    FROM persona
+    JOIN representante
+    ON persona.id_per = representante.id_rep
+  	LOOP
+    RETURN NEXT;
+  END LOOP;
+  RETURN;
+END;
+$$ LANGUAGE plpgsql;

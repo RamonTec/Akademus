@@ -704,7 +704,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
---Funcion 5
+--Funcion 5 
 CREATE OR REPLACE FUNCTION persona_profesor(character varying)
 RETURNS TABLE (ci varchar, pnombre varchar, papellido varchar, tipo_prof varchar, tutor_legal varchar) AS $$
 BEGIN

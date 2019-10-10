@@ -911,3 +911,36 @@ $BODY$
 $BODY$ 
 LANGUAGE plpgsql;
 
+
+-- Quinta funcion para la busqueda de representante y todos sus registros.
+CREATE OR REPLACE FUNCTION data_representante(character varying)
+RETURNS TABLE (
+	ci varchar, pnombre varchar, segnombre varchar, papellido varchar, segapellido varchar, nacionalidad varchar, sexo_p varchar,
+	tutor_legal varchar, id_rep integer, id_pr integer, id_dr integer,
+	id_dir integer, n_casa varchar, pto_ref varchar, calle varchar, sector varchar, id_md integer,
+	id_po integer, posee_po varchar, nom_po varchar, lugar_po varchar, tlf_po varchar,
+	id_pais integer, nom_pais varchar,
+	id_estado integer, nom_estado varchar, id_ep integer,
+	id_muni integer, nombre_muni varchar, id_em integer) AS $$
+BEGIN
+	FOR ci, pnombre, segnombre, papellido, segapellido, nacionalidad, sexo_p,
+	tutor_legal, id_rep, id_pr, id_dr,
+	id_dir, n_casa, pto_ref, calle, sector, id_md,
+	id_po, posee_po, nom_po, lugar_po, tlf_po,
+	id_pais, nom_pais,
+	id_estado, nom_estado, id_ep,
+	id_muni, nombre_muni, id_em IN 
+	SELECT * FROM persona 
+	INNER JOIN representante ON persona.id_per = representante.id_rep 
+	INNER JOIN direccion ON representante.id_dr = direccion.id_dir 
+	INNER JOIN municipio ON direccion.id_md = municipio.id_muni
+	INNER JOIN estado ON estado.id_estado = municipio.id_em
+	INNER JOIN pais ON pais.id_pais = estado.id_ep
+	INNER JOIN profesion_u_oficio ON profesion_u_oficio.id_po = representante.id_pr 
+	WHERE ci = ci
+	LOOP
+	RETURN NEXT;
+  END LOOP;
+  RETURN;
+END;
+$$ LANGUAGE plpgsql;

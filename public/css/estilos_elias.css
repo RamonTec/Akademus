@@ -13,28 +13,30 @@
     Sexta paleta: https://colorhunt.co/palette/42568
     Septima paleta: https://www.color-hex.com/color-palette/81563
     Octava paleta: https://www.color-hex.com/color-palette/80564
+    Novena paleta: https://www.color-hex.com/color-palette/80772
+    Decima paleta: https://www.color-hex.com/color-palette/80706
 */
 
 .navbar{
-    background-color: #202a38;
+    background-color: 	 	#002b31;	
 }
 
 body{     
-    background-color: #eef4f8;
+    background-color: 	rgb(255, 254, 254);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 hr {
-    background-color: #ce3f3f;
+    background-color:  	#005a41
 }
 
 a {
-    color: #5588a3;
+    color: 		#bd610a;
 }
 
 .tabla thead{
-    color: #eeeeee;
-    background-color: #ce3f3f;
+    color: rgb(255, 255, 255);
+    background-color: #36a998;
 }
 
 .tabla td {
@@ -52,4 +54,46 @@ a {
 .boton-de-envio{
     background-color: #202a38;
     color: #e8e8e8;
+}
+
+/* Formulario de registro de representante nuevo */
+input{
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+.selectMunicipio{
+    width: 100%;
+}
+
+/* Estilos para perfil de estudiante */
+.perfil-card{
+    background-color: white;
+}
+
+.img-perfil{
+    display:block;
+    margin:auto;
+}
+
+.pnom-estudiante{
+    color: black;    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.pape-estudiante{
+    color: black;    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
+    text-align: center;
+}
+
+.centrado{
+    text-align: center;
+}
+
+.margen-perfil{
+    margin-top: 140px;
+    margin-left: 100px;
 }

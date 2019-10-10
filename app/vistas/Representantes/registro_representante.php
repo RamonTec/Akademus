@@ -8,173 +8,37 @@
          </div>
      </div>
  
-<form action="<?php echo RUTA_URL; ?>/Estudiantes/registrarEstudiante" method="POST">
-     <div class="accordion" id="accordionExample">
-      <div class="card">
-        <div class="card-header" id="headingOne">
-          <h2 class="mb-0">
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Datos peronales de representantes
-            </button>
-          </h2>
-        </div>
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="form-row">
-              <div class="col-md-1"></div>
-              <div class="form-group col-md-3">
-                <label for="ci">Cedula de identidad</label>
-                <input type="text" class="form-control" id="ci" name="ci" placeholder="Cedula de identidad">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="pnombre">Primer nombre</label>
-                <input type="text" class="form-control" id="pnombre" name="pnombre" placeholder="Primer nombre">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="segnombre">Segundo nombre</label>
-                <input type="text" class="form-control" id="segnombre" name="segnombre" placeholder="Segundo nombre">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-3"></div>
-              <div class="form-group col-md-3">
-                <label for="papellido">Primer apellido</label>
-                <input type="text" class="form-control" id="papellido" name="papellido" placeholder="Primer apellido">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="segapellido">Segundo apellido</label>
-                <input type="text" class="form-control" id="segapellido" name="segapellido" placeholder="Segundo apellido">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-3"></div>
-              <div class="form-group col-md-3">
-                <label for="otrosnombres">Otros nombres</label>
-                <input type="text" class="form-control" id="inputEmail4" name="otrosnombres" placeholder="Nombre">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="otrosapellidos">Otros apellidos</label>
-                <input type="text" class="form-control" id="inputPassword4" name="otrosapellidos" placeholder="Apellido">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-2"></div>
-              <div class="form-group col-md-4">
-                <label for="inputState">Nacionalidad</label>
-                <select id="inputState" name="nacionalidad" class="form-control">
-                  <option selected>Choose...</option>
-                  <option value="V">Venezolano</option>
-                  <option value="E">Extranjero</option>
-                </select>
-              </div>
-              <div class="form-group col-md-4">
-                <label for="sexo">Sexo</label>
-                <select id="sexo" name="sexo" class="form-control">
-                  <option selected>Choose...</option>
-                  <option value="M">Masculino</option>
-                  <option value="F">Femenino</option>
-                </select>
-              </div>
-            </div>
-            <hr>
-            <div class="form-row">
-              <div class="col-md-1"></div>
-              <div class="form-group col-md-3">
-                <label for="cod_area1">Codigo de area</label>
-                <select id="cod_area1" name="cod_area1" class="form-control">
-                  <option selected>Elija...</option>
-                  <option value="0424">0424</option>
-                  <option value="0416">0416</option>
-                  <option value="0412">0412</option>
-                  <option value="0414">0414</option>
-                </select>
-              </div>
-              <div class="form-group col-md-3">
-                <label for="numero1">Numero de telefono 1</label>
-                <input type="text" class="form-control" id="numero1" name="numero1" placeholder="Numero de telefono">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="tipo1">Tipo de telefono</label>
-                <select id="tipo1" name="tipo1" class="form-control">
-                  <option selected>Elija...</option>
-                  <option value="Movil">Movil</option>
-                  <option value="Fijo">Fijo</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-1"></div>
-              <div class="form-group col-md-3">
-                <label for="cod_area2">Codigo de area</label>
-                <select id="cod_area2" name="cod_area2" class="form-control">
-                  <option selected>Elija...</option>
-                  <option value="0424">0424</option>
-                  <option value="0416">0416</option>
-                  <option value="0412">0412</option>
-                  <option value="0414">0414</option>
-                </select>
-              </div>
-              <div class="form-group col-md-3">
-                <label for="numero2">Numero de telefono 2</label>
-                <input type="text" class="form-control" id="numero2" name="numero2" placeholder="Numero de telefono">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="tipo2">Tipo de telefono</label>
-                <select id="tipo2" name="tipo2" class="form-control">
-                  <option selected>Elija...</option>
-                  <option value="Movil">Movil</option>
-                  <option value="Fijo">Fijo</option>
-                </select>
-              </div>
-            </div>
-            <hr>
-            <div class="form-row">
-              <div class="col-md-3"></div>
-              <div class="form-group col-md-3">
-                <label for="nºcasa">Numero de casa</label>
-                <input type="text" class="form-control" id="nºcasa" name="nºcasa" placeholder="Numero de casa">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="calle">Calle</label>
-                <input type="text" class="form-control" id="calle" name="calle" placeholder="Calle de donde vive">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-3"></div>
-              <div class="form-group col-md-3">
-                <label for="pto_ref">Punto de referencia</label>
-                <textarea class="form-control" id="pto_ref" name="pto_ref"  rows="3"></textarea>
-              </div>
-              <div class="form-group col-md-3">
-                <label for="sector">Sector</label>
-                <input type="text" class="form-control" id="sector" name="sector" placeholder="Sector donde vive">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-4">
-                <label for="nombre_pais">Pais</label>
-                <select id="nombre_pais" name="nombre_pais" class="form-control">
-                  <option selected>Elija...</option>
-                  <option value="Venezuela">Venezuela</option>
-                </select>
-              </div>
-              <div class="form-group col-md-4">
-                <label for="nombre_estado">Estado</label>
-                <select id="nombre_estado" name="nombre_estado" class="form-control">
-                  <option selected>Elija...</option>
-                  <option value="Anzoategui">Anzoategui</option>
-                </select>
-              </div>
-              <div class="form-group col-md-4">
-                <label for="nombre_muni">Municipio</label>
-                <select id="nombre_muni" name="nombre_muni" class="form-control">
-                  <option selected>Eleija...</option>
-                  <option value="Simon Rodriguez">Simon Rodriguez</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
+<form action="<?php echo RUTA_URL; ?>/Representantes/registro_representante" method="POST">
+     
+    <div class="row">      
+      <div class="col-md-2">
+      <input class="form-group" type="text" name="ci" id="ci" placeholder="Cedula de identidad">
+        <input class="form-group" type="text" name="posee_po" id="posee_po" placeholder="Posee profesion">
+        <input class="form-group" type="text" name="nom_po" id="nom_po" placeholder="Nombre de la profesion">
+        <input class="form-group" type="text" name="lugar_po" id="lugar_po" placeholder="Lugar de la profesion">
+        <input class="form-group" type="text" name="tlf_po" id="tlf_po" placeholder="Telefono de la profesion">
+      </div>      
+      <div class="col-md-2">      
+        <input class="form-group" type="text" name="n_casa" id="n_casa" placeholder="Numero de casa">    
+        <input class="form-group" type="text" name="pto_ref" id="pto_ref" placeholder="Punto de referencia">    
+        <input class="form-group" type="text" name="calle" id="calle" placeholder="Calle">            
+        <input class="form-group" type="text" name="sector" id="sector" placeholder="Sector">        
+        <input class="form-group" type="text" name="nom_pais" id="nom_pais" placeholder="Pais">        
+        <input class="form-group" type="text" name="nom_estado" id="nom_estado" placeholder="Estado">        
+        <input class="form-group" type="text" name="nombre_muni" id="nombre_muni" placeholder="Municipio">                
       </div>
+      <div class="col-md-2">
+        <input class="form-group" type="text" name="tutor_legal" id="posee_po" placeholder="Tutor legal">
+      </div>  
+      <div class="col-md-2">
+        <input class="form-group" type="text" name="cod_area1" id="cod_area1" placeholder="Codigo de telefono">
+        <input class="form-group" type="text" name="numero1" id="numero1" placeholder="Numero de telefono">
+        <input class="form-group" type="text" name="tipo1" id="tipo1" placeholder="Tipo de telefono">
+      </div>  
+    </div>
+    <button type="submit" >Registrarse</button>
+
+<form>
   
 
 <?php require_once RUTA_APP . "/vistas/inc/footer.php" ?>

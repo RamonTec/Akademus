@@ -10,11 +10,12 @@
             <option value="V">Venezolano</option>
             <option value="E">Extranjero</option>
           </select>
-          <input type="text" class="form-control mt-4" id="ci" name="ci" placeholder="Cedula de identidad">
-          
+          <input class="form-control mt-4" onkeypress="validar_ci(event)" id="ci" name="ci" placeholder="Cedula de identidad">
+          <span id="ci_mensaje"></span>      
         </div>
         <div class="col-md-3"><!---- Inicio del primer col ----->
           <div class="form-group">      
+            <span id="pnombre_mensaje"></span>
             <input type="text" class="form-control" id="pnombre" name="pnombre" placeholder="Primer nombre">
             <input type="text" class="form-control mt-4" id="segnombre" name="segnombre" placeholder="Segundo nombre">             
           </div>
@@ -23,7 +24,6 @@
           <div class="form-group">              
             <input type="text" class="form-control" id="papellido" name="papellido" placeholder="Primer apellido">
             <input type="text" class="form-control mt-4" id="segapellido" name="segapellido" placeholder="Segundo apellido">
-
           </div>
         </div><!---- Cierre del segundo col ----->
       </div><!---- Cierre del primer row ----->
@@ -89,5 +89,5 @@
 </div><!---- Cierre del primer container ----->
 
  
-<script type="text/javascript" src="<?php echo RUTA_URL; ?>/js/validar_registro_de_usuario.js"></script>
+<script type="text/javascript" src="<?php echo RUTA_URL; ?>/js/validar_registro_usuario.js"></script>
 <?php require_once RUTA_APP . "/vistas/inc/footer.php"; ?>

@@ -8,19 +8,17 @@ class Configuraciones extends Controlador{
 
 	public function index(){		
 		$this->vista('Sistema/Sistema');
-	}
+	}  
 
 	public function respaldoSistema(){
 		if ($this -> configModelo -> respaldo()){		
 
 			$datos = [
-				"mensaje" => 'Respaldo creado correctamente',
-				"alert" => 'alert-success',
-				"ok" => 'ok'
+				"mensaje" => 'Respaldo creado correctamente'				
 			];
 
-			$this -> vista('Sistema/sistema', $datos);
-		}
+			$this -> vista('Sistema/Sistema', $datos);
+		} 
 	}
 
 

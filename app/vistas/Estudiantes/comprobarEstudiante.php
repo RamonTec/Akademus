@@ -1,20 +1,24 @@
 <?php require_once RUTA_APP . '/vistas/inc/header.php'; ?>
 <!------------------------Formulario----------------------------------------->
-<br>
-<br>
-<br>
-<div class="container">
-  <form class="form-inline" action="<?php echo RUTA_URL; ?>/Estudiantes/index" method="POST">
-    <div class="form-group mb-2">
-      <label for="ci" class="sr-only">Cedula de identidad</label>
-      <input type="text" readonly class="form-control-plaintext" name="ci" value="">
-    </div>
-    <div class="form-group mx-sm-3 mb-2">
-      <label for="ci" class="sr-only">Cedula</label>
-      <input type="text" class="form-control" name="ci" id="inputPassword2" placeholder="Cedula">
-    </div>
-    <button type="submit" class="btn btn-primary mb-2">Confirmar cedula</button>
-  </form>
+<div class="container formulario pt-5">   
+    <form class="formulario-login col-md-8 col-xs-12 m-auto" action="<?php echo RUTA_URL; ?>/Estudiantes/index" method="POST">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-group text-center">                    
+                    <input type="text" class="text-center form-control" name="ci_est" id="ci_est" placeholder="Cedula de identidad">
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <div class="form-group">
+                    <button type="submit" id="btn_enviar" class="btn boton-de-envio">Comprobar cedula</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr>
 </div>
 <!---Footer---------------------------------------------->
+<script src="<?php echo RUTA_URL ?>/js/validacion_comprobar_estudiante.js"></script>
 <?php require_once RUTA_APP . '/vistas/inc/footer.php'; ?>

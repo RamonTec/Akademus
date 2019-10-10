@@ -1,6 +1,8 @@
 <?php require_once RUTA_APP . '/vistas/inc/header.php';?>
 <!----------------------------------------NAVBAR------------------------------------------------------------->
-<table>
+<div class="container mt-5">
+<h4><p class="text-center pb-3 gestion-usuario">Gestion de estudiantes</p></h4>
+<table class="table table-hover text-center tabla">
 	<thead>
 		<tr>
 			<th>Cedula de identidad</th>
@@ -11,22 +13,24 @@
 			<th>Tipo de estudiante</th>
 			<th>Acciones</th>
 		</tr> 
-	</thead>
+	</thead> 
 	<tbody> 
 		<?php foreach($datos['estudiantes'] as $estudiante) : ?>
 		<tr>
-			<td><?php echo $estudiante -> ci ?></td>
-			<td><?php echo $estudiante -> pnombre ?></td>
-			<td><?php echo $estudiante -> papellido ?></td>
+			<td><?php echo $estudiante -> ci_est ?></td>
+			<td><?php echo $estudiante -> pnom ?></td>
+			<td><?php echo $estudiante -> pape ?></td>
 			<td><?php echo $estudiante -> sexo ?></td>
-			<td><?php echo $estudiante -> nacionalidad ?></td>
+			<td><?php echo $estudiante -> nacionalidad_e ?></td>
 			<td><?php echo $estudiante -> tipo_est ?></td>
-			<td><a href="<?php echo RUTA_URL;?>/Estudiantes/actualizarEstudiante/<?php echo $estudiante -> ci ?>">Editar</a></td>
-			<td><a href="<?php echo RUTA_URL;?>/Estudiantes/borrarEstudiante/<?php echo $estudiante -> ci ?>">Eliminar</a></td>
+			<td>								
+				<a href="<?php echo RUTA_URL;?>/Estudiantes/perfil_estudiante/<?php echo $estudiante -> ci_est ?>">Perfil</a>
+			</td>		
 		</tr>
 	<?php  endforeach;?>
 	</tbody>
 </table>
+</div>
 
 
 

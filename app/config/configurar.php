@@ -1,10 +1,10 @@
 <?php
 
 	define('DB_HOST','localhost');
-	define('DB_USUARIO','elias');
-	define('DB_PASSWORD','nemo');
-	define('DB_NOMBRE','bm_mvc_sql');
-	define('DB_PORT', '5432');
+	define('DB_USUARIO','root');
+	define('DB_PASSWORD','');
+	define('DB_NOMBRE','akademus');
+	// define('DB_PORT', '5432');
 
 	define('RUTA_APP', dirname(dirname(__FILE__)));
 

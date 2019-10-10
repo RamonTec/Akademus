@@ -5,7 +5,7 @@
 		private $usuario = DB_USUARIO;
 		private $password = DB_PASSWORD;
 		private $nombre_base = DB_NOMBRE;
-		private $port = DB_PORT;
+		// private $port = DB_PORT; . ';port=' . $this -> port
 
 		private $dbh;
 		private $stmt;
@@ -13,7 +13,7 @@
 
 		public function __construct(){
 			//Configurar la conexion
-			$dsn = 'pgsql:host=' . $this -> host . ';port=' . $this -> port . ';dbname=' . $this -> nombre_base;
+			$dsn = 'mysql:host=' . $this -> host . ';dbname=' . $this -> nombre_base;
 			$opciones = array(
 				PDO::ATTR_PERSISTENT => true,
 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION

@@ -3,17 +3,17 @@
 class Reportes Extends Controlador{
 
 	public function __construct(){
-		$this -> reportesModelo = $this -> modelo('reporte');
+		$this -> reportesModelo = $this -> modelo('Reporte');
 	}
  
 	public function index(){
-		$this -> vista('Reportes/estudiantes');
+		$this -> vista('Reportes/Estudiantes');
 	}
-
+ 
 	public function constancia_inscripcion(){
-		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+		if ($_SERVER['REQUEST_METHOD'] == 'POST'){ 
 
-			$estudiante = $this -> reportesModelo -> constanciaEstudiante($_POST['ci']);			
+			$estudiante = $this -> reportesModelo -> constanciaEstudiante($_POST['ci_est']);			
 
 			if ($estudiante == ''){
 	
@@ -52,7 +52,7 @@ class Reportes Extends Controlador{
 	$pdf -> Ln(10);
 	$pdf -> Cell(0,0, 'Me dirijo a usted, con la finalidad de solicitar la inscripcion para mi representado el');
 	$pdf -> Ln(5);
-	$pdf -> Cell(0,0,utf8_decode( '(la) estudiante: '.$estudiante -> pnombre. ' ' .$estudiante -> segnombre. ' ' .$estudiante -> papellido.' , CI o CE: '.$estudiante -> ci. '. Así mismo quiero manifestar'));
+	$pdf -> Cell(0,0,utf8_decode( '(la) estudiante: '.$estudiante -> pnom. ' ' .$estudiante -> segnom. ' ' .$estudiante -> pape.' , CI o CE: '.$estudiante -> ci_est. '. Así mismo quiero manifestar'));
 	$pdf -> Ln(5);
 	$pdf -> Cell(0,0,utf8_decode('que los datos personales para tal inscripcion son exactos y que me comprometo'));
 	$pdf -> Ln(5);
@@ -74,7 +74,7 @@ class Reportes Extends Controlador{
 	$pdf -> Ln(5);
 	$pdf -> Cell(0,0, 'Firma del representante                                                    Firma de quien registra');
 	$pdf -> Ln(10);
-	$pdf -> Cell(0,0, utf8_decode('C.I: '.$estudiante -> nacionalidad.'-'.$estudiante -> ci.'                                                                    C.I:'));
+	$pdf -> Cell(0,0, utf8_decode('C.I: '.$estudiante -> nacionalidad_e.'-'.$estudiante -> ci_est.'                                                                    C.I:'));
 	$pdf -> Ln(30);
 	$pdf -> Cell(0,0, '');
 	$pdf -> Ln(10);
