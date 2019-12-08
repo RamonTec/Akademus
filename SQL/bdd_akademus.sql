@@ -1,7 +1,7 @@
 -- Ultima base de datos LA MÁS ACTUAL sabado 20 de julio.
 -- Seccion 1 creacion de las tablas de las bases de datos
 
-
+create database akademus;
 	use akademus;
 -- Creacion de la tabla persona
 create table persona(
