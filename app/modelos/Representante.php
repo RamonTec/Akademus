@@ -57,11 +57,19 @@
       
       try {
         
-        $this -> db -> query("SELECT * FROM persona WHERE ci = :ci");
+        $this -> db -> query("INSERT INTO persona (ci, pnombre, segnombre, papellido, segapellido, 
+          nacionalidad, sexo_p) VALUES(:ci, :pnombre, :segnombre, :papellido, :segapellido, :nacionalidad,
+          :sexo_p)");
         $this -> db -> bind(":ci", $datos['ci']);
+        $this -> db -> bind(":pnombre", $datos['pnombre']);
+        $this -> db -> bind(":segnombre", $datos['segnombre']);
+        $this -> db -> bind(":papellido", $datos['papellido']);
+        $this -> db -> bind(":segapellido", $datos['segapellido']);
+        $this -> db -> bind(":nacionalidad", $datos['nacionalidad']);
+        $this -> db -> bind(":sexo_p", $datos['sexo_p']);
 
-        $registro_persona = $this -> db -> registro();
-        $id_persona_representante = $registro_persona -> id_per;
+        $this -> db -> execute();
+        $id_persona_representante = $this -> db -> lastInsertId();
 
         $this -> db -> query("INSERT INTO pais (nom_pais) VALUES(:nom_pais)");
         $this -> db -> bind(":nom_pais", $datos['nom_pais']);
@@ -83,7 +91,7 @@
         $this -> db -> query("INSERT INTO direccion (n_casa, pto_ref, calle, sector, id_md) 
         VALUES(:n_casa, :pto_ref, :calle, :sector, :id_md)");
         $this -> db -> bind(":n_casa", $datos['n_casa']);
-        $this -> db -> bind(":pto_ref", $datos['pto_ref']);
+        $this -> db -> bind(":pto_ref", $datos['pto_ref']); 
         $this -> db -> bind(":calle", $datos['calle']);
         $this -> db -> bind(":sector", $datos['sector']);
         $this -> db -> bind(":id_md", $id_municipio);
@@ -120,15 +128,11 @@
  
     // Metodo para mostrar a todos los representantes
     public function obtener_representante(){
-      $this -> db -> query("SELECT * FROM representante_persona()");
+      $this -> db -> query("SELECT * FROM representante");
       $fila = $this -> db -> registros();
 			return $fila;
     }
 
-    // Mètodo que trae todos los datos del representante a actualizar.
-    public function obtener_representante_por_ci($ci){
-      
-    }
-
+    
 
   }

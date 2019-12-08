@@ -43,9 +43,9 @@
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="<?php echo RUTA_URL; ?>/Estudiantes/index">Estudiantes</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<? echo RUTA_URL ?>/Representantes/index">Representantes</a>
+                            <a class="dropdown-item" href="<?php echo RUTA_URL ?>/Representantes/index">Representantes</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<? echo RUTA_URL ?>/Profesores/index">Profesores</a>
+                            <a class="dropdown-item" href="<?php echo RUTA_URL ?>/Profesores/index">Profesores</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?php echo RUTA_URL ?>/Usuarios/comprobar_usuario">Usuarios</a>
                             <div class="dropdown-divider"></div>

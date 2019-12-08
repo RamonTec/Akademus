@@ -32,8 +32,8 @@
 				$this -> vista('Representantes/comprobar_representante', $datos);
 			}
 		} else{
-	        $this -> vista('Representantes/comprobar_representante');
-	    }
+        $this -> vista('Representantes/comprobar_representante');
+    }
 	}
 
 	// Método representantes que instancia la vista representantes, donde se ve el registro de todos los representantes registrados.
@@ -88,9 +88,15 @@
 				'lugar_po' => trim($_POST['lugar_po']),
 				'tlf_po' => trim($_POST['tlf_po']),			
 			];
-			if (condition) {
-				 
+
+			$this -> representante_modelo -> registrar_representante($datos);
+			if (empty($this -> representante_modelo -> mensaje)) {
+				Helper::redireccionar('/Representantes/representantes');
+			} else {
+				$datos = ["mensaje" => $this -> representante_modelo -> mensaje];
+				$this -> vista('Representantes/registro_persona_representante', $datos);
 			}
+			
 		} else {
 			$this -> vista('Representantes/registro_persona_representante');	
 		}		
