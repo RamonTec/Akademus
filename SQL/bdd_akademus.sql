@@ -78,7 +78,7 @@ create table municipio(
 -- Creacion de la tabla direccion
 create table direccion(
 	id_dir 		int auto_increment primary key not null,
-	nºCasa 		varchar(20) not null,
+	n_casa 		varchar(20) not null,
 	pto_ref 	varchar(255) not null,
 	calle 		varchar(50) not null,
 	sector		varchar(20) not null,
@@ -96,7 +96,7 @@ create table representante(
 	id_dr 			int,
 	foreign key (id_dr) references direccion (id_dir) on update cascade on delete cascade
 );
-
+ 
 -- Creacion de la tabla beca
 create table beca(
 	id_beca 	int auto_increment primary key not null,
@@ -111,7 +111,7 @@ create table canaima(
 	posee_can 		char(2),
 	modelo 			varchar(20),
 	codigo  		varchar(20),
-	serial			varchar(20),
+	serial_can		varchar(20),
 	condicion		varchar(20)
 );
 

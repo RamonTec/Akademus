@@ -2,7 +2,7 @@
 	<footer class="footer mt-5">
 		<div class="container"><!--- Primer container --->
 			<div>
-				<p class="text-center">BManagement derechos reservados 2019-2020.</p>
+				<p class="text-center">Akademus derechos reservados 2019-2020.</p>
 			</div>
 		</div><!--- Cierre del primer container ---->
 	</footer>

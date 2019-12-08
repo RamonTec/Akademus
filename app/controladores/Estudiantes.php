@@ -74,18 +74,6 @@
 
 					//Datos de la tabla estado
 					'nom_estado' => trim($_POST['nom_estado']),
-				
-					//Datos de la tabla canaima
-					'posee_can' => trim($_POST['posee_can']),
-					'modelo' => trim($_POST['modelo']),
-					'codigo' => trim($_POST['codigo']),
-					'serial_can' => trim($_POST['serial_can']),
-					'condicion' => trim($_POST['condicion']),
-
-					//Datos de la tabla beca
-					'posee_b' => trim($_POST['posee_b']),
-					'tipo_beca' => trim($_POST['tipo_beca']),
-					'descripcion' => trim($_POST['descripcion']),
 
 					//Datos de la tabla institucion de procedencia
 					'nom_pro' => trim($_POST['nom_pro']),

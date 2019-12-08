@@ -19,35 +19,14 @@
 
 			if ($resultado == true) {
 				return $this -> registro = 0;
-		    } else {
+	    } else {
 				return $this -> registro = 1;
-		    }
-
+	    }
 		}
 
 		public function insertar_estudiante($datos){
 			
 			$this -> db -> beginTransaction();
-
-			$this -> db -> query("INSERT INTO beca (posee_b, tipo_beca, descripcion) 
-			VALUES(:posee_b, :tipo_beca, :descripcion)");
-			$this -> db -> bind(':posee_b', $datos['posee_b']);
-			$this -> db -> bind(':tipo_beca', $datos['tipo_beca']);
-			$this -> db -> bind(':descripcion', $datos['descripcion']);
-			$this -> db -> execute();
-			$id_beca = $this -> db -> lastInsertId();
-
-			$this -> db -> query("INSERT INTO canaima (posee_can, modelo, codigo, serial_can, condicion) 
-			VALUES(:posee_can, :modelo, :codigo, :serial_can, :condicion)");
-			$this -> db -> bind(':posee_can', $datos['posee_can']);
-			$this -> db -> bind(':modelo', $datos['modelo']);
-			$this -> db -> bind(':codigo', $datos['codigo']);
-			$this -> db -> bind(':serial_can', $datos['serial_can']);
-			$this -> db -> bind(':condicion', $datos['condicion']);
-			$this -> db -> execute();
-			$id_canaima = $this -> db -> lastInsertId();
-			
-			
 
 			$this -> db -> query("INSERT INTO pais (nom_pais) VALUES(:nom_pais)");
 			$this -> db -> bind(':nom_pais', $datos['nom_pais']);
@@ -84,9 +63,9 @@
 
 			//Insertar datos en la tabla estudainte para el registro de estudiante
 			$this -> db -> query("INSERT into estudiante (ci_est, ci_escolar, pasaporte, ci_diplomatica, tipo_est, fecha_n, 
-			lugar_n, sexo, pnom, segnom, otrosnom, pape, segape, otrosape, id_be, id_ce, id_de, id_poe, nacionalidad_e) 
+			lugar_n, sexo, pnom, segnom, otrosnom, pape, segape, otrosape, id_de, id_poe, nacionalidad_e) 
 			VALUES(:ci_est, :ci_escolar, :pasaporte, :ci_diplomatica, :tipo_est, :fecha_n, :lugar_n, :sexo, :pnom, :segnom, 
-			:otrosnom, :pape, :segape, :otrosape, :id_be, :id_ce, :id_de, :id_poe, :nacionalidad_e)");
+			:otrosnom, :pape, :segape, :otrosape, :id_de, :id_poe, :nacionalidad_e)");
 
 			$this -> db -> bind(':ci_est', $datos['ci_est']);
 			$this -> db -> bind(':ci_escolar', $datos['ci_escolar']);
@@ -103,16 +82,11 @@
 			$this -> db -> bind(':pape', $datos['pape']);
 			$this -> db -> bind(':segape', $datos['segape']);
 			$this -> db -> bind(':otrosape', $datos['otrosape']);
-			$this -> db -> bind(':id_be', $id_beca);
-			$this -> db -> bind(':id_ce', $id_canaima);
 			$this -> db -> bind(':id_de', $id_direccion);
 			$this -> db -> bind(':id_poe', $id_institucion);
 			 
 			$this -> db -> execute();
-			
-			
 			$this -> db -> commit();
-
 		}
 
 		public function obtenerEstudiantes(){
