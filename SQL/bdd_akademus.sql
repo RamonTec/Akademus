@@ -1,7 +1,9 @@
---Ultima base de datos LA MÁS ACTUAL sabado 20 de julio.
---Seccion 1 creacion de las tablas de las bases de datos
+-- Ultima base de datos LA MÁS ACTUAL sabado 20 de julio.
+-- Seccion 1 creacion de las tablas de las bases de datos
 
---Creacion de la tabla persona
+
+	use akademus;
+-- Creacion de la tabla persona
 create table persona(
 	id_per			int auto_increment primary key not null,
 	ci				varchar(20) not null,
@@ -12,13 +14,13 @@ create table persona(
 	nacionalidad	char(1) not null,
 	sexo_p			char(1) not null
 );
---Creacion de la tabla cargo
+-- Creacion de la tabla cargo
 create table cargo(
 	id_cargo 	int auto_increment primary key not null,
 	tipo_cargo 	varchar(30) not null
 );
 
---Creacion de la tabla usuario
+-- Creacion de la tabla usuario
 create table usuario(
 	id_u 		int auto_increment primary key not null,
 	nom_u 		varchar(20) not null,
@@ -34,7 +36,7 @@ create table usuario(
 	foreign key (id_cu) references cargo (id_cargo) on update cascade on delete cascade
 );
 
---Creacion de la tabla profesor
+-- Creacion de la tabla profesor
 create table profesor(
 	cod_prof 	varchar(20) unique not null,
 	tipo_prof 	varchar(20),
@@ -42,7 +44,7 @@ create table profesor(
 	foreign key (id_prof) references persona (id_per) on update cascade on delete cascade
 );
 
---Creacion de la tabla profesion_u_oficio
+-- Creacion de la tabla profesion_u_oficio
 create table profesion_u_oficio(
 	id_po 		int auto_increment primary key not null,
 	posee_po 	char(2),
@@ -51,13 +53,13 @@ create table profesion_u_oficio(
 	tlf_po 		varchar(20)
 );
 
---Creacion de la tabla pais
+-- Creacion de la tabla pais
 create table pais(
 	id_pais 	int auto_increment primary key not null,
 	nom_pais	varchar(20)
 );
 
---Creacion de la tabla estado
+-- Creacion de la tabla estado
 create table estado(
 	id_estado 	int auto_increment primary key not null,
 	nom_estado	varchar(20),
@@ -65,7 +67,7 @@ create table estado(
 	foreign key (id_ep) references pais(id_pais) on update cascade on delete cascade
 );
 
---Creacion de la tabla
+-- Creacion de la tabla
 create table municipio(
 	id_muni 	int auto_increment primary key not null,
 	nombre_muni varchar(20),
@@ -73,7 +75,7 @@ create table municipio(
 	foreign key (id_em) references estado(id_estado) on update cascade on delete cascade
 );
 
---Creacion de la tabla direccion
+-- Creacion de la tabla direccion
 create table direccion(
 	id_dir 		int auto_increment primary key not null,
 	nºCasa 		varchar(20) not null,
@@ -84,7 +86,7 @@ create table direccion(
 	foreign key (id_md) references municipio(id_muni) on update cascade on delete cascade
 );
 
---Creacion  de la tabla representante
+-- Creacion  de la tabla representante
 create table representante(
 	tutor_legal 	char(15),
 	id_rep 			int primary key,
@@ -95,7 +97,7 @@ create table representante(
 	foreign key (id_dr) references direccion (id_dir) on update cascade on delete cascade
 );
 
---Creacion de la tabla beca
+-- Creacion de la tabla beca
 create table beca(
 	id_beca 	int auto_increment primary key not null,
 	posee_b 	char(2),
@@ -103,7 +105,7 @@ create table beca(
 	descripcion text
 );
 
---Creacion de la tabla canaima
+-- Creacion de la tabla canaima
 create table canaima(
 	id_can 			int primary key not null,
 	posee_can 		char(2),
@@ -113,14 +115,14 @@ create table canaima(
 	condicion		varchar(20)
 );
 
---Creacion de la tabla de institucion de procedencia
+-- Creacion de la tabla de institucion de procedencia
 create table institucionDeProcedencia(
 	id_pro 		int auto_increment primary key not null,
 	nom_pro	    varchar(30),
 	cod_dea 	varchar(20)
 );
 
---Creacion de la tabla estudiante
+-- Creacion de la tabla estudiante
 create table estudiante(
 	id_est 			int auto_increment primary key not null,
 	ci_est			varchar(20) unique,
@@ -148,7 +150,7 @@ create table estudiante(
 	foreign key (id_poe) references institucionDeProcedencia(id_pro) on update cascade on delete cascade
 );
 
---Creacion de la tabla telefono
+-- Creacion de la tabla telefono
 create table telefono(
 	id_tlf 			int auto_increment primary key not null,
 	cod_area1 		varchar(5) not null,
@@ -160,7 +162,7 @@ create table telefono(
 	foreign key (id_te) references estudiante (id_est) on update cascade on delete cascade
 );
 
---Creacion de la tabla email
+-- Creacion de la tabla email
 create table email(
 	id_correo 		int auto_increment primary key not null,
 	correo 			varchar(20),
@@ -170,7 +172,7 @@ create table email(
 	foreign key (id_ee) references estudiante (id_est) on update cascade on delete cascade
 );
 
---Creacion de la tabla salud
+-- Creacion de la tabla salud
 create table salud(
 	id_s 			int auto_increment primary key not null,
 	condicion_s		varchar(20),
@@ -179,7 +181,7 @@ create table salud(
 	altura 			float
 );
 
---Creacion de la tabla vacuna
+-- Creacion de la tabla vacuna
 create table vacuna(
 	descripcion_v 	text,
 	falta_v 		char(2),
@@ -187,7 +189,7 @@ create table vacuna(
 	foreign key (id_sv) references salud(id_s) on update cascade on delete cascade
 );
 
---Creacion de la tabla incapacidad
+-- Creacion de la tabla incapacidad
 create table incapacidad(
 	nom_i 		varchar(20),
 	tipo_i 		varchar(20),
@@ -195,7 +197,7 @@ create table incapacidad(
 	foreign key (id_si) references salud(id_s) on update cascade on delete cascade
 );
 
---Creacion de la tabla discapacidad
+-- Creacion de la tabla discapacidad
 create table discapacidad(
 	nom_d 		varchar(20),
 	tipo_d 		varchar(20),
@@ -203,7 +205,7 @@ create table discapacidad(
 	foreign key (id_sd) references salud(id_s) on update cascade on delete cascade
 );
 
---Creacion de la tabla enfermedad
+-- Creacion de la tabla enfermedad
 create table enfermedad(
 	nom_e 		varchar(20),
 	tipo_e 		varchar(20),
@@ -211,14 +213,14 @@ create table enfermedad(
 	foreign key (id_se) references salud(id_s) on update cascade on delete cascade
 );
 
---Creacion de la tabla tratamiento
+-- Creacion de la tabla tratamiento
 create table tratamiento(
 	id_t 			int auto_increment primary key not null,
 	nom_t 		    varchar(20),
 	tipo_t 			varchar(20)
 );
 
---Creacion de la tabla periodo escolar
+-- Creacion de la tabla periodo escolar
 create table periodoEscolar(
 	id_pe 		int auto_increment primary key not null,
 	fechaI 		date,
@@ -226,7 +228,7 @@ create table periodoEscolar(
 	nom_pe 		varchar(20)
 );
 
---Creacion de la tabla notas certificadas
+-- Creacion de la tabla notas certificadas
 create table notasCertificadas(
 	id_nc 		int auto_increment primary key not null,
 	n_nc 		int,
@@ -234,7 +236,7 @@ create table notasCertificadas(
 	foreign key (id_pn) references periodoEscolar(id_pe) on update cascade on delete cascade
 );
 
---Creacion de la tabla uniforme
+-- Creacion de la tabla uniforme
 create table uniforme(
 	id_uni 		int primary key not null,
 	talla_c 	char(1),
@@ -242,14 +244,14 @@ create table uniforme(
 	talla_z 	varchar(2)
 );
 
---Creacion de la tabla seccion
+-- Creacion de la tabla seccion
 create table seccion(
 	id_seccion 		int primary key not null,
 	cod_sec 		varchar(20) unique,
 	cant_est 		int
 );
 
---Creacion de la tabla grado
+-- Creacion de la tabla grado
 create table grado(
 	id_g 	 		int auto_increment primary key not null,
 	num_g			varchar(20),
@@ -257,7 +259,7 @@ create table grado(
 	foreign key (id_gs) references seccion(id_seccion) on update cascade on delete cascade
 );
 
---Creacion de la tabla matricula
+-- Creacion de la tabla matricula
 create table matricula(
 	id_m 	 		int auto_increment primary key not null,
 	estado_m		varchar(20),
@@ -267,14 +269,14 @@ create table matricula(
 	foreign key (id_mg) references grado(id_g) on update cascade on delete cascade
 );
 
---Creacion de la tabla calificaciones
+-- Creacion de la tabla calificaciones
 create table calificaciones(
 	id_ca 		int auto_increment primary key not null,
 	tipo_ca 	char(20),
 	n_ca		varchar(10)
 );
 
---Creacion de la tabla evaluaciones
+-- Creacion de la tabla evaluaciones
 create table evaluaciones(
 	id_ev		int auto_increment primary key not null,
 	tipo_ev 	varchar(20),
@@ -282,13 +284,13 @@ create table evaluaciones(
 	foreign key (id_ec) references calificaciones(id_ca) on update cascade on delete cascade
 );
 
---Creacion de la tabla inasistencia
+-- Creacion de la tabla inasistencia
 create table inasistencia(
 	id_ina 			int auto_increment primary key not null,
 	cantidad_ina	varchar(2)
 );
 
---Creacion de la tabla aprobada
+-- Creacion de la tabla aprobada
 create table aprobada(
 	nota_aprob 		varchar(2),
 	nota_LAprob		varchar(2),
@@ -296,7 +298,7 @@ create table aprobada(
 	foreign key (id_CAprob) references calificaciones (id_ca) on update cascade on delete cascade
 );
 
---Creacion de la tabla reprobada
+-- Creacion de la tabla reprobada
 create table reprobada(
 	nota_repro		varchar(2),
 	nota_lrepro		varchar(2),
@@ -306,7 +308,7 @@ create table reprobada(
 	foreign key (id_creprob) references calificaciones (id_ca) on update cascade on delete cascade
 );
 
---Creacion de la tabla lapso
+-- Creacion de la tabla lapso
 create table lapso(
 	id_l 		int auto_increment primary key not null,
 	pril 		varchar(4),
@@ -317,7 +319,7 @@ create table lapso(
 	foreign key (id_lca) references calificaciones (id_ca) on update cascade on delete cascade
 );
 
---Creacion de la tabla area de aprendizaje
+-- Creacion de la tabla area de aprendizaje
 create table areaDeAprendizaje(
 	id_a 		int auto_increment primary key not null,
 	nom_a 		varchar(20) unique,
@@ -326,7 +328,7 @@ create table areaDeAprendizaje(
 	foreign key (id_aac) references calificaciones (id_ca) on update cascade on delete cascade
 );
 
---Creacion de la tala extraAcademica
+-- Creacion de la tala extraAcademica
 create table extraAcademica(
 	cod_extra 		varchar(20) unique not null,
 	presenta_ex		char(2),
@@ -337,7 +339,7 @@ create table extraAcademica(
 
 );
 
---Creacion de la tabla area de transferencia
+-- Creacion de la tabla area de transferencia
 create table areaDeTransferencia(
 	id_at 		int auto_increment primary key not null,
 	nom_at 		varchar(20),
@@ -345,208 +347,209 @@ create table areaDeTransferencia(
 	foreign key (id_aat) references areaDeAprendizaje (id_a) on update cascade on delete cascade
 );
 
--------------------------------------------- SECCION 2: DEFINICION Y CREACION DE LAS TABLAS MUCHOS A MUCHOS---------------------
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --  SECCION 2: DEFINICION Y CREACION DE LAS TABLAS MUCHOS A MUCHOS-- -- -- -- -- -- -- -- -- -- -
 
---CREACCION TABLA USUARIO_INSCRIBE_EST
+-- CREACCION TABLA USUARIO_INSCRIBE_EST
 CREATE TABLE usuario_inscribe_estudiante(
     id_uu	   int unique,
     id_uie	   int unique,
     fecha_ins  date,
-    -- CREACION LLAVES FORANEAS
+    --  CREACION LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla usuaio
+    --  creacion de la llave fornea de la tabla usuaio
     foreign key(id_uu) references usuario (id_u) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla estudiante
+    --  creacion de la llave fornea de la tabla estudiante
     foreign key(id_uie) references estudiante (id_est) on update cascade on delete cascade
 );
 
---CREACION TABLA ESTUDIATE_UTILIZA_UNIFORME
+-- CREACION TABLA ESTUDIATE_UTILIZA_UNIFORME
 CREATE TABLE estudiante_utiliza_uniforme(
     id_eeu      int unique,
     id_unie     int unique,
 
-    -- CREACION LLAVES FORANEAs
+    --  CREACION LLAVES FORANEAs
 
-    -- creacion de la llave fornea de la tabla estudiante
+    --  creacion de la llave fornea de la tabla estudiante
     foreign key(id_eeu) references estudiante (id_est) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla uniforme
+    --  creacion de la llave fornea de la tabla uniforme
     foreign key(id_unie) references uniforme (id_uni) on update cascade on delete cascade
 );
 
--- CREACION TABLA ESTUDIANE_REALIZAE_EVALUACIONES
+--  CREACION TABLA ESTUDIANE_REALIZAE_EVALUACIONES
 CREATE TABLE estudiante_realiza_evaluaciones(
     id_ere      int unique,
     id_eve      int unique,
     fecha_e     date,
 
-    -- CREACION DE LAS LLAVES FORANEAS
+    --  CREACION DE LAS LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla estudiante
+    --  creacion de la llave fornea de la tabla estudiante
     foreign key(id_ere) references estudiante (id_est) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla evaluacion
+    --  creacion de la llave fornea de la tabla evaluacion
     foreign key(id_eve) references evaluaciones (id_ev) on update cascade on delete cascade
 );
 
---CREACION TABLA ESTUDIANTE_PADECE_SALUD
+-- CREACION TABLA ESTUDIANTE_PADECE_SALUD
 CREATE TABLE estudiante_padece_salud(
     id_eps      int unique,
     id_sep      int unique,
 
-    -- CREACION DE LLAVE FORANEA
+    --  CREACION DE LLAVE FORANEA
 
-    -- creacion de la llave fornea de la tabla ESTUDIANTE
+    --  creacion de la llave fornea de la tabla ESTUDIANTE
     foreign key(id_eps) references estudiante (id_est) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de SALUD
+    --  creacion de la llave fornea de la tabla de SALUD
     foreign key(id_sep) references salud (id_s) on update cascade on delete cascade
 );
 
---CREACION TABLA ENFERMEDAD_TIENE_TRATAMIENTO
+-- CREACION TABLA ENFERMEDAD_TIENE_TRATAMIENTO
 CREATE TABLE enfermedad_tiene_tratamiento(
     id_ee       int unique,
     id_te       int unique,
 
-    -- CREACION LAVES FORANEAS
+    --  CREACION LAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de DISCAPACIDAD
+    --  creacion de la llave fornea de la tabla de DISCAPACIDAD
     foreign key(id_ee) references enfermedad (id_se) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de TRATAMIENTO
+    --  creacion de la llave fornea de la tabla de TRATAMIENTO
     foreign key(id_te) references tratamiento (id_t) on update cascade on delete cascade
 );
 
---CREACION TABLA INCAPACIDAD_TIENE_TRATAMIENTO
+-- CREACION TABLA INCAPACIDAD_TIENE_TRATAMIENTO
 CREATE TABLE incapacidad_tiene_tratamiento(
     id_ti       int unique,
     id_ii       int unique,
 
-    -- CREACION DE LAS LLAVES FORANEAS
+    --  CREACION DE LAS LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla INCAPACIDAD
+    --  creacion de la llave fornea de la tabla INCAPACIDAD
     foreign key(id_ii) references incapacidad (id_si) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de TRATAMIENTO
+    --  creacion de la llave fornea de la tabla de TRATAMIENTO
     foreign key(id_ti) references tratamiento (id_t) on update cascade on delete cascade
 );
 
---CREACION TABLA DISCAPACIDAD_TIENE_TRATAMIENTO
+-- CREACION TABLA DISCAPACIDAD_TIENE_TRATAMIENTO
 CREATE TABLE discapacidad_tiene_tratamiento(
     id_dd       int unique,
     id_td       int unique,
 
-    -- CREACION LAVES FORANEAS
+    --  CREACION LAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de DISCAPACIDAD
+    --  creacion de la llave fornea de la tabla de DISCAPACIDAD
     foreign key(id_dd) references discapacidad (id_sd) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de TRATAMIENTO
+    --  creacion de la llave fornea de la tabla de TRATAMIENTO
     foreign key(id_td) references tratamiento (id_t) on update cascade on delete cascade
 );
 
---CREACION TABLA NOTAS_POR_PERIODO
+-- CREACION TABLA NOTAS_POR_PERIODO
 CREATE TABLE notas_por_periodo(
     id_nn      int unique,
     id_pnn     int unique,
 
-    -- CREACION LAVES FORANEAS
+    --  CREACION LAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de NOTAS
+    --  creacion de la llave fornea de la tabla de NOTAS
     foreign key(id_nn) references notasCertificadas (id_nc) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de PERIODO
+    --  creacion de la llave fornea de la tabla de PERIODO
     foreign key(id_pnn) references periodoEscolar (id_pe) on update cascade on delete cascade
 );
 
---CREACION TABLA ESTUDIANTE_CURSA_AREA
+-- CREACION TABLA ESTUDIANTE_CURSA_AREA
 CREATE TABLE estudiante_inscribe_matricula(
     id_eei     int unique,
     id_mei     int unique,
-     -- CREACION LAVES FORANEAS
+     --  CREACION LAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de ESTUDIANTE
+    --  creacion de la llave fornea de la tabla de ESTUDIANTE
     foreign key(id_eei) references estudiante (id_est) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de AREA
+    --  creacion de la llave fornea de la tabla de AREA
     foreign key(id_mei) references matricula (id_m) on update cascade on delete cascade
 );
 
---CREACION TABLA PERIODO_ACTIVA_SECCION
+-- CREACION TABLA PERIODO_ACTIVA_SECCION
 CREATE TABLE matricula_establece_evaluaciones(
     id_mm      int unique,
     id_evm     int unique,
 
-    -- CREACION LAVES FORANEAS
+    --  CREACION LAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de PERIODO
+    --  creacion de la llave fornea de la tabla de PERIODO
     foreign key(id_mm) references matricula (id_m) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de seccion
+    --  creacion de la llave fornea de la tabla de seccion
     foreign key(id_evm) references evaluaciones (id_ev) on update cascade on delete cascade
 );
 
---CREACION TABLA EVALUACIONES_POR_AREA
+-- CREACION TABLA EVALUACIONES_POR_AREA
 CREATE TABLE evaluaciones_por_area(
     id_ee       int unique,
     id_ae       int unique,
 
-     -- CREACION LLAVES FORANEAS
+     --  CREACION LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla evaluacion
+    --  creacion de la llave fornea de la tabla evaluacion
     foreign key(id_ee) references evaluaciones (id_ev) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla Area de aprendizaje
+    --  creacion de la llave fornea de la tabla Area de aprendizaje
     foreign key(id_ae) references areaDeAprendizaje (id_a) on update cascade on delete cascade
 );
 
--- CREACION TABLA AREAS_POR_LAPSO
+--  CREACION TABLA AREAS_POR_LAPSO
 CREATE TABLE areas_por_lapso(
     id_ael     int unique,
     id_la      int unique,
 
-    -- creacion llave foranea
+    --  creacion llave foranea
 
-    -- creacion de la llave fornea de la tabla Area de aprendizaje
+    --  creacion de la llave fornea de la tabla Area de aprendizaje
     foreign key(id_ael) references areaDeAprendizaje (id_a) on update cascade on delete cascade,
-     -- creacion de la llave fornea de la tabla lapso
+     --  creacion de la llave fornea de la tabla lapso
     foreign key(id_la) references lapso (id_l) on update cascade on delete cascade
 );
 
---CREACION TABLA ESTUDIANTE_SOLICITA_NOTAS
+-- CREACION TABLA ESTUDIANTE_SOLICITA_NOTAS
 CREATE TABLE estudiante_solicita_notas(
     id_esn      int unique,
     id_nes      int unique,
     fecha_soli date,
 
-    -- CREACION LLAVES FORANEAS
+    --  CREACION LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de ESTUDIANTE
+    --  creacion de la llave fornea de la tabla de ESTUDIANTE
     foreign key(id_esn) references estudiante (id_est) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de NOTAS_CERTIFICADAS
+    --  creacion de la llave fornea de la tabla de NOTAS_CERTIFICADAS
     foreign key(id_nes) references notasCertificadas (id_nc) on update cascade on delete cascade
 );
 
---CREACION TABLA REPRESENTANTE_REPRESENTA_ESTUDIANTE
+-- CREACION TABLA REPRESENTANTE_REPRESENTA_ESTUDIANTE
 CREATE TABLE representante_representa_estudiante(
     id_rer      int unique,
     id_err      int unique,
     parentesco  varchar(30),
 
-    -- CREACION LLAVES FORANEAS
+    --  CREACION LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de REPRESENTANTE
+    --  creacion de la llave fornea de la tabla de REPRESENTANTE
     foreign key(id_rer) references representante (id_rep) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de estudiante
+    --  creacion de la llave fornea de la tabla de estudiante
     foreign key(id_err) references estudiante (id_est) on update cascade on delete cascade
 );
------------------------------------------------------------------------------------------------------
--- Sentencias para creacion de grupos y privilegios de usuarios.
--- Estos grupos tendran acceso a todos los modulos del sistema.
--- Creación del grupo directivo (USUARIO -> DIRECTIVO)
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+/*
+--  Sentencias para creacion de grupos y privilegios de usuarios.
+--  Estos grupos tendran acceso a todos los modulos del sistema.
+--  Creación del grupo directivo (USUARIO -> DIRECTIVO)
 CREATE GROUP directivo;
 
--- Creación del grupo de autorizados (USUARIOS -> AUTORIZADOS)
+--  Creación del grupo de autorizados (USUARIOS -> AUTORIZADOS)
 CREATE GROUP autorizados;
 
--- Creación del grupo de seccional (USUARIOS -> SECCIONAL)
+--  Creación del grupo de seccional (USUARIOS -> SECCIONAL)
 CREATE GROUP seccional;
 
--- Este grupo de usuarios solo tendra acceso a los modulos de:
---- Reporte, Evaluación, Mantenimiento, Acerca de.
+--  Este grupo de usuarios solo tendra acceso a los modulos de:
+-- - Reporte, Evaluación, Mantenimiento, Acerca de.
 CREATE GROUP academico;
 
--- Permisos al grupo directivo
+--  Permisos al grupo directivo
 GRANT ALL ON "aprobada" TO GROUP directivo;
 GRANT ALL ON "areadeaprendizaje" TO GROUP directivo;
 GRANT ALL ON "areadetransferencia" TO GROUP directivo;
@@ -599,11 +602,11 @@ GRANT ALL ON "usuario" TO GROUP directivo;
 GRANT ALL ON "usuario_inscribe_estudiante" TO GROUP directivo;
 GRANT ALL ON "vacuna" TO GROUP directivo;
 
--- Sentencia para la creacion del usuario directivo 
--- (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
+--  Sentencia para la creacion del usuario directivo 
+--  (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
 CREATE USER director WITH PASSWORD 'director1' IN GROUP directivo;
 
--- Permisos al grupo autorizado
+--  Permisos al grupo autorizado
 GRANT ALL ON "areadeaprendizaje" TO GROUP autorizados;
 GRANT ALL ON "areadetransferencia" TO GROUP autorizados;
 GRANT ALL ON "areas_por_lapso" TO GROUP autorizados;
@@ -656,11 +659,11 @@ GRANT ALL ON "usuario" TO GROUP autorizados;
 GRANT ALL ON "usuario_inscribe_estudiante" TO GROUP autorizados;
 GRANT ALL ON "vacuna" TO GROUP autorizados;
 
--- Sentencia para la creacion del usuario autorizado 
--- (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
+--  Sentencia para la creacion del usuario autorizado 
+--  (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
 CREATE USER autorizado WITH PASSWORD 'autorizado1' IN GROUP autorizados;
 
--- Permisos al grupo seccional
+--  Permisos al grupo seccional
 GRANT SELECT, INSERT ON "areadetransferencia" TO GROUP seccional;
 GRANT SELECT, INSERT ON "areadeaprendizaje" TO GROUP seccional;
 GRANT SELECT, INSERT ON "areas_por_lapso" TO GROUP seccional;
@@ -713,11 +716,11 @@ GRANT SELECT, INSERT ON "usuario" TO GROUP seccional;
 GRANT SELECT, INSERT ON "usuario_inscribe_estudiante" TO GROUP seccional;
 GRANT SELECT, INSERT ON "vacuna" TO GROUP seccional;
 
--- Sentencia para la creacion del usuario autorizado 
--- (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
+--  Sentencia para la creacion del usuario autorizado 
+--  (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
 CREATE USER seccional1 WITH PASSWORD 'seccional1' IN GROUP seccional;
 
--- Permisos al grupo seccional
+--  Permisos al grupo seccional
 GRANT ALL ON "areadeaprendizaje" TO GROUP academico;
 GRANT ALL ON "areadetransferencia" TO GROUP academico;
 GRANT ALL ON "areas_por_lapso" TO GROUP academico;
@@ -770,16 +773,17 @@ GRANT ALL ON "usuario" TO GROUP academico;
 GRANT ALL ON "usuario_inscribe_estudiante" TO GROUP academico;
 GRANT ALL ON "vacuna" TO GROUP academico;
 
--- Sentencia para la creacion del usuario autorizado 
--- (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
+--  Sentencia para la creacion del usuario autorizado 
+--  (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
 CREATE USER evaluacion1 WITH PASSWORD 'evaluacion1' IN GROUP evaluacion;
-
------------------------------------------------------------------------------------------------------
---Funciones de almacenado para el registro de usuario.
+*/
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+-- Funciones de almacenado para el registro de usuario.
 /*
 	Tablas relacionas: Persona, usuario y cargo.
 */
--- Primer función que valida la cedula de identidad en caso de que se registre un usuario
+/*
+--  Primer función que valida la cedula de identidad en caso de que se registre un usuario
 create or replace function verificar_ci_persona()
 returns trigger as $$
 	DECLARE
@@ -807,7 +811,7 @@ AFTER INSERT ON persona
 for each row
 EXECUTE PROCEDURE verificar_ci_persona_usuario();
 
--- Segunda funcion que validad el nombre de usuario 
+--  Segunda funcion que validad el nombre de usuario 
 create or replace function comprobar_nombre_de_usuario()
 	returns trigger as 
 	$BODY$
@@ -846,14 +850,14 @@ $$
  */
  /*
 DECLARE
-  -- Define la estructura temporal que servirá para realizar las operaciones
+  --  Define la estructura temporal que servirá para realizar las operaciones
   temp_row usuario.registro_de_usuario%rowtype;
   
 BEGIN
   
   IF (NEW.privilegio == 'Directivo') THEN
 
-	-- Capturar datos del nuevo usuario creado
+	--  Capturar datos del nuevo usuario creado
 	temp_row.nom_u := NEW.nom_u;
 	temp_row.clave := NEW.clave;
 	temp_row.privilegio := NEW.privilegio;
@@ -863,22 +867,22 @@ BEGIN
 	temp_row.id_cu := NEW.id_cu;
 	
 	BEGIN
-	-- Inserta los valores en la tabla CDC
+	--  Inserta los valores en la tabla CDC
 	INSERT INTO usuario.registro_de_usuario SELECT temp_row.*;
 	END;
 
-	-- Devuelve el la estructura grabada NEW
+	--  Devuelve el la estructura grabada NEW
 	RETURN NEW;
    	END IF;
    
    	RETURN NULL;
    
-END; -- Fin del procedimiento  
+END; --  Fin del procedimiento  
 $$
 LANGUAGE plpgsql; 
 */
-
--- Tercer función para el registro de persona
+/*
+--  Tercer función para el registro de persona
 CREATE OR REPLACE FUNCTION insertar_persona(ci varchar, pnombre varchar, segnombre varchar, papellido varchar, segapellido varchar, nacionalidad varchar)  
 RETURNS void AS   
 $BODY$
@@ -889,7 +893,7 @@ $BODY$
 $BODY$ 
 LANGUAGE plpgsql;
 
--- Cuarta función para el registro de cargo
+--  Cuarta función para el registro de cargo
 CREATE OR REPLACE FUNCTION insertar_cargo(tipo_cargo varchar)
 RETURNS void AS   
 $BODY$
@@ -900,7 +904,7 @@ $BODY$
 $BODY$ 
 LANGUAGE plpgsql;
 
--- Cuarta función para el registro de usuario
+--  Cuarta función para el registro de usuario
 CREATE OR REPLACE FUNCTION insertar_usuario(nom_u varchar, clave varchar, privilegio varchar, pregunta_s varchar, respuesta_s varchar, activo integer, id_pu integer, id_cu integer)
 RETURNS void AS   
 $BODY$
@@ -912,7 +916,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 
--- Quinta funcion para la busqueda de representante y todos sus registros.
+--  Quinta funcion para la busqueda de representante y todos sus registros.
 CREATE OR REPLACE FUNCTION data_representante(character varying)
 RETURNS TABLE (
 	ci varchar, pnombre varchar, segnombre varchar, papellido varchar, segapellido varchar, nacionalidad varchar, sexo_p varchar,
@@ -943,10 +947,10 @@ BEGIN
   END LOOP;
   RETURN;
 END;
-$$ LANGUAGE plpgsql;--Ultima base de datos LA MÁS ACTUAL sabado 20 de julio.
---Seccion 1 creacion de las tablas de las bases de datos
+$$ LANGUAGE plpgsql;-- Ultima base de datos LA MÁS ACTUAL sabado 20 de julio.
+-- Seccion 1 creacion de las tablas de las bases de datos
 
---Creacion de la tabla persona
+-- Creacion de la tabla persona
 create table persona(
 	id_per			serial primary key not null,
 	ci				varchar(20) not null,
@@ -957,13 +961,13 @@ create table persona(
 	nacionalidad	char(1) not null,
 	sexo_p			char(1) not null
 );
---Creacion de la tabla cargo
+-- Creacion de la tabla cargo
 create table cargo(
 	id_cargo 	serial primary key not null,
 	tipo_cargo 	varchar(30) not null
 );
 
---Creacion de la tabla usuario
+-- Creacion de la tabla usuario
 create table usuario(
 	id_u 		serial primary key not null,
 	nom_u 		varchar(20) not null,
@@ -979,7 +983,7 @@ create table usuario(
 	foreign key (id_cu) references cargo (id_cargo) on update cascade on delete cascade
 );
 
---Creacion de la tabla profesor
+-- Creacion de la tabla profesor
 create table profesor(
 	cod_prof 	varchar(20) unique not null,
 	tipo_prof 	varchar(20),
@@ -987,7 +991,7 @@ create table profesor(
 	foreign key (id_prof) references persona (id_per) on update cascade on delete cascade
 );
 
---Creacion de la tabla profesion_u_oficio
+-- Creacion de la tabla profesion_u_oficio
 create table profesion_u_oficio(
 	id_po 		serial primary key not null,
 	posee_po 	char(2),
@@ -996,13 +1000,13 @@ create table profesion_u_oficio(
 	tlf_po 		varchar(20)
 );
 
---Creacion de la tabla pais
+-- Creacion de la tabla pais
 create table pais(
 	id_pais 	serial primary key not null,
 	nom_pais	varchar(20)
 );
 
---Creacion de la tabla estado
+-- Creacion de la tabla estado
 create table estado(
 	id_estado 	serial primary key not null,
 	nom_estado	varchar(20),
@@ -1010,7 +1014,7 @@ create table estado(
 	foreign key (id_ep) references pais(id_pais) on update cascade on delete cascade
 );
 
---Creacion de la tabla
+-- Creacion de la tabla
 create table municipio(
 	id_muni 	serial primary key not null,
 	nombre_muni varchar(20),
@@ -1018,7 +1022,7 @@ create table municipio(
 	foreign key (id_em) references estado(id_estado) on update cascade on delete cascade
 );
 
---Creacion de la tabla direccion
+-- Creacion de la tabla direccion
 create table direccion(
 	id_dir 		serial primary key not null,
 	nºCasa 		varchar(20) not null,
@@ -1029,7 +1033,7 @@ create table direccion(
 	foreign key (id_md) references municipio(id_muni) on update cascade on delete cascade
 );
 
---Creacion  de la tabla representante
+-- Creacion  de la tabla representante
 create table representante(
 	tutor_legal 	char(15),
 	id_rep 			serial primary key,
@@ -1040,7 +1044,7 @@ create table representante(
 	foreign key (id_dr) references direccion (id_dir) on update cascade on delete cascade
 );
 
---Creacion de la tabla beca
+-- Creacion de la tabla beca
 create table beca(
 	id_beca 	serial primary key not null,
 	posee_b 	char(2),
@@ -1048,7 +1052,7 @@ create table beca(
 	descripcion text
 );
 
---Creacion de la tabla canaima
+-- Creacion de la tabla canaima
 create table canaima(
 	id_can 			serial primary key not null,
 	posee_can 		char(2),
@@ -1058,14 +1062,14 @@ create table canaima(
 	condicion		varchar(20)
 );
 
---Creacion de la tabla de institucion de procedencia
+-- Creacion de la tabla de institucion de procedencia
 create table institucionDeProcedencia(
 	id_pro 		serial primary key not null,
 	nom_pro	    varchar(30),
 	cod_dea 	varchar(20)
 );
 
---Creacion de la tabla estudiante
+-- Creacion de la tabla estudiante
 create table estudiante(
 	id_est 			serial primary key not null,
 	ci_est			varchar(20) unique,
@@ -1093,7 +1097,7 @@ create table estudiante(
 	foreign key (id_poe) references institucionDeProcedencia(id_pro) on update cascade on delete cascade
 );
 
---Creacion de la tabla telefono
+-- Creacion de la tabla telefono
 create table telefono(
 	id_tlf 			serial primary key not null,
 	cod_area1 		varchar(5) not null,
@@ -1105,7 +1109,7 @@ create table telefono(
 	foreign key (id_te) references estudiante (id_est) on update cascade on delete cascade
 );
 
---Creacion de la tabla email
+-- Creacion de la tabla email
 create table email(
 	id_correo 		serial primary key not null,
 	correo 			varchar(20),
@@ -1115,7 +1119,7 @@ create table email(
 	foreign key (id_ee) references estudiante (id_est) on update cascade on delete cascade
 );
 
---Creacion de la tabla salud
+-- Creacion de la tabla salud
 create table salud(
 	id_s 			serial primary key not null,
 	condicion_s		varchar(20),
@@ -1124,7 +1128,7 @@ create table salud(
 	altura 			float
 );
 
---Creacion de la tabla vacuna
+-- Creacion de la tabla vacuna
 create table vacuna(
 	descripcion_v 	text,
 	falta_v 		char(2),
@@ -1132,7 +1136,7 @@ create table vacuna(
 	foreign key (id_sv) references salud(id_s) on update cascade on delete cascade
 );
 
---Creacion de la tabla incapacidad
+-- Creacion de la tabla incapacidad
 create table incapacidad(
 	nom_i 		varchar(20),
 	tipo_i 			varchar(20),
@@ -1140,7 +1144,7 @@ create table incapacidad(
 	foreign key (id_si) references salud(id_s) on update cascade on delete cascade
 );
 
---Creacion de la tabla discapacidad
+-- Creacion de la tabla discapacidad
 create table discapacidad(
 	nom_d 		varchar(20),
 	tipo_d 			varchar(20),
@@ -1148,7 +1152,7 @@ create table discapacidad(
 	foreign key (id_sd) references salud(id_s) on update cascade on delete cascade
 );
 
---Creacion de la tabla enfermedad
+-- Creacion de la tabla enfermedad
 create table enfermedad(
 	nom_e 		varchar(20),
 	tipo_e 			varchar(20),
@@ -1156,14 +1160,14 @@ create table enfermedad(
 	foreign key (id_se) references salud(id_s) on update cascade on delete cascade
 );
 
---Creacion de la tabla tratamiento
+-- Creacion de la tabla tratamiento
 create table tratamiento(
 	id_t 			serial primary key not null,
 	nom_t 		    varchar(20),
 	tipo_t 			varchar(20)
 );
 
---Creacion de la tabla periodo escolar
+-- Creacion de la tabla periodo escolar
 create table periodoEscolar(
 	id_pe 		serial primary key not null,
 	fechaI 		date,
@@ -1171,7 +1175,7 @@ create table periodoEscolar(
 	nom_pe 		varchar(20)
 );
 
---Creacion de la tabla notas certificadas
+-- Creacion de la tabla notas certificadas
 create table notasCertificadas(
 	id_nc 		serial primary key not null,
 	n_nc 		int,
@@ -1179,7 +1183,7 @@ create table notasCertificadas(
 	foreign key (id_pn) references periodoEscolar(id_pe) on update cascade on delete cascade
 );
 
---Creacion de la tabla uniforme
+-- Creacion de la tabla uniforme
 create table uniforme(
 	id_uni 		serial primary key not null,
 	talla_c 	char(1),
@@ -1187,14 +1191,14 @@ create table uniforme(
 	talla_z 	varchar(2)
 );
 
---Creacion de la tabla seccion
+-- Creacion de la tabla seccion
 create table seccion(
 	id_seccion 		serial primary key not null,
 	cod_sec 		varchar(20) unique,
 	cant_est 		int
 );
 
---Creacion de la tabla grado
+-- Creacion de la tabla grado
 create table grado(
 	id_g 	 		serial primary key not null,
 	num_g			varchar(20),
@@ -1202,7 +1206,7 @@ create table grado(
 	foreign key (id_gs) references seccion(id_seccion) on update cascade on delete cascade
 );
 
---Creacion de la tabla matricula
+-- Creacion de la tabla matricula
 create table matricula(
 	id_m 	 		serial primary key not null,
 	estado_m		varchar(20),
@@ -1212,14 +1216,14 @@ create table matricula(
 	foreign key (id_mg) references grado(id_g) on update cascade on delete cascade
 );
 
---Creacion de la tabla calificaciones
+-- Creacion de la tabla calificaciones
 create table calificaciones(
 	id_ca 		serial primary key not null,
 	tipo_ca 	char(20),
 	n_ca		varchar(10)
 );
 
---Creacion de la tabla evaluaciones
+-- Creacion de la tabla evaluaciones
 create table evaluaciones(
 	id_ev		serial primary key not null,
 	tipo_ev 	varchar(20),
@@ -1227,13 +1231,13 @@ create table evaluaciones(
 	foreign key (id_ec) references calificaciones(id_ca) on update cascade on delete cascade
 );
 
---Creacion de la tabla inasistencia
+-- Creacion de la tabla inasistencia
 create table inasistencia(
 	id_ina 			serial primary key not null,
 	cantidad_ina	varchar(2)
 );
 
---Creacion de la tabla aprobada
+-- Creacion de la tabla aprobada
 create table aprobada(
 	nota_aprob 		varchar(2),
 	nota_LAprob		varchar(2),
@@ -1241,7 +1245,7 @@ create table aprobada(
 	foreign key (id_CAprob) references calificaciones (id_ca) on update cascade on delete cascade
 );
 
---Creacion de la tabla reprobada
+-- Creacion de la tabla reprobada
 create table reprobada(
 	nota_repro		varchar(2),
 	nota_lrepro		varchar(2),
@@ -1251,7 +1255,7 @@ create table reprobada(
 	foreign key (id_creprob) references calificaciones (id_ca) on update cascade on delete cascade
 );
 
---Creacion de la tabla lapso
+-- Creacion de la tabla lapso
 create table lapso(
 	id_l 		serial primary key not null,
 	pril 		varchar(4),
@@ -1262,7 +1266,7 @@ create table lapso(
 	foreign key (id_lca) references calificaciones (id_ca) on update cascade on delete cascade
 );
 
---Creacion de la tabla area de aprendizaje
+-- Creacion de la tabla area de aprendizaje
 create table areaDeAprendizaje(
 	id_a 		serial primary key not null,
 	nom_a 		varchar(20) unique,
@@ -1271,7 +1275,7 @@ create table areaDeAprendizaje(
 	foreign key (id_aac) references calificaciones (id_ca) on update cascade on delete cascade
 );
 
---Creacion de la tala extraAcademica
+-- Creacion de la tala extraAcademica
 create table extraAcademica(
 	cod_extra 		varchar(20) unique not null,
 	presenta_ex		char(2),
@@ -1282,7 +1286,7 @@ create table extraAcademica(
 
 );
 
---Creacion de la tabla area de transferencia
+-- Creacion de la tabla area de transferencia
 create table areaDeTransferencia(
 	id_at 		serial primary key not null,
 	nom_at 		varchar(20),
@@ -1290,208 +1294,208 @@ create table areaDeTransferencia(
 	foreign key (id_aat) references areaDeAprendizaje (id_a) on update cascade on delete cascade
 );
 
--------------------------------------------- SECCION 2: DEFINICION Y CREACION DE LAS TABLAS MUCHOS A MUCHOS---------------------
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --  SECCION 2: DEFINICION Y CREACION DE LAS TABLAS MUCHOS A MUCHOS-- -- -- -- -- -- -- -- -- -- -
 
---CREACCION TABLA USUARIO_INSCRIBE_EST
+-- CREACCION TABLA USUARIO_INSCRIBE_EST
 CREATE TABLE usuario_inscribe_estudiante(
     id_uu	   serial unique,
     id_uie	   serial unique,
     fecha_ins  date,
-    -- CREACION LLAVES FORANEAS
+    --  CREACION LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla usuaio
+    --  creacion de la llave fornea de la tabla usuaio
     foreign key(id_uu) references usuario (id_u) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla estudiante
+    --  creacion de la llave fornea de la tabla estudiante
     foreign key(id_uie) references estudiante (id_est) on update cascade on delete cascade
 );
 
---CREACION TABLA ESTUDIATE_UTILIZA_UNIFORME
+-- CREACION TABLA ESTUDIATE_UTILIZA_UNIFORME
 CREATE TABLE estudiante_utiliza_uniforme(
     id_eeu      serial unique,
     id_unie     serial unique,
 
-    -- CREACION LLAVES FORANEAs
+    --  CREACION LLAVES FORANEAs
 
-    -- creacion de la llave fornea de la tabla estudiante
+    --  creacion de la llave fornea de la tabla estudiante
     foreign key(id_eeu) references estudiante (id_est) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla uniforme
+    --  creacion de la llave fornea de la tabla uniforme
     foreign key(id_unie) references uniforme (id_uni) on update cascade on delete cascade
 );
 
--- CREACION TABLA ESTUDIANE_REALIZAE_EVALUACIONES
+--  CREACION TABLA ESTUDIANE_REALIZAE_EVALUACIONES
 CREATE TABLE estudiante_realiza_evaluaciones(
     id_ere      serial unique,
     id_eve      serial unique,
     fecha_e     date,
 
-    -- CREACION DE LAS LLAVES FORANEAS
+    --  CREACION DE LAS LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla estudiante
+    --  creacion de la llave fornea de la tabla estudiante
     foreign key(id_ere) references estudiante (id_est) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla evaluacion
+    --  creacion de la llave fornea de la tabla evaluacion
     foreign key(id_eve) references evaluaciones (id_ev) on update cascade on delete cascade
 );
 
---CREACION TABLA ESTUDIANTE_PADECE_SALUD
+-- CREACION TABLA ESTUDIANTE_PADECE_SALUD
 CREATE TABLE estudiante_padece_salud(
     id_eps      serial unique,
     id_sep      serial unique,
 
-    -- CREACION DE LLAVE FORANEA
+    --  CREACION DE LLAVE FORANEA
 
-    -- creacion de la llave fornea de la tabla ESTUDIANTE
+    --  creacion de la llave fornea de la tabla ESTUDIANTE
     foreign key(id_eps) references estudiante (id_est) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de SALUD
+    --  creacion de la llave fornea de la tabla de SALUD
     foreign key(id_sep) references salud (id_s) on update cascade on delete cascade
 );
 
---CREACION TABLA ENFERMEDAD_TIENE_TRATAMIENTO
+-- CREACION TABLA ENFERMEDAD_TIENE_TRATAMIENTO
 CREATE TABLE enfermedad_tiene_tratamiento(
     id_ee       serial unique,
     id_te       serial unique,
 
-    -- CREACION LAVES FORANEAS
+    --  CREACION LAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de DISCAPACIDAD
+    --  creacion de la llave fornea de la tabla de DISCAPACIDAD
     foreign key(id_ee) references enfermedad (id_se) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de TRATAMIENTO
+    --  creacion de la llave fornea de la tabla de TRATAMIENTO
     foreign key(id_te) references tratamiento (id_t) on update cascade on delete cascade
 );
 
---CREACION TABLA INCAPACIDAD_TIENE_TRATAMIENTO
+-- CREACION TABLA INCAPACIDAD_TIENE_TRATAMIENTO
 CREATE TABLE incapacidad_tiene_tratamiento(
     id_ii       serial unique,
     id_ti       serial unique,
 
-    -- CREACION DE LAS LLAVES FORANEAS
+    --  CREACION DE LAS LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla INCAPACIDAD
+    --  creacion de la llave fornea de la tabla INCAPACIDAD
     foreign key(id_ii) references incapacidad (id_si) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de TRATAMIENTO
+    --  creacion de la llave fornea de la tabla de TRATAMIENTO
     foreign key(id_ti) references tratamiento (id_t) on update cascade on delete cascade
 );
 
---CREACION TABLA DISCAPACIDAD_TIENE_TRATAMIENTO
+-- CREACION TABLA DISCAPACIDAD_TIENE_TRATAMIENTO
 CREATE TABLE discapacidad_tiene_tratamiento(
     id_dd       serial unique,
     id_td       serial unique,
 
-    -- CREACION LAVES FORANEAS
+    --  CREACION LAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de DISCAPACIDAD
+    --  creacion de la llave fornea de la tabla de DISCAPACIDAD
     foreign key(id_dd) references discapacidad (id_sd) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de TRATAMIENTO
+    --  creacion de la llave fornea de la tabla de TRATAMIENTO
     foreign key(id_td) references tratamiento (id_t) on update cascade on delete cascade
 );
 
---CREACION TABLA NOTAS_POR_PERIODO
+-- CREACION TABLA NOTAS_POR_PERIODO
 CREATE TABLE notas_por_periodo(
     id_nn      serial unique,
     id_pnn      serial unique,
 
-    -- CREACION LAVES FORANEAS
+    --  CREACION LAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de NOTAS
+    --  creacion de la llave fornea de la tabla de NOTAS
     foreign key(id_nn) references notasCertificadas (id_nc) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de PERIODO
+    --  creacion de la llave fornea de la tabla de PERIODO
     foreign key(id_pnn) references periodoEscolar (id_pe) on update cascade on delete cascade
 );
 
---CREACION TABLA ESTUDIANTE_CURSA_AREA
+-- CREACION TABLA ESTUDIANTE_CURSA_AREA
 CREATE TABLE estudiante_inscribe_matricula(
     id_eei     serial unique,
     id_mei     serial unique,
-     -- CREACION LAVES FORANEAS
+     --  CREACION LAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de ESTUDIANTE
+    --  creacion de la llave fornea de la tabla de ESTUDIANTE
     foreign key(id_eei) references estudiante (id_est) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de AREA
+    --  creacion de la llave fornea de la tabla de AREA
     foreign key(id_mei) references matricula (id_m) on update cascade on delete cascade
 );
 
---CREACION TABLA PERIODO_ACTIVA_SECCION
+-- CREACION TABLA PERIODO_ACTIVA_SECCION
 CREATE TABLE matricula_establece_evaluaciones(
     id_mm      serial unique,
     id_evm      serial unique,
 
-    -- CREACION LAVES FORANEAS
+    --  CREACION LAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de PERIODO
+    --  creacion de la llave fornea de la tabla de PERIODO
     foreign key(id_mm) references matricula (id_m) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de seccion
+    --  creacion de la llave fornea de la tabla de seccion
     foreign key(id_evm) references evaluaciones (id_ev) on update cascade on delete cascade
 );
 
---CREACION TABLA EVALUACIONES_POR_AREA
+-- CREACION TABLA EVALUACIONES_POR_AREA
 CREATE TABLE evaluaciones_por_area(
     id_ee       serial unique,
     id_ae       serial unique,
 
-     -- CREACION LLAVES FORANEAS
+     --  CREACION LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla evaluacion
+    --  creacion de la llave fornea de la tabla evaluacion
     foreign key(id_ee) references evaluaciones (id_ev) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla Area de aprendizaje
+    --  creacion de la llave fornea de la tabla Area de aprendizaje
     foreign key(id_ae) references areaDeAprendizaje (id_a) on update cascade on delete cascade
 );
 
--- CREACION TABLA AREAS_POR_LAPSO
+--  CREACION TABLA AREAS_POR_LAPSO
 CREATE TABLE areas_por_lapso(
     id_ael     serial unique,
     id_la      serial unique,
 
-    -- creacion llave foranea
+    --  creacion llave foranea
 
-    -- creacion de la llave fornea de la tabla Area de aprendizaje
+    --  creacion de la llave fornea de la tabla Area de aprendizaje
     foreign key(id_ael) references areaDeAprendizaje (id_a) on update cascade on delete cascade,
-     -- creacion de la llave fornea de la tabla lapso
+     --  creacion de la llave fornea de la tabla lapso
     foreign key(id_la) references lapso (id_l) on update cascade on delete cascade
 );
 
---CREACION TABLA ESTUDIANTE_SOLICITA_NOTAS
+-- CREACION TABLA ESTUDIANTE_SOLICITA_NOTAS
 CREATE TABLE estudiante_solicita_notas(
     id_esn      serial unique,
     id_nes      serial unique,
     fecha_soli date,
 
-    -- CREACION LLAVES FORANEAS
+    --  CREACION LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de ESTUDIANTE
+    --  creacion de la llave fornea de la tabla de ESTUDIANTE
     foreign key(id_esn) references estudiante (id_est) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de NOTAS_CERTIFICADAS
+    --  creacion de la llave fornea de la tabla de NOTAS_CERTIFICADAS
     foreign key(id_nes) references notasCertificadas (id_nc) on update cascade on delete cascade
 );
 
---CREACION TABLA REPRESENTANTE_REPRESENTA_ESTUDIANTE
+-- CREACION TABLA REPRESENTANTE_REPRESENTA_ESTUDIANTE
 CREATE TABLE representante_representa_estudiante(
     id_rer      serial unique,
     id_err      serial unique,
     parentesco  varchar(30),
 
-    -- CREACION LLAVES FORANEAS
+    --  CREACION LLAVES FORANEAS
 
-    -- creacion de la llave fornea de la tabla de REPRESENTANTE
+    --  creacion de la llave fornea de la tabla de REPRESENTANTE
     foreign key(id_rer) references representante (id_rep) on update cascade on delete cascade,
-    -- creacion de la llave fornea de la tabla de estudiante
+    --  creacion de la llave fornea de la tabla de estudiante
     foreign key(id_err) references estudiante (id_est) on update cascade on delete cascade
 );
------------------------------------------------------------------------------------------------------
--- Sentencias para creacion de grupos y privilegios de usuarios.
--- Estos grupos tendran acceso a todos los modulos del sistema.
--- Creación del grupo directivo (USUARIO -> DIRECTIVO)
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+--  Sentencias para creacion de grupos y privilegios de usuarios.
+--  Estos grupos tendran acceso a todos los modulos del sistema.
+--  Creación del grupo directivo (USUARIO -> DIRECTIVO)
 CREATE GROUP directivo;
 
--- Creación del grupo de autorizados (USUARIOS -> AUTORIZADOS)
+--  Creación del grupo de autorizados (USUARIOS -> AUTORIZADOS)
 CREATE GROUP autorizados;
 
--- Creación del grupo de seccional (USUARIOS -> SECCIONAL)
+--  Creación del grupo de seccional (USUARIOS -> SECCIONAL)
 CREATE GROUP seccional;
 
--- Este grupo de usuarios solo tendra acceso a los modulos de:
---- Reporte, Evaluación, Mantenimiento, Acerca de.
+--  Este grupo de usuarios solo tendra acceso a los modulos de:
+-- - Reporte, Evaluación, Mantenimiento, Acerca de.
 CREATE GROUP academico;
 
--- Permisos al grupo directivo
+--  Permisos al grupo directivo
 GRANT ALL ON "aprobada" TO GROUP directivo;
 GRANT ALL ON "areadeaprendizaje" TO GROUP directivo;
 GRANT ALL ON "areadetransferencia" TO GROUP directivo;
@@ -1544,11 +1548,11 @@ GRANT ALL ON "usuario" TO GROUP directivo;
 GRANT ALL ON "usuario_inscribe_estudiante" TO GROUP directivo;
 GRANT ALL ON "vacuna" TO GROUP directivo;
 
--- Sentencia para la creacion del usuario directivo 
--- (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
+--  Sentencia para la creacion del usuario directivo 
+--  (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
 CREATE USER director WITH PASSWORD 'director1' IN GROUP directivo;
 
--- Permisos al grupo autorizado
+--  Permisos al grupo autorizado
 GRANT ALL ON "areadeaprendizaje" TO GROUP autorizados;
 GRANT ALL ON "areadetransferencia" TO GROUP autorizados;
 GRANT ALL ON "areas_por_lapso" TO GROUP autorizados;
@@ -1601,11 +1605,11 @@ GRANT ALL ON "usuario" TO GROUP autorizados;
 GRANT ALL ON "usuario_inscribe_estudiante" TO GROUP autorizados;
 GRANT ALL ON "vacuna" TO GROUP autorizados;
 
--- Sentencia para la creacion del usuario autorizado 
--- (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
+--  Sentencia para la creacion del usuario autorizado 
+--  (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
 CREATE USER autorizado WITH PASSWORD 'autorizado1' IN GROUP autorizados;
 
--- Permisos al grupo seccional
+--  Permisos al grupo seccional
 GRANT SELECT, INSERT ON "areadetransferencia" TO GROUP seccional;
 GRANT SELECT, INSERT ON "areadeaprendizaje" TO GROUP seccional;
 GRANT SELECT, INSERT ON "areas_por_lapso" TO GROUP seccional;
@@ -1658,11 +1662,11 @@ GRANT SELECT, INSERT ON "usuario" TO GROUP seccional;
 GRANT SELECT, INSERT ON "usuario_inscribe_estudiante" TO GROUP seccional;
 GRANT SELECT, INSERT ON "vacuna" TO GROUP seccional;
 
--- Sentencia para la creacion del usuario autorizado 
--- (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
+--  Sentencia para la creacion del usuario autorizado 
+--  (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
 CREATE USER seccional1 WITH PASSWORD 'seccional1' IN GROUP seccional;
 
--- Permisos al grupo seccional
+--  Permisos al grupo seccional
 GRANT ALL ON "areadeaprendizaje" TO GROUP academico;
 GRANT ALL ON "areadetransferencia" TO GROUP academico;
 GRANT ALL ON "areas_por_lapso" TO GROUP academico;
@@ -1715,16 +1719,17 @@ GRANT ALL ON "usuario" TO GROUP academico;
 GRANT ALL ON "usuario_inscribe_estudiante" TO GROUP academico;
 GRANT ALL ON "vacuna" TO GROUP academico;
 
--- Sentencia para la creacion del usuario autorizado 
--- (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
+--  Sentencia para la creacion del usuario autorizado 
+--  (TIENE TODOS LOS PRIVILEGIOS SOBRE LA BDD)
 CREATE USER evaluacion1 WITH PASSWORD 'evaluacion1' IN GROUP evaluacion;
 
------------------------------------------------------------------------------------------------------
---Funciones de almacenado para el registro de usuario.
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+-- Funciones de almacenado para el registro de usuario.
 /*
 	Tablas relacionas: Persona, usuario y cargo.
 */
--- Primer función que valida la cedula de identidad en caso de que se registre un usuario
+--  Primer función que valida la cedula de identidad en caso de que se registre un usuario
+/*
 create or replace function verificar_ci_persona()
 returns trigger as $$
 	DECLARE
@@ -1752,7 +1757,7 @@ AFTER INSERT ON persona
 for each row
 EXECUTE PROCEDURE verificar_ci_persona_usuario();
 
--- Segunda funcion que validad el nombre de usuario 
+--  Segunda funcion que validad el nombre de usuario 
 create or replace function comprobar_nombre_de_usuario()
 	returns trigger as 
 	$BODY$
@@ -1791,14 +1796,14 @@ $$
  */
  /*
 DECLARE
-  -- Define la estructura temporal que servirá para realizar las operaciones
+  --  Define la estructura temporal que servirá para realizar las operaciones
   temp_row usuario.registro_de_usuario%rowtype;
   
 BEGIN
   
   IF (NEW.privilegio == 'Directivo') THEN
 
-	-- Capturar datos del nuevo usuario creado
+	--  Capturar datos del nuevo usuario creado
 	temp_row.nom_u := NEW.nom_u;
 	temp_row.clave := NEW.clave;
 	temp_row.privilegio := NEW.privilegio;
@@ -1808,22 +1813,22 @@ BEGIN
 	temp_row.id_cu := NEW.id_cu;
 	
 	BEGIN
-	-- Inserta los valores en la tabla CDC
+	--  Inserta los valores en la tabla CDC
 	INSERT INTO usuario.registro_de_usuario SELECT temp_row.*;
 	END;
 
-	-- Devuelve el la estructura grabada NEW
+	--  Devuelve el la estructura grabada NEW
 	RETURN NEW;
    	END IF;
    
    	RETURN NULL;
    
-END; -- Fin del procedimiento  
+END; --  Fin del procedimiento  
 $$
 LANGUAGE plpgsql; 
 */
-
--- Tercer función para el registro de persona
+/*
+--  Tercer función para el registro de persona
 CREATE OR REPLACE FUNCTION insertar_persona(ci varchar, pnombre varchar, segnombre varchar, papellido varchar, segapellido varchar, nacionalidad varchar)  
 RETURNS void AS   
 $BODY$
@@ -1834,7 +1839,7 @@ $BODY$
 $BODY$ 
 LANGUAGE plpgsql;
 
--- Cuarta función para el registro de cargo
+--  Cuarta función para el registro de cargo
 CREATE OR REPLACE FUNCTION insertar_cargo(tipo_cargo varchar)
 RETURNS void AS   
 $BODY$
@@ -1845,7 +1850,7 @@ $BODY$
 $BODY$ 
 LANGUAGE plpgsql;
 
--- Cuarta función para el registro de usuario
+--  Cuarta función para el registro de usuario
 CREATE OR REPLACE FUNCTION insertar_usuario(nom_u varchar, clave varchar, privilegio varchar, pregunta_s varchar, respuesta_s varchar, activo integer, id_pu integer, id_cu integer)
 RETURNS void AS   
 $BODY$
@@ -1857,7 +1862,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 
--- Quinta funcion para la busqueda de representante y todos sus registros.
+--  Quinta funcion para la busqueda de representante y todos sus registros.
 CREATE OR REPLACE FUNCTION data_representante(character varying)
 RETURNS TABLE (
 	ci varchar, pnombre varchar, segnombre varchar, papellido varchar, segapellido varchar, nacionalidad varchar, sexo_p varchar,
@@ -1889,3 +1894,4 @@ BEGIN
   RETURN;
 END;
 $$ LANGUAGE plpgsql;
+*/
