@@ -160,6 +160,4 @@
 				$this -> vista('Estudiantes/actualizarEstudiante', $datos);
 			}
 		}
-
-
 	}
