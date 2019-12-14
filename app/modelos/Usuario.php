@@ -19,8 +19,8 @@
 
 			
 				// Insertando registro de usuario -> persona.															
-				$this -> db -> query("INSERT INTO persona(ci, pnombre, segnombre, papellido, segapellido, nacionalidad)
-						VALUES(:ci, :pnombre, :segnombre, :papellido, :segapellido, :nacionalidad)");
+				$this -> db -> query("INSERT INTO persona(ci, pnombre, segnombre, papellido, segapellido, nacionalidad, sexo_p)
+						VALUES(:ci, :pnombre, :segnombre, :papellido, :segapellido, :nacionalidad, :sexo_p)");
 
 				// Vinculando valores con el bind para evitar inyección de codigo SQL.
 				$this -> db -> bind(':ci', $datos['ci']);
@@ -28,7 +28,8 @@
 				$this -> db -> bind(':segnombre', $datos['segnombre']);
 				$this -> db -> bind(':papellido', $datos['papellido']);
 				$this -> db -> bind(':segapellido', $datos['segapellido']);
-				$this -> db -> bind(':nacionalidad', $datos['nacionalidad']);
+        $this -> db -> bind(':nacionalidad', $datos['nacionalidad']);
+        $this -> db -> bind(':sexo_p', $datos['nacionalidad']);
 
 				// Ejecutando la consulta con el metodo execute.
 				$this -> db -> execute(); 
@@ -52,7 +53,7 @@
 				$this -> db -> query("INSERT INTO usuario(nom_u, clave, privilegio, respuesta_s, 
 					pregunta_s, activo, id_pu, id_cu)VALUES(:nom_u, :clave, :privilegio, :respuesta_s, :pregunta_s,
 					:activo, :id_pu, :id_cu)");
-
+        print_r($datos);
 				// Encriptado de la clave ingresa por el usuario con metodo propio de encriptado.
 				$clave_encriptada = Helper::encriptar($datos['clave']);
 
