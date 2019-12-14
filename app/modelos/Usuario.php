@@ -288,7 +288,7 @@
 					$this -> db -> bind(':id_u', $datos['id_u']);
 
 					$this -> db -> execute();
-					$this -> db -> coomit();
+					$this -> db -> commit();
 				
 				// Caso contrario elimina en cascada desde la tabla persona.
 				} else {

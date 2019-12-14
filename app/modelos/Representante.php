@@ -125,6 +125,85 @@
 			}              
 
     }
+
+    public function registrar_representante_usuario($datos){
+      
+      $this -> db -> beginTransaction();
+      try {
+
+        $this -> db -> query("SELECT * FROM persona WHERE ci = :ci" );
+        $this -> db -> bind(":ci", $datos['ci']);
+
+        $registro_cedula_persona_usuario = $this -> db -> registro();
+
+        if(!$registro_cedula_persona_usuario){
+          $this -> registro = "0";
+          return $this -> mensaje = 'Error';
+        } else{
+
+          $id_persona_usuario = $registro_cedula_persona_usuario -> id_per;
+
+          $this -> db -> query("SELECT * FROM usuario WHERE id_pu = :id_pu" );
+          $this -> db -> bind(":id_pu", $id_persona_usuario);
+
+          $ci_persona_usuario = $this -> db -> registro();
+
+          if($ci_persona_usuario){
+            $this -> db -> query("INSERT INTO pais (nom_pais) VALUES(:nom_pais)");
+            $this -> db -> bind(":nom_pais", $datos['nom_pais']);
+            $this -> db -> execute();
+            $id_pais = $this -> db -> lastInsertId();
+
+            $this -> db -> query("INSERT INTO estado (nom_estado, id_ep) VALUES(:nom_estado, :id_ep)");
+            $this -> db -> bind(":nom_estado", $datos['nom_estado']);
+            $this -> db -> bind(":id_ep", $id_pais);
+            $this -> db -> execute();
+            $id_estado = $this -> db -> lastInsertId();
+
+            $this -> db -> query("INSERT INTO municipio (nombre_muni, id_em ) VALUES(:nombre_muni, :id_em)");
+            $this -> db -> bind(":nombre_muni", $datos['nombre_muni']);
+            $this -> db -> bind(":id_em", $id_estado);
+            $this -> db -> execute();
+            $id_municipio = $this -> db -> lastInsertId();
+
+            $this -> db -> query("INSERT INTO direccion (n_casa, pto_ref, calle, sector, id_md) 
+            VALUES(:n_casa, :pto_ref, :calle, :sector, :id_md)");
+            $this -> db -> bind(":n_casa", $datos['n_casa']);
+            $this -> db -> bind(":pto_ref", $datos['pto_ref']); 
+            $this -> db -> bind(":calle", $datos['calle']);
+            $this -> db -> bind(":sector", $datos['sector']);
+            $this -> db -> bind(":id_md", $id_municipio);
+            $this -> db -> execute();
+            $id_direccion_persona_representante = $this -> db -> lastInsertId();
+
+            $this -> db -> query("INSERT INTO profesion_u_oficio (posee_po, nom_po, lugar_po, tlf_po) 
+            VALUES(:posee_po, :nom_po, :lugar_po, :tlf_po)");
+            $this -> db -> bind(":posee_po", $datos['posee_po']);
+            $this -> db -> bind(":nom_po", $datos['nom_po']);
+            $this -> db -> bind(":lugar_po", $datos['lugar_po']);
+            $this -> db -> bind(":tlf_po", $datos['tlf_po']);
+            $this -> db -> execute();
+            $id_profesion_persona_representante = $this -> db -> lastInsertId();
+
+            $this -> db -> query("INSERT INTO representante (tutor_legal, id_rep, id_pr, id_dr)
+            VALUES(:tutor_legal, :id_rep, :id_pr, :id_dr)");
+            $this -> db -> bind(":tutor_legal", $datos['tutor_legal']);
+            $this -> db -> bind(":id_rep", $id_persona_usuario);
+            $this -> db -> bind(":id_pr", $id_profesion_persona_representante);
+            $this -> db -> bind(":id_dr", $id_direccion_persona_representante);
+
+            $this -> db -> execute();
+            $this -> db -> commit();
+          }
+        }
+      } catch (PDOException $e) {
+        $this -> db -> rollback();
+        print "Error!: " . $e -> getMessage() . "</br>";
+        return $this -> mensaje = 'Error';
+      }
+
+    
+    }
  
     // Metodo para mostrar a todos los representantes
     public function obtener_representante(){

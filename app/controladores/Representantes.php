@@ -137,7 +137,7 @@
 				'lugar_po' => trim($_POST['lugar_po']),
 				'tlf_po' => trim($_POST['tlf_po'])
 			];
-			$this -> representante_modelo -> registrar_representante($datos);
+			$this -> representante_modelo -> registrar_representante_usuario($datos);
 			if (empty($this -> representante_modelo -> mensaje)) {
 				Helper::redireccionar('/Representantes/representantes');
 			} else {
