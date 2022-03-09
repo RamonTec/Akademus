@@ -55,35 +55,32 @@
 			$this -> db -> execute();
 			$id_direccion = $this -> db -> lastInsertId();
 
-			$this -> db -> query("INSERT INTO institucionDeProcedencia (nom_pro, cod_dea) VALUES(:nom_pro, :cod_dea)");
-			$this -> db -> bind(':nom_pro', $datos['nom_pro']);
-			$this -> db -> bind(':cod_dea', $datos['cod_dea']);
-			$this -> db -> execute();
-			$id_institucion = $this -> db -> lastInsertId();
-
-			//Insertar datos en la tabla estudainte para el registro de estudiante
-			$this -> db -> query("INSERT into estudiante (ci_est, ci_escolar, pasaporte, ci_diplomatica, tipo_est, fecha_n, 
-			lugar_n, sexo, pnom, segnom, otrosnom, pape, segape, otrosape, id_de, id_poe, nacionalidad_e) 
-			VALUES(:ci_est, :ci_escolar, :pasaporte, :ci_diplomatica, :tipo_est, :fecha_n, :lugar_n, :sexo, :pnom, :segnom, 
-			:otrosnom, :pape, :segape, :otrosape, :id_de, :id_poe, :nacionalidad_e)");
+			//Insertar datos en la tabla estudiante para el registro de estudiante
+			$this -> db -> query("INSERT into estudiante (ci_est, ci_escolar, fecha_n, 
+			lugar_n, sexo, pnom, segnom, pape, segape, id_de, nacionalidad_e) 
+			VALUES(:ci_est, :ci_escolar, :fecha_n, :lugar_n, :sexo, :pnom, :segnom, 
+			:pape, :segape, :id_de, :nacionalidad_e)");
 
 			$this -> db -> bind(':ci_est', $datos['ci_est']);
 			$this -> db -> bind(':ci_escolar', $datos['ci_escolar']);
-			$this -> db -> bind(':pasaporte', $datos['pasaporte']);
-			$this -> db -> bind(':ci_diplomatica', $datos['ci_diplomatica']);
-			$this -> db -> bind(':tipo_est', $datos['tipo_est']);
 			$this -> db -> bind(':fecha_n', $datos['fecha_n']);
 			$this -> db -> bind(':lugar_n', $datos['lugar_n']);
 			$this -> db -> bind(':nacionalidad_e', $datos['nacionalidad_e']);
 			$this -> db -> bind(':sexo', $datos['sexo']);
 			$this -> db -> bind(':pnom', $datos['pnom']);
 			$this -> db -> bind(':segnom', $datos['segnom']);
-			$this -> db -> bind(':otrosnom', $datos['otrosnom']);
 			$this -> db -> bind(':pape', $datos['pape']);
 			$this -> db -> bind(':segape', $datos['segape']);
-			$this -> db -> bind(':otrosape', $datos['otrosape']);
 			$this -> db -> bind(':id_de', $id_direccion);
-			$this -> db -> bind(':id_poe', $id_institucion);
+			$this -> db -> execute();
+			$id_estudiante = $this -> db -> lastInsertId();
+			$fecha_inscripcion = date('m/d/Y g:ia');
+
+			$this -> db -> query("INSERT INTO usuario_inscribe_estudiante (id_uu, id_uie, fecha_ins) 
+			VALUES(:id_uu, :id_uie, :fecha_ins)");
+			$this -> db -> bind(':id_uu', $datos['usuario']);			
+			$this -> db -> bind(':id_uie', $id_estudiante);
+			$this -> db -> bind(':fecha_ins', $fecha_inscripcion);
 			 
 			$this -> db -> execute();
 			$this -> db -> commit();

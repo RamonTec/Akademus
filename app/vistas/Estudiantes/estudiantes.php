@@ -10,11 +10,10 @@
 			<th>Primer apellido</th>
 			<th>Sexo</th>
 			<th>Nacionalidad</th>
-			<th>Tipo de estudiante</th>
 			<th>Acciones</th>
 		</tr> 
 	</thead> 
-	<tbody> 
+	<tbody>
 		<?php foreach($datos['estudiantes'] as $estudiante) : ?>
 		<tr>
 			<td><?php echo $estudiante -> ci_est ?></td>
@@ -22,7 +21,6 @@
 			<td><?php echo $estudiante -> pape ?></td>
 			<td><?php echo $estudiante -> sexo ?></td>
 			<td><?php echo $estudiante -> nacionalidad_e ?></td>
-			<td><?php echo $estudiante -> tipo_est ?></td>
 			<td>								
 				<a href="<?php echo RUTA_URL;?>/Estudiantes/perfil_estudiante/<?php echo $estudiante -> ci_est ?>">Perfil</a>
 			</td>		

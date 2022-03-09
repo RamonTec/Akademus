@@ -4,7 +4,7 @@
 <h4 class="text-center pt-5">Registro de estudiante.</h4>
   <div class="container">
     <div class="row">
-      <div class="col-1 offset-2">
+      <div class="col-2 offset-2">
         <span>Identidades.</span>
         <div class="form-group">
           <select class="form-control" id="nacionalidad_e" name="nacionalidad_e">
@@ -15,14 +15,10 @@
         </div>          
       </div>
       <div class="col-3 mt-4">
-        <div class="form-group">
-          <input type="text" class="form-control" id="ci_est" name="ci_est" placeholder="Cedula de identidad">
-          <input type="text" class="form-control" name="ci_diplomatica" id="ci_diplomatica" placeholder="Cedula diplomatica">
-        </div>
-      </div>
+        <input type="text" class="form-control" name="ci_est" id="ci_est" placeholder="Cedula estudiante">
+      </div>   
       <div class="col-3 mt-4">
         <input type="text" class="form-control" name="ci_escolar" id="ci_escolar" placeholder="Cedula escolar">
-        <input type="text" class="form-control" name="pasaporte" id="pasporte" placeholder="Pasaporte">
       </div>        
     </div>      
     <div class="row">
@@ -39,12 +35,10 @@
       <div class="col-3 mt-4">        
         <input type="text" class="form-control" name="pnom" id="pnom" placeholder="Primer nombre">
         <input type="text" class="form-control" name="pape" id="pape" placeholder="Primer apellido">
-        <input type="text" class="form-control" name="otrosnom" id="otrosnom" placeholder="Otros nombres">
       </div>
       <div class="col-3 mt-4">
         <input type="text" class="form-control" name="segnom" id="segnom" placeholder="Segundo nombre">
         <input type="text" class="form-control" name="segape" id="segape" placeholder="Segundo apellido">
-        <input type="text" class="form-control" name="otrosape" id="otrosape" placeholder="Otros apellidos">
       </div>
     </div>    
     <div class="row">
@@ -94,13 +88,10 @@
           <option value="Regular" >Regular</option>
         </select>
       </div>
-      <div class="col-2 mt-4">
-        <input type="text" class="form-control" name="nom_pro" id="nom_pro" placeholder="Institucion de procedencia">  
-      </div>
-      <div class="col-2 mt-4">        
-        <input type="text" class="form-control" name="cod_dea" id="cod_dea" placeholder="Codigo DEA">  
-      </div>
     </div>
+    <div class="col-3">        
+        <input type="text" class="form-control" name="usuario" value="<?php echo($_SESSION['id_usuario']) ?>">
+      </div> 
     <div class="row">
       <div class="col-2 offset-5">
         <button type="submit" class="btn btn-primary ml-5">Registrar</button>

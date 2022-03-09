@@ -2,20 +2,20 @@
 
 <div class="container"><!---- Inicio del primer container ----->
   <h4 class="text-center pt-5">Registro de usuario</h4>
+
     <form action="<?php echo RUTA_URL; ?>/Usuarios/index" method="POST">
-      <div class="row pt-5"><!---- Inicio del primer row ----->
-        <div class="col-md-3 offset-1">      
+      <div class="row pt-5 justify-content-center"><!---- Inicio del primer row ----->
+        <div class="col-md-3">      
           <select id="inputState" id="nacionalidad" name="nacionalidad" class="form-control">
             <option selected>Nacionalidad...</option>
             <option value="V">Venezolano</option>
             <option value="E">Extranjero</option>
           </select>
-          <input class="form-control mt-4" onkeypress="validar_ci(event)" id="ci" name="ci" placeholder="Cedula de identidad">
+          <input class="form-control mt-4" id="ci" name="ci" placeholder="Cedula de identidad">
           <span id="ci_mensaje"></span>      
         </div>
         <div class="col-md-3"><!---- Inicio del primer col ----->
-          <div class="form-group">      
-            <span id="pnombre_mensaje"></span>
+          <div class="form-group">
             <input type="text" class="form-control" id="pnombre" name="pnombre" placeholder="Primer nombre">
             <input type="text" class="form-control mt-4" id="segnombre" name="segnombre" placeholder="Segundo nombre">             
           </div>
@@ -27,12 +27,12 @@
           </div>
         </div><!---- Cierre del segundo col ----->
       </div><!---- Cierre del primer row ----->
-      <div class="row pt-3"><!---- Inicio del segundo row ----->        
-        <div class="col-md-3 offset-1"><!---- Inicio del tercer col ----->
+
+      <div class="row pt-3 justify-content-center"><!---- Inicio del segundo row ----->        
+        <div class="col-md-3"><!---- Inicio del tercer col ----->
           <div class="form-group">
             <input type="text" class="form-control mt-4" id="nom_u" name="nom_u" placeholder="Nombre de usuario">
             <input type="password" class="form-control mt-4" id="clave" name="clave" placeholder="Primer contraseña">
-            
           </div>
         </div><!---- Cierre del tercer col ----->
         <div class="col-md-3"><!---- Inicio del cuarto col ----->
@@ -46,7 +46,6 @@
                     <option value="Director">Director</option>
                     <option value="Autorizado">Autorizado</option>
                     <option value="Seccional">Seccional</option>
-                    <option value="Academico">Academico</option>
                   </select>
                 <?php 
               } else{
@@ -55,13 +54,13 @@
                     <option selected>Privilegio</option>                                
                     <option value="Autorizado">Autorizado</option>
                     <option value="Seccional">Seccional</option>
-                    <option value="Academico">Academico</option>
                   </select>
                 <?php
               }
             ?>
           </div>
         </div><!---- Cierre del cuarto col ----->
+
         <div class="col-md-3"><!---- Inicio del quinto col ----->
           <div class="form-group">
             <select id="inputState" id="pregunta_s" name="pregunta_s" class="form-control mt-4">
@@ -77,14 +76,15 @@
           </div>
         </div><!---- Cierre del quinto col ----->
       </div><!---- Cierre del segundo row ----->
-      <div class="row pt-3"><!---- Inicio del tercer row ----->
-        <div class="col-md-3 offset-4"><!---- Inicio del sexto col ----->
+
+      <div class="row pt-3 justify-content-center"><!---- Inicio del tercer row ----->
+        <div class="col-md-3"><!---- Inicio del sexto col ----->
           <div class="form-group">
             <input type="text" class="form-control" id="tipo_cargo" name="tipo_cargo" placeholder="Tipo de cargo">
-            <button class="btn boton-de-envio mt-4 ml-5 mp-5" type="submit">Registrarse</button>
+            <button class="btn btn-primary mt-4" type="submit">Registrarse</button>
           </div>
         </div><!---- Cierre del sexto col ----->
-
+        
     </form>
 </div><!---- Cierre del primer container ----->
 

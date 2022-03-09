@@ -45,8 +45,6 @@
 					//Datos de la tabla estudiante
 					'ci_est' => trim($_POST['ci_est']),
 					'ci_escolar' => trim($_POST['ci_escolar']),
-					'pasaporte' => trim($_POST['pasaporte']),
-					'ci_diplomatica' => trim($_POST['ci_diplomatica']),
 					'tipo_est' => trim($_POST['tipo_est']),
 					'fecha_n' => trim($_POST['fecha_n']),
 					'lugar_n' => trim($_POST['lugar_n']),
@@ -54,10 +52,8 @@
 					'sexo' => trim($_POST['sexo']),
 					'pnom' => trim($_POST['pnom']),
 					'segnom' => trim($_POST['segnom']),
-					'otrosnom' => trim($_POST['otrosnom']),
 					'pape' => trim($_POST['pape']),
 					'segape' => trim($_POST['segape']),
-					'otrosape' => trim($_POST['otrosape']),
 
 				
 					//Datos de la tabla direccion
@@ -75,9 +71,7 @@
 					//Datos de la tabla estado
 					'nom_estado' => trim($_POST['nom_estado']),
 
-					//Datos de la tabla institucion de procedencia
-					'nom_pro' => trim($_POST['nom_pro']),
-					'cod_dea' => trim($_POST['cod_dea']),
+					'usuario' => trim($_POST['usuario']),
 
  
 				];

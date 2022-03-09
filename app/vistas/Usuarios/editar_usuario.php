@@ -6,7 +6,7 @@
       <div class="row pt-3"><!---- Inicio del segundo row ----->        
         <div class="col-md-3 offset-1"><!---- Inicio del tercer col ----->
           <div class="form-group">
-            <input type="text" class="form-control mt-4" id="nom_u" name="nom_u" value="<? echo $datos['nom_u'] ?>" placeholder="Nombre de usuario">
+            <input type="text" class="form-control mt-4" id="nom_u" name="nom_u" value="<?php if($datos['nom_u']) echo $datos['nom_u']  ?>" placeholder="Nombre de usuario">
             <input type="password" class="form-control mt-4" id="clave" name="clave" placeholder="Primer contraseña">  
           </div>
         </div><!---- Cierre del tercer col ----->
@@ -51,7 +51,7 @@
           </div>
         </div><!---- Cierre del quinto col ----->
         <div class="col-md-3 offset-5">
-          <button class="btn boton-de-envio mt-4 ml-5 mp-5" type="submit">Actualizar</button>
+          <button class="btn btn btn-primary mt-4 ml-5 mp-5" type="submit">Actualizar</button>
         </div>
       </div><!---- Cierre del segundo row ----->
     </form>

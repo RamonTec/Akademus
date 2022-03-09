@@ -12,11 +12,12 @@
 			$datos = array(
 				//Datos para la tabla persona
 				'ci' => trim($_POST['ci']),
+				'nacionalidad' => trim($_POST['nacionalidad']),
+				'papellido' => trim($_POST['papellido']),
 				'pnombre' => trim($_POST['pnombre']),
 				'segnombre' => trim($_POST['segnombre']),
-				'papellido' => trim($_POST['papellido']),
+				'sexo_p	' => trim($_POST['sexo_p']),
 				'segapellido' => trim($_POST['segapellido']),
-				'nacionalidad' => trim($_POST['nacionalidad']),
 	
 				//Datos para la tabla usuario
 				'nom_u' => trim($_POST['nom_u']),
@@ -33,8 +34,8 @@
   			if (empty($this -> usuario_modelo -> mensaje)){
   				Helper::redireccionar('/Login/login');
   			} else {
-				$datos = array("mensaje" => $this -> usuario_modelo -> mensaje);
-				$this -> vista('Usuarios/registrar_usuario',$datos);
+					$datos = array("mensaje" => $this -> usuario_modelo -> mensaje);
+					$this -> vista('Usuarios/registrar_usuario',$datos);
   			}
   		} else {
   			$usuario = $this -> usuario_modelo -> obtener_usuario_director();
@@ -121,9 +122,9 @@
 				'nom_u' => $usuario -> nom_u,
 				'clave' => $usuario -> clave,
 				'privilegio' => $usuario -> privilegio,
-				'pregunta_s' => $usuario -> pregunta_s,
+				'pregunta_s' => $usuario -> pregunta_S,
 				'activo' => $usuario -> activo,
-				'respuesta_s' => $usuario -> respuesta_s
+				'respuesta_s' => $usuario -> respuesta_S
 			];
 			$this -> vista('Usuarios/editar_usuario', $datos);
 		}	

@@ -29,7 +29,7 @@ class Configuraciones extends Controlador{
 
 			if (empty($_POST['archivo'])){
 				
-		// CARGA LOS DATOS RESPALDADOS SI LOS HAY
+				// CARGA LOS DATOS RESPALDADOS SI LOS HAY
 				$input = $this->systemModelo->archivos();
 
 				$data = array(
@@ -38,7 +38,7 @@ class Configuraciones extends Controlador{
 					"alert" => 'alert-danger');
 				$this->vista('system/inicio', $data);
 			}
-		// SI HAY UN NOMBRE DE ARCHIVO PARA RESTAURAR Y LO RESTAURA
+			// SI HAY UN NOMBRE DE ARCHIVO PARA RESTAURAR Y LO RESTAURA
 			else if ($this->systemModelo->restaurar_repaldo($_POST['archivo'])){
 				//CARGA LOS ARCHIVOS DE RESPADOS
 				$input = $this->systemModelo->archivos();

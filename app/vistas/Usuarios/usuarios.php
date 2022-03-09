@@ -17,7 +17,7 @@
 			<td><?php echo $usuario -> nom_u ?></td>
 			<td><?php echo $usuario -> privilegio ?></td>
 			<td><?php echo $usuario -> ultima_s ?></td>
-			<td><?php echo $usuario -> activo ?></td>
+			<td><?php echo $usuario -> activo == 1 ? 'Activo' : 'No activo' ?></td>
 			<td>
 				<a href="<?php echo RUTA_URL;?>/Usuarios/editar_usuario/<?php echo $usuario -> id_u ?>">Editar</a> - 
 				<a href="<?php echo RUTA_URL;?>/Usuarios/eliminar_usuario/<?php echo $usuario -> id_u ?>">Eliminar</a>

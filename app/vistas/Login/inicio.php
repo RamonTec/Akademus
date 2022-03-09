@@ -2,36 +2,28 @@
 
 
 ?>   
-    <div class="container mt-5"><!--- Primer container ---->
-        <div class="row"><!--- Inicio del segundo row --->                          
-            <div class="col-8">
-                <h3>Misión - visión</h3>
-                <p class="text-justify">
-                    Educar a jóvenes y adolescentes ofreciéndoles innovaciones pedagógicas
-                    necesarias que les permite obtener experiencias enriquecedoras, con el fin de 
-                    prepararlos para la vida y puedan asumir los nuevos retos educativos a través 
-                    del reforzamiento de los diferentes valores éticos y morales inculcados por el docente.
-                </p>
-                <p class="text-justify">
-                    Formar adolescentes y jóvenes con capacidad integral y de clidad en las 
-                    especialidades de Ciencias, Humanidades y Áreas comerciales (en sus tres menciones:
-                    Contabilidad, Secretariado y Mercadeo), para asumir el compromiso de formar seres 
-                    sociales, humanistas, dignos y luchadores por nuestro país.
-                </p>
-            </div>
-            <div class="col-4">
-                <h4>Los sistemas informaticos.</h4>
-                <p class="text-justify">
-                    Las Tecnologías de la Información han sido conceptualizadas como la integración y convergencia de la computación, 
-                    las telecomunicaciones y la técnica para el procesamiento de datos, donde sus principales componentes son: 
-                    el factor humano, los contenidos de la información, el equipamiento, la infraestructura, el software y los 
-                    mecanismos de intercambio de información, los elementos de política y regulaciones, 
-                    además de los recursos financieros.
-                </p>                                
-            </div>
-        </div><!--- Cierre del row --->    
-    <hr>
-    </div><!--- Cierre del primer container ---->
+  <div class="container mt-5"><!--- Primer container ---->
+    <div class="row mt-5"><!--- Inicio del segundo row --->
+      <div class="col-4 mt-5">
+        <div class="text-center">
+          <a class="btn btn-primary" href="<?php echo RUTA_URL ?>/Secciones/index">Registrar seccion</a>
+        </div>
+      </div>                  
+      <div class="col-4 mt-5">
+        <div class="text-center">
+          <a class="btn btn-primary" href="<?php echo RUTA_URL; ?>/Estudiantes/index">Registrar estudiante</a>
+        </div>
+      </div>
+      <hr> 
+      <div class="col-4 mt-5">
+        <div class="text-center">
+          <a class="btn btn-primary" href="<?php echo RUTA_URL ?>/Profesores/index">Registrar profesor</a>
+        </div>
+      </div>  
+    </div><!--- Cierre del row --->    
+  <hr class="mt-5">
+  </div><!--- Cierre del primer container ---->
+
     <div class="container"><!--- Segundo container --->
     <h4 class="mt-5">Servicios</h4>    
         <div class="row"><!--- Inicio del segundo row --->                                      

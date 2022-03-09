@@ -5,14 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="form-group text-center">                    
-                    <input type="text" class="text-center form-control" name="ci_est" id="ci_est" placeholder="Cedula de identidad">
+                    <input type="text" class="text-center form-control" name="ci_est" placeholder="Cedula de identidad">
                 </div>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
                 <div class="form-group">
-                    <button type="submit" id="btn_enviar" class="btn boton-de-envio">Comprobar cedula</button>
+                    <button type="submit" class="btn boton-de-envio">Comprobar cedula</button>
                 </div>
             </div>
         </div>

@@ -6,9 +6,9 @@ class Configurar{
 
 		//Variables para el respaldo de la base de datos
 		$db_host = 'localhost'; 
-		$db_name = 'akademus';
+		$db_name = 'academus';
 		$db_user = 'root';
-		$db_pass = '';
+		$db_pass = '123456789';
 		// $db_port = '5432';
 
 		//Definicion de variables dia, mes, año y hora
@@ -26,7 +26,7 @@ class Configurar{
  		//Variable que almacena la concatenacion de la ruta de aplicacion con la salida sql dataBase
 		$ruta = RUTA_APP . '/Respaldos/' . $dataBase;
 
-		$pg_dump = "pg_dump -U elias /opt/lampp/htdocs/Akademus/app/Respaldos";
+		$pg_dump = "C:/xampp\mysql\bin\mysqldump --opt --host $db_host -u$db_user -p$db_pass $db_name > $ruta";
 
 		system($pg_dump, $output);
 

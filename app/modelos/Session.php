@@ -26,9 +26,10 @@
 						session_start();
 						$_SESSION['nom_u'] = $resultado -> nom_u;
 						$_SESSION['privilegio'] = $resultado -> privilegio;
+						$_SESSION['id_usuario'] = $resultado -> id_u;
 
 						date_default_timezone_set('America/Caracas');
-						$fecha_actual = date('m/d/y g:ia');
+						$fecha_actual = date('m/d/Y g:ia');
 
 						$this -> db -> beginTransaction();
 
