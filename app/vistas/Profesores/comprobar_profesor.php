@@ -19,6 +19,26 @@
     </form>
     <hr>
 </div>
+
+<?php
+    if($datos['mensaje'] != '') {
+      ?> 
+        <div class="row justify-content-center mt-5">
+
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?php 
+              print_r($datos['mensaje'])
+            ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+        </div>
+      <?php
+    }
+
+  ?>
 <!---------------------------------------------------Footer---------------------------------------------->
 <script src="<?php echo RUTA_URL ?>/js/validacion_comprobar_representante.js"></script>
 <?php require_once RUTA_APP . '/vistas/inc/footer.php'; ?>

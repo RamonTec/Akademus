@@ -3,106 +3,79 @@
 <form action="<?php echo RUTA_URL; ?>/Profesores/registro_persona_profesor" method="POST">
 <h4 class="text-center pt-5">Registro de profesor.</h4>
   <div class="container">
-    <div class="row">
-      <div class="col-1 offset-2">
-        <span>Identidades.</span>
+    <div class="row justify-content-center">
+      <div class="col-4 mt-4">
+        <div class="form-group">
+          <input class="form-control" type="text" name="ci" id="ci" placeholder="Cedula de identidad">
+        </div>
+      </div>
+      <div class="col-2 mt-4">
         <div class="form-group">          
           <select class="form-control" id="nacionalidad" name="nacionalidad">
             <option>...</option>
-            <option value="V">V</option>
-            <option value="E">E</option>
+            <option value="V">Venezolano</option>
+            <option value="E">Extranjero</option>
           </select>
-        </div>          
+        </div> 
       </div>
-      <div class="col-3 mt-4">
-        <div class="form-group">
-          <input class="form-control" type="text" name="ci" id="ci" placeholder="Cedula de identidad">
-          <input class="form-control" type="text" name="posee_po" id="posee_po" placeholder="Posee profesion">
-        </div>
-      </div>
-      <div class="col-3 mt-4">
-        <input class="form-control" type="text" name="nom_po" id="nom_po" placeholder="Nombre de la profesion">
-        <input class="form-control" type="text" name="lugar_po" id="lugar_po" placeholder="Lugar de la profesion">
-      </div>        
-    </div>      
-    <div class="row">
-      <div class="col-1 offset-2">
-        <span>Datos.</span>
+      <div class="col-2 mt-4">
         <div class="form-group">          
           <select class="form-control" id="sexo_p" name="sexo_p">
             <option>...</option>
-            <option value="M">M</option>
-            <option value="F">F</option>
+            <option value="M">Hombre</option>
+            <option value="F">Mujer</option>
+            <option value="F">Otros</option>
           </select>
-        </div>          
-      </div>
-      <div class="col-3 mt-4">        
+        </div> 
+      </div> 
+    </div>    
+    <div class="row justify-content-center">
+      <div class="col-4 mt-4">        
         <input class="form-control" type="text" name="pnombre" id="pnombre" placeholder="Primer nombre">
         <input class="form-control" type="text" name="papellido" id="papellido" placeholder="Primer apellido">        
       </div>
-      <div class="col-3 mt-4">
+      <div class="col-4 mt-4">
         <input class="form-control" type="text" name="segnombre" id="segnombre" placeholder="Segundo nombre">
         <input class="form-control" type="text" name="segapellido" id="segapellido" placeholder="Segundo apellido">        
       </div>
-    </div>    
-    <div class="row">
-      <div class="col-3 offset-3">          
-        <input class="form-control" type="text" name="tlf_po" id="tlf_po" placeholder="Telefono de la profesion">
+    </div>
+    <div class="row justify-content-center">  
+      <div class="col-4 mt-4">
+        <input type="text" class="form-control" name="tipo_prof" id="tipo_prof" placeholder="Tipo de profesor">
       </div>
-      <div class="col-3">
-        <input class="form-control" type="text" name="cod_area1" id="cod_area1" placeholder="Codigo de telefono">
+      <div class="col-4 mt-4">
+        <input type="text" class="form-control" name="cod_prof" id="cod_prof" placeholder="Codigo de profesor">
       </div>
     </div>
-    <div class="row">
-      <div class="col-3 offset-3">        
-        <input type="text" class="form-control" name="n_casa" id="n_casa" placeholder="Numero de casa">
-        <input type="text" class="form-control" name="calle" id="calle" placeholder="Calle">
-      </div>
-      <div class="col-3">        
-        <input type="text" class="form-control" name="pto_ref" id="pto_ref" placeholder="Punto de referencia">
-        <input type="text" class="form-control" name="sector" id="sector" placeholder="Sector">
-      </div>        
-    </div>
-    <div class="row">
-      <div class="col-2 offset-3">
-        <select class="form-control" id="nom_pais" name="nom_pais">
-          <option>Pais</option>
-          <option>Venezuela</option>
-        </select>          
-      </div>
-      <div class="col-2">
-        <select class="form-control" id="nom_estado" name="nom_estado">
-          <option>Estado</option>
-          <option>Anzoategui</option>
-        </select>
-      </div>
-      <div class="col-2">
-        <select class="form-control" id="nombre_muni" name="nombre_muni">
-          <option>Municipio</option>
-          <option>Simon Rodriguez</option>
-        </select>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-2 offset-3 mt-4">                
-        <select class="form-control" id="tutor_legal" name="tutor_legal">
-          <option>Tutor legal</option>
-          <option value="Si" >Si</option>
-          <option value="No" >No</option>          
-        </select>
-      </div>
+    <div class="row justify-content-center">
       <div class="col-2 mt-4">
-        <input class="form-control" type="text" name="numero1" id="numero1" placeholder="Numero de telefono">        
-      </div>
-      <div class="col-2 mt-4">        
-        <input class="form-control" type="text" name="tipo1" id="tipo1" placeholder="Tipo de telefono">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-2 offset-5">
         <button type="submit" class="btn btn-primary ml-5">Registrar</button>
       </div>
     </div>
+    
   </div>
 </form>
+
+<?php
+  if($datos['mensaje']) {
+    $resultado_ci = strpos($datos['mensaje'], $datos['ci']);
+    $resultado_cod = strpos($datos['mensaje'], $datos['cod_prof']);
+    ?> 
+      <div class="row justify-content-center mt-5">
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <?php 
+            if($resultado_ci !== false) echo("Cedula registrada, intenta con otra cedula");
+            if($resultado_cod !== false) echo("Codigo de profesor registrado, intenta con otro codigo");
+          ?>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+      </div>
+    <?php
+  }
+?>
+
 <?php require_once RUTA_APP . "/vistas/inc/footer.php" ?>

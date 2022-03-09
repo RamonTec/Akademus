@@ -24,7 +24,7 @@
           <td><?php echo $profesor -> tipo_prof ?></td>
           <td><?php echo $profesor -> cod_prof ?></td>
             <td>								
-              <a href="<?php echo RUTA_URL;?>/Profesores/actualizar_profesor/<?php echo $profesor -> ci ?>">Editar</a> - 
+              <a href="<?php echo RUTA_URL;?>/Profesores/editar_profesor_persona/<?php echo $profesor -> id_prof ?>">Editar</a> - 
                 <a href="<?php echo RUTA_URL;?>/Profesores/eliminar_profesor/<?php echo $profesor -> id_prof ?>">Eliminar</a>
             </td>		
           </tr>

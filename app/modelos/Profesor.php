@@ -24,13 +24,27 @@
         $this -> db -> bind(':id_per', $id_persona_profesor);
 
         $comprobar_representante_persona = $this -> db -> registro();
- 
+        
         if ($comprobar_representante_persona == true) {
           // Persona y profesor registrada
           $this -> registro = "0";
           return true;
         } else {
-          // Persona registrada pero no como representante (Puede ser representante)
+
+          $this -> db -> query("SELECT * FROM usuario WHERE id_pu = :id_pu");
+          $this -> db -> bind(':id_pu', $comprobar_registro_cedula -> id_per);
+
+          $check_is_user = $this -> db -> registro();
+
+          // si existe como usuario no puede ser un profesor
+          if($check_is_user) {
+            return [
+              "mensaje" => "No se puede registrar a un usuario como profesor",
+              "registro" => '3'
+            ];
+          }
+
+          // Persona registrada pero no como representante (Puede ser representante pero no puede ser usuario)
           $this -> registro = "1";
           return true;
         }      
@@ -39,6 +53,50 @@
         $this -> registro = "2";
         return true;
       }                  
+    }
+
+    // Metodo para registrar a profesor que es una persona
+    public function registrar_persona_profesor($datos){
+      
+      try {
+
+        $this -> db -> beginTransaction();
+
+        // Insertando registro de usuario -> persona.															
+        $this -> db -> query("INSERT INTO persona(ci, pnombre, segnombre, papellido, segapellido, nacionalidad, sexo_p)
+        VALUES(:ci, :pnombre, :segnombre, :papellido, :segapellido, :nacionalidad, :sexo_p)");
+
+        // Vinculando valores con el bind para evitar inyección de codigo SQL.
+        $this -> db -> bind(':ci', $datos['ci']);
+        $this -> db -> bind(':pnombre', $datos['pnombre']);
+        $this -> db -> bind(':segnombre', $datos['segnombre']);
+        $this -> db -> bind(':papellido', $datos['papellido']);
+        $this -> db -> bind(':segapellido', $datos['segapellido']);
+        $this -> db -> bind(':nacionalidad', $datos['nacionalidad']);
+        $this -> db -> bind(':sexo_p', $datos['sexo_p']);
+
+        // Ejecutando la consulta con el metodo execute.
+        $this -> db -> execute(); 
+
+        // Obteniendo el ultimo id insertado en la tabla persona.
+        $id_persona_profesor = $this -> db -> lastInsertId();
+
+				$this -> db -> query("INSERT INTO profesor (cod_prof, tipo_prof, id_prof) VALUES(:cod_prof, :tipo_prof, :id_prof)");
+        $this -> db -> bind(":tipo_prof", $datos['tipo_prof']);
+        $this -> db -> bind(":cod_prof", $datos['cod_prof']);
+        $this -> db -> bind(":id_prof", $id_persona_profesor);
+
+        $this -> db -> execute();
+        $this -> db -> commit();
+
+      } catch (PDOException $e) {
+				$this -> db -> rollBack();
+        return [
+          'ci' => $datos['ci'],
+          'cod_prof' => $datos['cod_prof'],
+          'mensaje' => $this -> mensaje = $e -> getMessage()
+        ];
+			}              
     }
 
     // Metodo para registrar a profesor que es una persona
@@ -74,12 +132,15 @@
 
       } catch (PDOException $e) {
 				$this -> db -> rollBack();
-        print "Error!: " . $e -> getMessage() . "</br>";
-        return $this -> mensaje = 'Error';
+        return [
+          'ci' => $datos['ci'],
+          'mensaje' => $this -> mensaje = $e -> getMessage()
+        ];
 			}              
     }
 
     public function obtener_profesores(){
+      
 			$this -> db -> query(
         "SELECT 
         persona.ci, persona.pnombre, persona.papellido, persona.sexo_p, persona.nacionalidad, 
@@ -87,9 +148,42 @@
         FROM persona 
         INNER JOIN profesor 
         ON persona.id_per = profesor.id_prof ");
-			$resultados = $this -> db -> registros();
-			return $resultados; 
+
+        $resultados = $this -> db -> registros();
+
+        return $resultados; 
 		}
+
+    public function obtener_profesor_por_ci($id_prof) {
+      try {
+
+        $this -> db -> beginTransaction();
+
+        $this -> db -> query(
+          "SELECT
+          persona.id_per, 
+          persona.ci, persona.pnombre, persona.papellido, persona.segapellido, persona.segnombre, persona.sexo_p, persona.nacionalidad, 
+          profesor.tipo_prof, profesor.cod_prof, profesor.id_prof
+          FROM persona 
+          INNER JOIN profesor 
+          ON persona.id_per = profesor.id_prof 
+          WHERE id_prof = :id_prof"
+        );
+
+        $this -> db -> bind(':id_prof', $id_prof);
+
+        $profesor = $this -> db -> registro();	
+
+        $this -> db -> execute();
+        $this -> db -> commit();
+
+        return $profesor;
+
+      } catch (\Throwable $th) {
+        $this -> db -> rollBack();
+				print "Error!: " . $e -> getMessage() . "</br>";
+      }
+    }
 
     // Metódo para eliminar profesor
 		public function borrar_profesor($datos){
@@ -154,6 +248,56 @@
 				print "Error!: " . $e -> getMessage() . "</br>";
 			}
 		}
+
+    public function editar_profesor_persona($datos) {
+      try {
+        $this -> db -> beginTransaction();
+
+        $this -> db -> query("UPDATE persona SET pnombre = :pnombre, segnombre = :segnombre, papellido = :papellido, segapellido = :segapellido, nacionalidad = :nacionalidad, sexo_p = :sexo_p, ci = :ci
+          WHERE id_per = :id_per
+        ");
+
+        $this -> db -> bind(':pnombre', $datos['pnombre']);
+        $this -> db -> bind(':segnombre', $datos['segnombre']);
+        $this -> db -> bind(':papellido', $datos['papellido']);	
+        $this -> db -> bind(':segapellido', $datos['segapellido']);	
+        $this -> db -> bind(':nacionalidad', $datos['nacionalidad']);	
+        $this -> db -> bind(':sexo_p', $datos['sexo_p']);	
+        $this -> db -> bind(':ci', $datos['ci']);	
+        $this -> db -> bind(':id_per', $datos['id_per']);
+
+        $this -> db -> execute();
+
+        $this -> db -> query("UPDATE profesor SET tipo_prof = :tipo_prof, cod_prof = :cod_prof
+          WHERE id_prof = :id_per
+        ");
+
+        $this -> db -> bind(':tipo_prof', $datos['tipo_prof']);	
+        $this -> db -> bind(':cod_prof', $datos['cod_prof']);	
+        $this -> db -> bind(':id_per', $datos['id_per']);
+
+        $this -> db -> execute();
+        $this -> db -> commit();
+        
+
+      } catch (PDOException $e) {
+        $this -> db -> rollBack();
+        return [
+          'ci' => $datos['ci'],
+          'pnombre' => $datos['pnombre'],
+          'segnombre' => $datos['segnombre'],
+          'papellido' => $datos['papellido'],
+          'segapellido' => $datos['segapellido'],
+          'nacionalidad' => $datos['nacionalidad'],
+          'sexo_p' => $datos['sexo_p'],
+          'cod_prof' => $datos['cod_prof'],
+          'tipo_prof' => $datos['tipo_prof'],
+          'id_per' => $datos['id_per'],
+          'mensaje' => $this -> mensaje = $e -> getMessage()
+        ];
+				print "Error!: " . $e -> getMessage() . "</br>";
+      }
+    }
 
     public function registrarSeccion($datos){
       try {

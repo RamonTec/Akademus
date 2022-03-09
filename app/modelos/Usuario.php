@@ -29,7 +29,7 @@
 			$this -> db -> bind(':papellido', $datos['papellido']);
 			$this -> db -> bind(':segapellido', $datos['segapellido']);
 			$this -> db -> bind(':nacionalidad', $datos['nacionalidad']);
-			$this -> db -> bind(':sexo_p', $datos['nacionalidad']);
+			$this -> db -> bind(':sexo_p', $datos['sexo_p']);
 
 			// Ejecutando la consulta con el metodo execute.
 			$this -> db -> execute(); 
