@@ -22,6 +22,8 @@
 			$this -> db -> query("INSERT INTO persona(ci, pnombre, segnombre, papellido, segapellido, nacionalidad, sexo_p)
 					VALUES(:ci, :pnombre, :segnombre, :papellido, :segapellido, :nacionalidad, :sexo_p)");
 
+					print_r($datos['sexo_p']);
+
 			// Vinculando valores con el bind para evitar inyección de codigo SQL.
 			$this -> db -> bind(':ci', $datos['ci']);
 			$this -> db -> bind(':pnombre', $datos['pnombre']);

@@ -1,11 +1,12 @@
 <?php require_once RUTA_APP . "/vistas/inc/header.php" ?>
  
 <form action="<?php echo RUTA_URL; ?>/Representantes/registro_persona_representante" method="POST">
-<h4 class="text-center pt-5">Registro de representante.</h4>
+<h4 class="text-center pt-5">Registro de representante</h4>
+<?php print_r($datos); ?>
   <div class="container">
     <div class="row">
       <div class="col-1 offset-2">
-        <span>Identidades.</span>
+        <span>Identidad</span>
         <div class="form-group">          
           <select class="form-control" id="nacionalidad" name="nacionalidad">
             <option>...</option>
@@ -27,12 +28,13 @@
     </div>      
     <div class="row">
       <div class="col-1 offset-2">
-        <span>Datos.</span>
+        <span>Sexo.</span>
         <div class="form-group">          
           <select class="form-control" id="sexo_p" name="sexo_p">
             <option>...</option>
-            <option value="M">M</option>
-            <option value="F">F</option>
+            <option value="M">Hombre</option>
+            <option value="F">Mujer</option>
+            <option value="O">Otros</option>
           </select>
         </div>          
       </div>

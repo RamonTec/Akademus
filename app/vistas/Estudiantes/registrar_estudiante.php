@@ -90,8 +90,8 @@
       </div>
     </div>
     <div class="col-3">        
-        <input type="text" class="form-control" name="usuario" value="<?php echo($_SESSION['id_usuario']) ?>">
-      </div> 
+      <input type="text" class="form-control" name="usuario" value="<?php echo($_SESSION['id_usuario']) ?>">
+    </div> 
     <div class="row">
       <div class="col-2 offset-5">
         <button type="submit" class="btn btn-primary ml-5">Registrar</button>

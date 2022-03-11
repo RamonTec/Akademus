@@ -140,12 +140,13 @@ create table estudiante(
 
 -- Creacion  de la tabla representante
 create table representante(
-  ci_padre varchar(20) unique,
-  ci_madre varchar(20) unique,
-  nombre_padre varchar(20) not null,
-  nombre_madre varchar(20) not null,
-	id_rep 			int primary key,
-	foreign key (id_rep) references persona(id_per) on update cascade on delete cascade,
+  ci_pariente_1 varchar(20) unique,
+  ci_pariente_2 varchar(20) unique,
+  nombre_pariente_1 varchar(20) not null,
+  nombre_pariente_2 varchar(20) not null,
+	id_rep int auto_increment primary key not null,
+	id_rep_per			int,
+	foreign key (id_rep_per) references persona(id_per) on update cascade on delete cascade,
 	id_pr 			int,
 	foreign key (id_pr) references profesion_u_oficio (id_po) on update cascade on delete cascade,
 	id_dr 			int,
@@ -220,6 +221,18 @@ CREATE TABLE representante_representa_estudiante(
     foreign key(id_rer) references representante (id_rep) on update cascade on delete cascade,
     --  creacion de la llave fornea de la tabla de estudiante
     foreign key(id_err) references estudiante (id_est) on update cascade on delete cascade
+);
+
+CREATE TABLE seccion_tiene_estudiante(
+    id_estudiante   int,
+    id_secc      int,
+
+    --  CREACION LLAVES FORANEAS
+
+    --  creacion de la llave fornea de la tabla de REPRESENTANTE
+    foreign key(id_estudiante) references estudiante (id_est) on update cascade on delete cascade,
+    --  creacion de la llave fornea de la tabla de estudiante
+    foreign key(id_secc) references seccion (id_seccion) on update cascade on delete cascade
 );
 
 /*

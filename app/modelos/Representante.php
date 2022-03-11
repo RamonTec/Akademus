@@ -50,9 +50,83 @@
       }                  
     }
 
-    // Metodo para registrar a representante
+    // Metodo para registrar a representante: para cuando se trate de un profesor o usuario previamente registrados en 
+    // la plataforma
     public function registrar_representante($datos){
+      
+      try {
 
+        // Consulta para saber si la persona ya esta registrada
+        $this -> db -> query("SELECT * FROM persona WHERE ci = :ci");
+        $this -> db -> bind(':ci', $datos['ci']);
+
+        $get_ci_representante = $this -> db -> registro();
+
+        $this -> db -> beginTransaction();
+
+        $this -> db -> query("INSERT INTO pais (nom_pais) VALUES(:nom_pais)");
+        $this -> db -> bind(":nom_pais", $datos['nom_pais']);
+
+        $this -> db -> execute();
+        $id_pais = $this -> db -> lastInsertId();
+
+        $this -> db -> query("INSERT INTO estado (nom_estado, id_ep) VALUES(:nom_estado, :id_ep)");
+        $this -> db -> bind(":nom_estado", $datos['nom_estado']);
+        $this -> db -> bind(":id_ep", $id_pais);
+
+        $this -> db -> execute();
+        $id_estado = $this -> db -> lastInsertId();
+
+        $this -> db -> query("INSERT INTO municipio (nombre_muni, id_em ) VALUES(:nombre_muni, :id_em)");
+        $this -> db -> bind(":nombre_muni", $datos['nombre_muni']);
+        $this -> db -> bind(":id_em", $id_estado);
+        $this -> db -> execute();
+        $id_municipio = $this -> db -> lastInsertId();
+
+        $this -> db -> query("INSERT INTO direccion (n_casa, pto_ref, calle, sector, id_md) 
+        VALUES(:n_casa, :pto_ref, :calle, :sector, :id_md)");
+        $this -> db -> bind(":n_casa", $datos['n_casa']);
+        $this -> db -> bind(":pto_ref", $datos['pto_ref']); 
+        $this -> db -> bind(":calle", $datos['calle']);
+        $this -> db -> bind(":sector", $datos['sector']);
+        $this -> db -> bind(":id_md", $id_municipio);
+        $this -> db -> execute();
+        $id_direccion_persona_representante = $this -> db -> lastInsertId();
+
+        $this -> db -> query("INSERT INTO profesion_u_oficio (posee_po, nom_po, lugar_po, tlf_po) 
+        VALUES(:posee_po, :nom_po, :lugar_po, :tlf_po)");
+        $this -> db -> bind(":posee_po", $datos['posee_po']);
+        $this -> db -> bind(":nom_po", $datos['nom_po']);
+        $this -> db -> bind(":lugar_po", $datos['lugar_po']);
+        $this -> db -> bind(":tlf_po", $datos['tlf_po']);
+        $this -> db -> execute();
+        $id_profesion_persona_representante = $this -> db -> lastInsertId();
+
+        print_r($get_ci_representante);
+
+        $this -> db -> query("INSERT INTO representante (id_rep_per, id_pr, id_dr, ci_pariente_1, ci_pariente_2, nombre_pariente_1, nombre_pariente_2)
+        VALUES(:id_rep_per, :id_pr, :id_dr, :ci_pariente_1, :ci_pariente_2, :nombre_pariente_1, :nombre_pariente_2)");
+        $this -> db -> bind(":id_pr", $id_profesion_persona_representante);
+        $this -> db -> bind(":id_dr", $id_direccion_persona_representante);
+        $this -> db -> bind(":ci_pariente_1", $datos['ci_pariente_1']);
+        $this -> db -> bind(":ci_pariente_2", $datos['ci_pariente_2']);
+        $this -> db -> bind(":nombre_pariente_1", $datos['nombre_pariente_1']);
+        $this -> db -> bind(":nombre_pariente_2", $datos['nombre_pariente_2']);
+        $this -> db -> bind(":id_rep_per", $get_ci_representante -> id_per);
+
+        $this -> db -> execute();
+        $this -> db -> commit();
+
+
+      } catch (PDOException $e) {
+				$this -> db -> rollBack();
+        print "Error!: " . $e -> getMessage() . "</br>";
+        return $this -> mensaje = 'Error';
+			}              
+
+    }
+
+    public function registrar_representante_persona($datos) {
       $this -> db -> beginTransaction();
       
       try {
@@ -107,10 +181,9 @@
         $this -> db -> execute();
         $id_profesion_persona_representante = $this -> db -> lastInsertId();
 
-        $this -> db -> query("INSERT INTO representante (tutor_legal, id_rep, id_pr, id_dr)
-        VALUES(:tutor_legal, :id_rep, :id_pr, :id_dr)");
-        $this -> db -> bind(":tutor_legal", $datos['tutor_legal']);
-        $this -> db -> bind(":id_rep", $id_persona_representante);
+        $this -> db -> query("INSERT INTO representante (id_rep_per, id_pr, id_dr)
+        VALUES(:id_rep_per, :id_pr, :id_dr)");
+        $this -> db -> bind(":id_rep_per", $id_persona_representante);
         $this -> db -> bind(":id_pr", $id_profesion_persona_representante);
         $this -> db -> bind(":id_dr", $id_direccion_persona_representante);
 
@@ -122,17 +195,22 @@
 				$this -> db -> rollBack();
         print "Error!: " . $e -> getMessage() . "</br>";
         return $this -> mensaje = 'Error';
-			}              
-
+			} 
     }
  
     // Metodo para mostrar a todos los representantes
     public function obtener_representante(){
-      $this -> db -> query("SELECT * FROM representante");
-      $fila = $this -> db -> registros();
-			return $fila;
-    }
+      $this -> db -> query(
+        "SELECT 
+        persona.ci, persona.pnombre, persona.papellido, persona.sexo_p, persona.nacionalidad,
+        persona.id_per
+        FROM persona 
+        INNER JOIN representante 
+        ON persona.id_per = representante.id_rep_per ");
 
-    
+        $resultados = $this -> db -> registros();
+
+        return $resultados; 
+    }
 
   }

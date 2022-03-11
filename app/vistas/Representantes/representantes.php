@@ -16,10 +16,14 @@
 	<tbody> 
 		<?php foreach($datos['representantes'] as $representante) : ?>
 		<tr>
-			<td><?php echo $representante -> tutor_legal ?></td>			
+			<td><?php echo $representante -> ci ?></td>	
+			<td><?php echo $representante -> pnombre ?></td>	
+			<td><?php echo $representante -> papellido ?></td>	
+			<td><?php echo $representante -> sexo_p ?></td>			
+			<td><?php echo $representante -> nacionalidad ?></td>
 			<td>								
-				<a href="<?php echo RUTA_URL;?>/Representantes/actualizar_representante/<?php echo $representante -> ci ?>">Editar</a> - 
-                <a href="<?php echo RUTA_URL;?>/Representantes/eliminar_representante/<?php echo $representante -> ci ?>">Eliminar</a>
+				<a href="<?php echo RUTA_URL;?>/Representantes/actualizar_representante/<?php echo $representante -> id_per ?>">Editar</a> - 
+                <a href="<?php echo RUTA_URL;?>/Representantes/eliminar_representante/<?php echo $representante -> id_per ?>">Eliminar</a>
 			</td>		
 		</tr>
 	<?php  endforeach;?>

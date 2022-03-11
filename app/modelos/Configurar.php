@@ -26,9 +26,9 @@ class Configurar{
  		//Variable que almacena la concatenacion de la ruta de aplicacion con la salida sql dataBase
 		$ruta = RUTA_APP . '/Respaldos/' . $dataBase;
 
-		$pg_dump = "C:/xampp\mysql\bin\mysqldump --opt --host $db_host -u$db_user -p$db_pass $db_name > $ruta";
+		$dump = "C:/xampp\mysql\bin\mysqldump --opt --host $db_host -u$db_user -p$db_pass $db_name > $ruta";
 
-		system($pg_dump, $output);
+		system($dump, $output);
 
 		$rutas = RUTA_APP . '/Respaldos/';
 
@@ -40,7 +40,7 @@ class Configurar{
 	}
 
 	public function archivos(){
-		$dir = RUTA_APP . '/respaldos/'; 
+		$dir = RUTA_APP . '/Respaldos/'; 
 		$ficheros1  = scandir($dir,1);
 
 		foreach ($ficheros1 as $fichero){
@@ -69,10 +69,10 @@ class Configurar{
 		//"SET GLOBAL net_read_timeout=50;"
 		//esto no se si solo es modificable en php.ini 
 		$db_host = 'localhost';
-		$db_name = 'sinpriecx';
+		$db_name = 'academus';
 		$db_user = 'root';
-		$db_pass = '72452439Sao';
-		$dir = RUTA_APP . '/respaldos/'. $name_restore;
+		$db_pass = '123456789';
+		$dir = RUTA_APP . '/Respaldos/'. $name_restore;
 
 		$restore = "mysql -h $db_host -u $db_user -p$db_pass $db_name < $dir";
 

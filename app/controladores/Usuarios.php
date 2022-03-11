@@ -9,6 +9,7 @@
 	//Metodo por defecto que instancia la vista para el registro de usuario
     public function index(){
   		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
 			$datos = array(
 				//Datos para la tabla persona
 				'ci' => trim($_POST['ci']),
@@ -16,7 +17,7 @@
 				'papellido' => trim($_POST['papellido']),
 				'pnombre' => trim($_POST['pnombre']),
 				'segnombre' => trim($_POST['segnombre']),
-				'sexo_p	' => trim($_POST['sexo_p']),
+				'sexo_p' => trim($_POST['sexo_p']),
 				'segapellido' => trim($_POST['segapellido']),
 	
 				//Datos para la tabla usuario
@@ -29,6 +30,7 @@
 				//Datos para la tabla cargo
 				'tipo_cargo' => trim($_POST['tipo_cargo'])
 			);
+
 
 			$this -> usuario_modelo -> agregar_usuario($datos);
   			if (empty($this -> usuario_modelo -> mensaje)){

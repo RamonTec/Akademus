@@ -80,16 +80,17 @@
 				'tipo1' => trim($_POST['tipo1']),
 
 				//Datos de la tabla representante
-				'tutor_legal' => trim($_POST['tutor_legal']),
-
-				//Datos de la tabla representante
 				'posee_po' => trim($_POST['posee_po']),
 				'nom_po' => trim($_POST['nom_po']),
 				'lugar_po' => trim($_POST['lugar_po']),
-				'tlf_po' => trim($_POST['tlf_po']),			
+				'tlf_po' => trim($_POST['tlf_po']),
+				'ci_pariente_1' => trim($_POST['ci_pariente_1']),
+				'ci_pariente_2' => trim($_POST['ci_pariente_2']),
+				'nombre_pariente_1' => trim($_POST['nombre_pariente_1']),
+				'nombre_pariente_2' => trim($_POST['nombre_pariente_2'])
 			];
 
-			$this -> representante_modelo -> registrar_representante($datos);
+			$this -> representante_modelo -> registrar_representante_persona($datos);
 			if (empty($this -> representante_modelo -> mensaje)) {
 				Helper::redireccionar('/Representantes/representantes');
 			} else {
@@ -107,10 +108,10 @@
 	public function registro_representante(){
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$datos = [
-				// Variable para registrar al representante
-				'ci' => trim($_POST['ci']),
+				//Datos para la tabla persona
+				'ci' => trim($_POST['ci_representante']),
 
-				//Datos de la tabla direccion				
+				//Datos de la tabla direccion
 				'n_casa' => trim($_POST['n_casa']), 
 				'pto_ref' => trim($_POST['pto_ref']),
 				'calle' => trim($_POST['calle']),
@@ -131,12 +132,16 @@
 				'tipo1' => trim($_POST['tipo1']),
 
 				//Datos de la tabla representante
-				'tutor_legal' => trim($_POST['tutor_legal']),				
 				'posee_po' => trim($_POST['posee_po']),
 				'nom_po' => trim($_POST['nom_po']),
 				'lugar_po' => trim($_POST['lugar_po']),
-				'tlf_po' => trim($_POST['tlf_po'])
+				'tlf_po' => trim($_POST['tlf_po']),
+				'ci_pariente_1' => trim($_POST['ci_pariente_1']),
+				'ci_pariente_2' => trim($_POST['ci_pariente_2']),
+				'nombre_pariente_1' => trim($_POST['nombre_pariente_1']),
+				'nombre_pariente_2' => trim($_POST['nombre_pariente_2'])
 			];
+
 			$this -> representante_modelo -> registrar_representante($datos);
 			if (empty($this -> representante_modelo -> mensaje)) {
 				Helper::redireccionar('/Representantes/representantes');
@@ -144,7 +149,7 @@
 				$datos = ["mensaje" => $this -> representante_modelo -> mensaje];
 				$this -> vista('Representantes/registro_representante', $datos);
 			}		
-		} else {	
+		} else {
 			$this -> vista('Representantes/registro_representante');
 		}
 	}

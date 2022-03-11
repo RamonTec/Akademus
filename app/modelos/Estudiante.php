@@ -12,16 +12,61 @@
 		}
  
 		public function comprobarEstudiante($datos){
-			$this -> db -> query("SELECT * FROM estudiante WHERE ci_est = :ci_est");
-			$this -> db -> bind(':ci_est', $datos['ci_est']);
 
-			$resultado = $this -> db -> registro();
+			try {
+				
+        // checkeo al representante y obtengo el id de la persona por medio de la ci
+				$this -> db -> query("SELECT * FROM persona WHERE ci = :ci");
+				$this -> db -> bind(':ci', $datos['ci']);
 
-			if ($resultado == true) {
-				return $this -> registro = 0;
-	    } else {
-				return $this -> registro = 1;
-	    }
+				$resultado_persona = $this -> db -> registro();
+
+				// Si aparece significa que ya fue registrada la ci, puede ser un usuario, profesor o representante
+				if($resultado_persona == true) {
+
+					// checkeo el caso de que sea un representante
+					$this -> db -> query("SELECT * FROM representante WHERE id_rep_per = :id_rep_per");
+					$this -> db -> bind(':id_rep_per', $resultado_persona -> id_per);
+
+					$resultado_representante = $this -> db -> registro();
+
+					// Si hay un resultado significa que ya el representante fue registrado sin importar que sea un usuario o profesor
+					// no tengo que registrar nada, solo mando a registrar datos del estudiante
+					if($resultado_representante == true) {
+						return [
+							"mensaje" => $this -> mensaje = "1",
+							"ci_representante" => $resultado_persona -> ci,
+							"id_per" => $resultado_persona -> id_per,
+							"id_representante" => $resultado_representante -> id_rep,
+							"id_rep_per" => $resultado_representante -> id_rep_per,
+							"pnombre" => $resultado_persona -> pnombre,
+							"papellido" => $resultado_persona -> papellido
+						];
+
+						// Caso contrario significa que la cedula esta registrada a un usuario o profesor, en este caso mando a registrar
+						// cosas del representante
+					} else {
+						return [
+							"mensaje" => $this -> mensaje = "2",
+							"ci_representante" => $resultado_persona -> ci,
+							"id_per" => $resultado_persona -> id_per,
+							"pnombre" => $resultado_persona -> pnombre,
+							"papellido" => $resultado_persona -> papellido
+						];
+					}
+
+					// Si no sale un ci significa que es un representante nuevo y por tanto registro al representante primero
+				} else {
+					return [
+						"mensaje" => $this -> mensaje = "0"
+					];
+				}
+				  
+			} catch (PDOException $e) {
+        return [
+          'mensaje' => $this -> mensaje = $e -> getMessage()
+        ];
+			}  
 		}
 
 		public function insertar_estudiante($datos){

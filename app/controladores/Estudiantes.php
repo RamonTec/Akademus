@@ -10,32 +10,34 @@
 			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 				$datos = [
-					'ci_est' => trim($_POST['ci_est'])
+					'ci' => trim($_POST['ci'])
 				];
 
-				$this -> estudianteModelo -> comprobarEstudiante($datos);
+				$check_representante = $this -> estudianteModelo -> comprobarEstudiante($datos);
 
-				if (empty($this -> estudianteModelo -> mensaje)) {
-					switch ($this -> estudianteModelo -> registro) {
-						case '0':
-							Helper::redireccionar('/Estudiantes/estudiantes');
-						break; 
+				switch ($check_representante['mensaje']) {
+					case '0':
 						
-						case '1':
-							Helper::redireccionar('/Estudiantes/registrar_estudiante');
-						break;																
-					}
+						$this -> vista('Representantes/registro_persona_representante', $check_representante);
 
-				} else{
-					$datos = ["mensaje" => $this -> estudianteModelo -> mensaje];
-					$this -> vista('Estudiantes/registrar_estudiante', $datos);
-					} 
+						break;
 
-				} else{
+					case '1':
+					
+						$this -> vista('Estudiantes/registrar_estudiante', $check_representante);
 
+						break;
+
+					case '2':
+				
+						$this -> vista('Representantes/registro_representante', $check_representante);
+
+						break;
+				}
+				
+			} else{
 				$this -> vista('Estudiantes/comprobarEstudiante');
-			
-	      	}
+			}
 		}
 
 		public function registrar_estudiante(){

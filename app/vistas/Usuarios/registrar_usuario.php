@@ -14,6 +14,15 @@
           <input class="form-control mt-4" id="ci" name="ci" placeholder="Cedula de identidad">
           <span id="ci_mensaje"></span>      
         </div>
+
+        <div class="col-md-3">      
+          <select id="sexo_p" name="sexo_p" class="form-control">
+            <option selected>Sexo...</option>
+            <option value="M">Hombre</option>
+            <option value="F">Mujer</option>
+            <option value="O">Otro</option>
+          </select>    
+        </div>
         <div class="col-md-3"><!---- Inicio del primer col ----->
           <div class="form-group">
             <input type="text" class="form-control" id="pnombre" name="pnombre" placeholder="Primer nombre">
