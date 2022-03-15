@@ -38,6 +38,12 @@
           <a class="btn btn-primary" href="<?php echo RUTA_URL; ?>/Representantes/obtener_representante">Consultar estudiantes</a>
         </div>
       </div>
+
+      <div class="col-4 mt-3">
+        <div class="text-center">
+          <a class="btn btn-primary" href="<?php echo RUTA_URL; ?>/Reportes/reportes">Generar reportes</a>
+        </div>
+      </div>
        
     </div><!--- Cierre del row --->    
     <hr class="mt-5">

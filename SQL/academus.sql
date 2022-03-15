@@ -165,12 +165,6 @@ create table telefono(
 	foreign key (id_te) references representante (id_rep) on update cascade on delete cascade
 );
 
--- Creacion de la tabla calificaciones
-create table boletin(
-	id_boletin 		int auto_increment primary key not null,
-	descripcion text
-);
-
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --  SECCION 2: DEFINICION Y CREACION DE LAS TABLAS MUCHOS A MUCHOS-- -- -- -- -- -- -- -- -- -- -
 
 -- CREACCION TABLA USUARIO_INSCRIBE_EST

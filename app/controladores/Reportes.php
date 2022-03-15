@@ -5,9 +5,86 @@ class Reportes Extends Controlador{
 	public function __construct(){
 		$this -> reportesModelo = $this -> modelo('Reporte');
 	}
+
+	public function reportes(){
+		$this -> vista('Sistema/reportes');
+	}
  
 	public function index(){
 		$this -> vista('Reportes/Estudiantes');
+	}
+
+	public function ficha_inscripcion() {
+		$pdf = new fpdf('P','mm',array(215,200));
+		$pdf -> AliasNbPages();
+		$pdf -> AddPage('P','A4');
+		$pdf -> SetFont('Arial','B',12);
+		$pdf -> Cell(0,5, utf8_decode('Republica Bolivariana de Venezuela'),0,0,'C');
+		$pdf -> Ln(10);
+		$pdf -> Cell(0,5, utf8_decode('Ministerio del Poder Popular para la Educación'),0,0,'C');
+		$pdf -> Ln(10);
+		$pdf -> Cell(0,5, utf8_decode('Unidad Educativa "JOSE RAFAEL POCATERRA"'),0,0,'C');
+		$pdf -> Ln(10);
+		$pdf -> Cell(0,5,'El Tigre, Estado Anzoategui',0,0,'C');
+		$pdf -> Ln(20);
+		$pdf -> SetFont('Arial','B',28);
+		$pdf -> Cell(0,5,'FICHA DE INSCRIPCION',0,0,'C');
+		$pdf -> Ln(30);
+		$pdf -> SetFont('Times','B',12);
+		$pdf -> Cell(0,0,'I. DATOS DEL ALUMNO');
+		$pdf -> Ln(9);
+		$pdf -> Cell(0,0,'Nombres y Apellidos: __________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Fecha de Nacimiento: __________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Edad:______');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Escolariddad: _________________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Direccion: ____________________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Telefonos: ____________________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Nombre del representante: ______________________________________________________________');
+		$pdf -> Ln(9);
+		$pdf -> Cell(0,0,'II. ANTECEDENTES PERSONALES');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Embarazo: ___________________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Parto: _______________________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Hospitalizaciones: _____________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Control Medico: ______________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Observaciones: _______________________________________________________________________');
+		$pdf -> Ln(9);
+		$pdf -> Cell(0,0,'III. DATOS DE LOS PADRES');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Nombre del Padre: _____________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Oficio o Profesion: _____________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Direccion de Trabajo: __________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Telefonos: ____________________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Nombre de la Madre: ___________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Oficio o Profesion: _____________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Direccion de Trabajo: __________________________________________________________________');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Telefonos: ____________________________________________________________________________');
+		$pdf -> Ln(9);
+		$pdf -> Cell(0,0,'IV. DATOS RESALTANTES');
+		$pdf -> Ln(7);
+		$pdf -> Cell(0,0,'Obervaciones: _________________________________________________________________________');
+		$pdf -> Ln(10);
+		$pdf -> Cell(0,0,'Firma Representante: __________________________________________________________________');
+		$pdf -> Ln(7);
+	
+		$pdf -> Output();
 	}
  
 	public function constancia_inscripcion(){
