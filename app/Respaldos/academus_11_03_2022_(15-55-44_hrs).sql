@@ -79,7 +79,7 @@ CREATE TABLE `direccion` (
   PRIMARY KEY (`id_dir`),
   KEY `id_md` (`id_md`),
   CONSTRAINT `direccion_ibfk_1` FOREIGN KEY (`id_md`) REFERENCES `municipio` (`id_muni`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,6 +88,7 @@ CREATE TABLE `direccion` (
 
 LOCK TABLES `direccion` WRITE;
 /*!40000 ALTER TABLE `direccion` DISABLE KEYS */;
+INSERT INTO `direccion` VALUES (3,'','','','',3),(4,'Casa A-1','Caronoco','Caronoco','Lomas del palomar',4),(5,'Caracas la negra','Negro primero','Calle caracas','Caronoco',5),(6,'asdasd','asdas','dasdasd','asdasdsa',6),(7,'casa 19','espa;ol','caronoco','caronoco',7),(8,'nmsdfmnsdnmf','klsdflkdslkf','s;dkfklsdkl','ksdfkjkds',8),(12,'dasdas','dasdas','dasdas','dasdasdas',12);
 /*!40000 ALTER TABLE `direccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +106,7 @@ CREATE TABLE `estado` (
   PRIMARY KEY (`id_estado`),
   KEY `id_ep` (`id_ep`),
   CONSTRAINT `estado_ibfk_1` FOREIGN KEY (`id_ep`) REFERENCES `pais` (`id_pais`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,6 +115,7 @@ CREATE TABLE `estado` (
 
 LOCK TABLES `estado` WRITE;
 /*!40000 ALTER TABLE `estado` DISABLE KEYS */;
+INSERT INTO `estado` VALUES (3,'Estado',3),(4,'Anzoategui',4),(5,'Anzoategui',5),(6,'Anzoategui',6),(7,'Anzoategui',7),(8,'Anzoategui',8),(12,'Anzoategui',12);
 /*!40000 ALTER TABLE `estado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +279,7 @@ CREATE TABLE `municipio` (
   PRIMARY KEY (`id_muni`),
   KEY `id_em` (`id_em`),
   CONSTRAINT `municipio_ibfk_1` FOREIGN KEY (`id_em`) REFERENCES `estado` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -286,6 +288,7 @@ CREATE TABLE `municipio` (
 
 LOCK TABLES `municipio` WRITE;
 /*!40000 ALTER TABLE `municipio` DISABLE KEYS */;
+INSERT INTO `municipio` VALUES (3,'Municipio',3),(4,'Simon Rodriguez',4),(5,'Simon Rodriguez',5),(6,'Simon Rodriguez',6),(7,'Simon Rodriguez',7),(8,'Simon Rodriguez',8),(12,'Simon Rodriguez',12);
 /*!40000 ALTER TABLE `municipio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +303,7 @@ CREATE TABLE `pais` (
   `id_pais` int(11) NOT NULL AUTO_INCREMENT,
   `nom_pais` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_pais`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,6 +312,7 @@ CREATE TABLE `pais` (
 
 LOCK TABLES `pais` WRITE;
 /*!40000 ALTER TABLE `pais` DISABLE KEYS */;
+INSERT INTO `pais` VALUES (3,'Pais'),(4,'Venezuela'),(5,'Venezuela'),(6,'Venezuela'),(7,'Venezuela'),(8,'Venezuela'),(12,'Venezuela');
 /*!40000 ALTER TABLE `pais` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -355,7 +359,7 @@ CREATE TABLE `persona` (
   `sexo_p` char(1) NOT NULL,
   PRIMARY KEY (`id_per`),
   UNIQUE KEY `ci` (`ci`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -364,7 +368,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'5467061','Inirida','Josefina','Quijada','Serrano','V','V');
+INSERT INTO `persona` VALUES (1,'26896160','Elias','Ramon','Estrabao','Quijada','V','M'),(2,'5467061','Inirida','Josefina','Quijada','Serrano','V','F'),(6,'26896166','Cristina','Josefina','Estrabao','Quijada','V','F'),(7,'23566896','Persona 2','Segundo nombre 2','Apellido 2','Segundo apellido 2','V','M'),(8,'12345678','Chesperito','Rosas','Quijada','Serrano','V','M'),(9,'145236987','Chapulin','Chavo','Colorado','Del 8','V','M');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,7 +386,7 @@ CREATE TABLE `profesion_u_oficio` (
   `lugar_po` varchar(30) DEFAULT NULL,
   `tlf_po` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_po`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -391,6 +395,7 @@ CREATE TABLE `profesion_u_oficio` (
 
 LOCK TABLES `profesion_u_oficio` WRITE;
 /*!40000 ALTER TABLE `profesion_u_oficio` DISABLE KEYS */;
+INSERT INTO `profesion_u_oficio` VALUES (4,'Si','Medi','Cruz Roja','04247896589'),(5,'Si','Programador','Cobuild','4879658577'),(6,'da','dasdas','dasdas','dasdsa'),(7,'si','medico','cruz roja','123123123'),(8,'si','qweqweqw','eqwewfd','mmnsnmsdd'),(12,'as','dasdasd','asdasdasd','asdasdasd');
 /*!40000 ALTER TABLE `profesion_u_oficio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,6 +422,7 @@ CREATE TABLE `profesor` (
 
 LOCK TABLES `profesor` WRITE;
 /*!40000 ALTER TABLE `profesor` DISABLE KEYS */;
+INSERT INTO `profesor` VALUES ('12345-chesperito','Docente',8),('chapulin-19','Ayudante',9),('doc-5467061-12','Docente',2);
 /*!40000 ALTER TABLE `profesor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -428,22 +434,24 @@ DROP TABLE IF EXISTS `representante`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `representante` (
-  `ci_padre` varchar(20) DEFAULT NULL,
-  `ci_madre` varchar(20) DEFAULT NULL,
-  `nombre_padre` varchar(20) NOT NULL,
-  `nombre_madre` varchar(20) NOT NULL,
-  `id_rep` int(11) NOT NULL,
+  `ci_pariente_1` varchar(20) DEFAULT NULL,
+  `ci_pariente_2` varchar(20) DEFAULT NULL,
+  `nombre_pariente_1` varchar(20) NOT NULL,
+  `nombre_pariente_2` varchar(20) NOT NULL,
+  `id_rep` int(11) NOT NULL AUTO_INCREMENT,
+  `id_rep_per` int(11) NOT NULL,
   `id_pr` int(11) DEFAULT NULL,
   `id_dr` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_rep`),
-  UNIQUE KEY `ci_padre` (`ci_padre`),
-  UNIQUE KEY `ci_madre` (`ci_madre`),
+  UNIQUE KEY `ci_padre` (`ci_pariente_1`),
+  UNIQUE KEY `ci_madre` (`ci_pariente_2`),
+  KEY `id_rep_per` (`id_rep_per`),
   KEY `id_pr` (`id_pr`),
   KEY `id_dr` (`id_dr`),
-  CONSTRAINT `representante_ibfk_1` FOREIGN KEY (`id_rep`) REFERENCES `persona` (`id_per`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `representante_ibfk_1` FOREIGN KEY (`id_rep_per`) REFERENCES `persona` (`id_per`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `representante_ibfk_2` FOREIGN KEY (`id_pr`) REFERENCES `profesion_u_oficio` (`id_po`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `representante_ibfk_3` FOREIGN KEY (`id_dr`) REFERENCES `direccion` (`id_dir`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -452,6 +460,7 @@ CREATE TABLE `representante` (
 
 LOCK TABLES `representante` WRITE;
 /*!40000 ALTER TABLE `representante` DISABLE KEYS */;
+INSERT INTO `representante` VALUES (NULL,NULL,'','',2,6,4,4),(NULL,NULL,'','',3,7,5,5),('asdas','dasdas22','dasdasd','dasdas',4,1,6,6),('2323233','2232323','gladys','peche',5,2,7,7),('qweqweqw','wqeqweqw','weeewqqw','wqeqwew',6,8,8,8),('asdasdas','dasdas','asdasd','dasdas',8,9,12,12);
 /*!40000 ALTER TABLE `representante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -519,10 +528,8 @@ CREATE TABLE `seccion` (
   `cant_estudiantes` int(11) NOT NULL,
   PRIMARY KEY (`id_seccion`),
   UNIQUE KEY `cod_sec` (`cod_sec`),
-  UNIQUE KEY `nom_sec` (`nom_sec`),
-  UNIQUE KEY `cod_sec_2` (`cod_sec`),
-  UNIQUE KEY `nom_sec_2` (`nom_sec`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+  UNIQUE KEY `nom_sec` (`nom_sec`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -531,8 +538,34 @@ CREATE TABLE `seccion` (
 
 LOCK TABLES `seccion` WRITE;
 /*!40000 ALTER TABLE `seccion` DISABLE KEYS */;
-INSERT INTO `seccion` VALUES (4,'PREE_C_D','Pre escolar 5',3),(15,'PREE_B','Pre escolar B',0),(16,'PRI_GRA_C','Primer Grado C',0),(18,'PRI_GRA_A','Primer Grado A',0),(19,'Pree B','Preescolar B',0);
+INSERT INTO `seccion` VALUES (1,'Pree Z','Preescolar B',5),(2,'PREE_A','Preescolar A',0);
 /*!40000 ALTER TABLE `seccion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `seccion_tiene_estudiante`
+--
+
+DROP TABLE IF EXISTS `seccion_tiene_estudiante`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `seccion_tiene_estudiante` (
+  `id_estudiante` int(11) DEFAULT NULL,
+  `id_secc` int(11) DEFAULT NULL,
+  KEY `id_estudiante` (`id_estudiante`),
+  KEY `id_secc` (`id_secc`),
+  CONSTRAINT `seccion_tiene_estudiante_ibfk_1` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiante` (`id_est`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `seccion_tiene_estudiante_ibfk_2` FOREIGN KEY (`id_secc`) REFERENCES `seccion` (`id_seccion`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `seccion_tiene_estudiante`
+--
+
+LOCK TABLES `seccion_tiene_estudiante` WRITE;
+/*!40000 ALTER TABLE `seccion_tiene_estudiante` DISABLE KEYS */;
+/*!40000 ALTER TABLE `seccion_tiene_estudiante` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -595,7 +628,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'iniriquijada','4802-5000-5202-5408-5618-5832-','Director','12168-24642-23762-19208-25992-20402-2048-20000-20402-2048-23762-22050-2048-25088-25992-22050-23762-20402-25992-2048-23762-18818-26450-19602-24642-26912-18818-','9248-27378-23328-19602-20402-','03/09/2022 8:54am','1',1,1);
+INSERT INTO `usuario` VALUES (1,'ereq','5832-5618-5408-5202-5000-4802-','Director','12168-24642-23762-19208-25992-20402-2048-20000-20402-2048-23762-22050-2048-25088-25992-22050-23762-20402-25992-2048-23762-18818-26450-19602-24642-26912-18818-','9248-27378-23328-19602-20402-','03/11/2022 9:12am','1',1,1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -635,4 +668,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-09  9:06:37
+-- Dump completed on 2022-03-11 10:55:45

@@ -222,6 +222,39 @@
 		}	
 	}
 
+	public function eliminar_representante($ci) {
+		$datos = [
+			'ci_representante' => $ci
+		];
+		$representante_eliminado = $this -> representante_modelo -> borrar_representante($datos);
+		if (empty($representante_eliminado['mensaje'])) {
+			$datos = [
+				'mensaje' => 'Representante eliminado existosamente'
+			];
+			Helper::redireccionar('/Representantes/representantes', $datos);
+		} else {
+			$this -> vista('Secciones/secciones', $secciones);
+		}
+	}
+
+	public function obtener_representante() {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$datos = [
+				'ci' => trim($_POST['ci'])
+			]; 
+			$representante = $this -> representante_modelo -> get_estudiantes_by_reprepresentante($datos);
+			if (empty($representante["mensaje"])) {
+				$this -> vista('Representantes/estudiantes_representante', $representante);
+			} else{ 
+				$datos = ["mensaje" => $this -> representante_modelo -> mensaje];
+				print_r($representante);
+				$this -> vista('Representantes/obtener_representante', $representante);
+			}
+		} else{
+        $this -> vista('Representantes/obtener_representante');
+    }
+	}
+
 	
 
 }

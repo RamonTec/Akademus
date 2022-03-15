@@ -9,6 +9,7 @@
 			<th>Primer nombre</th>
 			<th>Primer apellido</th>
 			<th>Tipo de Docente</th>
+      <th>Seccion</th>
       <th>Codigo</th>
 			<th>Acciones</th>
 		</tr> 
@@ -22,10 +23,22 @@
           <td><?php echo $profesor -> pnombre ?></td>
           <td><?php echo $profesor -> papellido ?></td>
           <td><?php echo $profesor -> tipo_prof ?></td>
+          <td><?php echo $profesor -> asignado == 1 ? 'Asignado' : 'No asignado' ?></td>
           <td><?php echo $profesor -> cod_prof ?></td>
             <td>								
               <a href="<?php echo RUTA_URL;?>/Profesores/editar_profesor_persona/<?php echo $profesor -> id_prof ?>">Editar</a> - 
-                <a href="<?php echo RUTA_URL;?>/Profesores/eliminar_profesor/<?php echo $profesor -> id_prof ?>">Eliminar</a>
+              <a href="<?php echo RUTA_URL;?>/Profesores/eliminar_profesor/<?php echo $profesor -> id_prof ?>">Eliminar</a> -
+              <?php
+                if ($profesor -> asignado == 1){
+                  ?>
+                    <span>Asignado</span>
+                  <?php
+                } else {
+                  ?>
+                    <a href="<?php echo RUTA_URL;?>/Profesores/ /<?php echo $profesor -> id_prof ?>">Asignar</a>
+                  <?php
+                }
+              ?>
             </td>		
           </tr>
         <?php  endforeach;

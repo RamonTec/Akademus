@@ -33,6 +33,7 @@
 					// Si hay un resultado significa que ya el representante fue registrado sin importar que sea un usuario o profesor
 					// no tengo que registrar nada, solo mando a registrar datos del estudiante
 					if($resultado_representante == true) {
+						$_SESSION['id_representante'] = $resultado_representante -> id_rep;
 						return [
 							"mensaje" => $this -> mensaje = "1",
 							"ci_representante" => $resultado_persona -> ci,
@@ -42,6 +43,7 @@
 							"pnombre" => $resultado_persona -> pnombre,
 							"papellido" => $resultado_persona -> papellido
 						];
+						
 
 						// Caso contrario significa que la cedula esta registrada a un usuario o profesor, en este caso mando a registrar
 						// cosas del representante
@@ -71,64 +73,85 @@
 
 		public function insertar_estudiante($datos){
 			
-			$this -> db -> beginTransaction();
+			try {
+				
+				$this -> db -> beginTransaction();
 
-			$this -> db -> query("INSERT INTO pais (nom_pais) VALUES(:nom_pais)");
-			$this -> db -> bind(':nom_pais', $datos['nom_pais']);
-			$this -> db -> execute();
-			$id_pais = $this -> db -> lastInsertId();
+				//Insertar datos en la tabla estudiante para el registro de estudiante
+				$this -> db -> query("INSERT into estudiante (ci_escolar, fecha_n, 
+				lugar_n, sexo, pnom, segnom, pape, segape, pariente_representate, nacionalidad_e, id_representante) 
+				VALUES(:ci_escolar, :fecha_n, :lugar_n, :sexo, :pnom, :segnom, 
+				:pape, :segape, :pariente_representate, :nacionalidad_e, :id_representante)");
 
-			$this -> db -> query("INSERT INTO estado (nom_estado, id_ep) VALUES(:nom_estado, :id_ep)");
-			$this -> db -> bind(':nom_estado', $datos['nom_estado']);
-			$this -> db -> bind(':id_ep', $id_pais);
-			$this -> db -> execute();
-			$id_estado = $this -> db -> lastInsertId();
+				$this -> db -> bind(':ci_escolar', $datos['ci_escolar']);
+				$this -> db -> bind(':fecha_n', $datos['fecha_n']);
+				$this -> db -> bind(':lugar_n', $datos['lugar_n']);
+				$this -> db -> bind(':nacionalidad_e', $datos['nacionalidad_e']);
+				$this -> db -> bind(':sexo', $datos['sexo']);
+				$this -> db -> bind(':pnom', $datos['pnom']);
+				$this -> db -> bind(':segnom', $datos['segnom']);
+				$this -> db -> bind(':pape', $datos['pape']);
+				$this -> db -> bind(':segape', $datos['segape']);
+				$this -> db -> bind(':pariente_representate', $datos['pariente_representate']);
+				$this -> db -> bind(':id_representante', $_SESSION['id_representante']);
+				$this -> db -> execute();
+				$id_estudiante = $this -> db -> lastInsertId();
 
-			$this -> db -> query("INSERT INTO municipio (nombre_muni, id_em) VALUES(:nombre_muni, :id_em)");
-			$this -> db -> bind(':nombre_muni', $datos['nombre_muni']);
-			$this -> db -> bind(':id_em', $id_estado);
-			$this -> db -> execute();
-			$id_municipio = $this -> db -> lastInsertId();
+				$_SESSION['id_estudiante'] = $id_estudiante;
 
-			$this -> db -> query("INSERT INTO direccion (n_casa, pto_ref, calle, sector, id_md) 
-			VALUES(:n_casa, :pto_ref, :calle, :sector, :id_md)");
-			$this -> db -> bind(':n_casa', $datos['n_casa']);
-			$this -> db -> bind(':pto_ref', $datos['pto_ref']);
-			$this -> db -> bind(':calle', $datos['calle']);
-			$this -> db -> bind(':sector', $datos['sector']);			
-			$this -> db -> bind(':id_md', $id_municipio);
-			$this -> db -> execute();
-			$id_direccion = $this -> db -> lastInsertId();
+				// Para tabla salud
+				$this -> db -> query("INSERT INTO salud (condicion_s, obervacion_s) 
+				VALUES(:condicion_s, :obervacion_s)");
+				$this -> db -> bind(':condicion_s', $datos['condicion_s']);			
+				$this -> db -> bind(':obervacion_s', $datos['obervacion_s']);
 
-			//Insertar datos en la tabla estudiante para el registro de estudiante
-			$this -> db -> query("INSERT into estudiante (ci_est, ci_escolar, fecha_n, 
-			lugar_n, sexo, pnom, segnom, pape, segape, id_de, nacionalidad_e) 
-			VALUES(:ci_est, :ci_escolar, :fecha_n, :lugar_n, :sexo, :pnom, :segnom, 
-			:pape, :segape, :id_de, :nacionalidad_e)");
+				$this -> db -> execute();
+				$id_salud = $this -> db -> lastInsertId();
 
-			$this -> db -> bind(':ci_est', $datos['ci_est']);
-			$this -> db -> bind(':ci_escolar', $datos['ci_escolar']);
-			$this -> db -> bind(':fecha_n', $datos['fecha_n']);
-			$this -> db -> bind(':lugar_n', $datos['lugar_n']);
-			$this -> db -> bind(':nacionalidad_e', $datos['nacionalidad_e']);
-			$this -> db -> bind(':sexo', $datos['sexo']);
-			$this -> db -> bind(':pnom', $datos['pnom']);
-			$this -> db -> bind(':segnom', $datos['segnom']);
-			$this -> db -> bind(':pape', $datos['pape']);
-			$this -> db -> bind(':segape', $datos['segape']);
-			$this -> db -> bind(':id_de', $id_direccion);
-			$this -> db -> execute();
-			$id_estudiante = $this -> db -> lastInsertId();
-			$fecha_inscripcion = date('m/d/Y g:ia');
+				// Para tabla estudiante_padece_salud
+				$this -> db -> query("INSERT INTO estudiante_padece_salud (id_eps, id_sep) 
+				VALUES(:id_eps, :id_sep)");
+				$this -> db -> bind(':id_eps', $id_estudiante);			
+				$this -> db -> bind(':id_sep', $id_salud);
+				$this -> db -> execute();
 
-			$this -> db -> query("INSERT INTO usuario_inscribe_estudiante (id_uu, id_uie, fecha_ins) 
-			VALUES(:id_uu, :id_uie, :fecha_ins)");
-			$this -> db -> bind(':id_uu', $datos['usuario']);			
-			$this -> db -> bind(':id_uie', $id_estudiante);
-			$this -> db -> bind(':fecha_ins', $fecha_inscripcion);
-			 
-			$this -> db -> execute();
-			$this -> db -> commit();
+				// Para tabla representante_representa_estudiante
+				$this -> db -> query("INSERT INTO representante_representa_estudiante (id_rer, id_err) 
+				VALUES(:id_rer, :id_err)");
+				$this -> db -> bind(':id_rer', $_SESSION['id_representante']);			
+				$this -> db -> bind(':id_err', $id_estudiante);
+				$this -> db -> execute();
+
+				$fecha_inscripcion = date('m/d/Y g:ia');
+
+				$this -> db -> query("INSERT INTO usuario_inscribe_estudiante (id_uu, id_uie, fecha_ins) 
+				VALUES(:id_uu, :id_uie, :fecha_ins)");
+				$this -> db -> bind(':id_uu', $datos['usuario']);			
+				$this -> db -> bind(':id_uie', $id_estudiante);
+				$this -> db -> bind(':fecha_ins', $fecha_inscripcion);
+				
+				$this -> db -> execute();
+				$this -> db -> commit();
+
+			} catch (PDOException $e) {
+        $this -> db -> rollBack();
+        return [
+					'ci_escolar' => $datos["ci_escolar"],
+					'tipo_est' => $datos["tipo_est"],
+					'fecha_n' => $datos["fecha_n"],
+					'lugar_n' => $datos["lugar_n"],
+					'nacionalidad_e' => $datos["nacionalidad_e"],
+					'sexo' => $datos["sexo"],
+					'pnom' => $datos["pnom"],
+					'segnom' => $datos["segnom"],
+					'pape' => $datos["pape"],
+					'segape' => $datos["segape"],
+					'condicion_s' => $datos["condicion_s"],
+					'obervacion_s' => $datos["obervacion_s"],
+					'pariente_representate' => $datos["pariente_representate"],
+          'mensaje' => $this -> mensaje = $e -> getMessage()
+        ];
+      }
 		}
 
 		public function obtenerEstudiantes(){
@@ -143,6 +166,63 @@
 			$fila = $this -> db -> registro();
 			return $fila;
 		}
+
+		// Metodo para asignar profesores a las secciones
+    public function asignar_estudiante($datos) {
+      try {
+        
+        $this -> db -> beginTransaction();
+
+				$this -> db -> query("SELECT * FROM estudiante WHERE ci_escolar = :ci_escolar");
+				$this -> db -> bind(':ci_escolar', $datos['ci_escolar']);
+
+				$estudiante = $this -> db -> registro();
+
+				$this -> db -> query("SELECT * FROM seccion WHERE id_seccion = :id_seccion");
+				$this -> db -> bind(':id_seccion', $datos['id_seccion']);
+
+				$seccion = $this -> db -> registro();
+
+        // Insertando registro de usuario -> persona.															
+        $this -> db -> query("INSERT INTO seccion_tiene_estudiante(id_estudiante, id_secc)
+        VALUES(:id_estudiante, :id_secc)");
+
+        // Vinculando valores con el bind para evitar inyección de codigo SQL.
+        $this -> db -> bind(':id_estudiante', $estudiante -> id_est);
+        $this -> db -> bind(':id_secc', $datos['id_seccion']);
+
+        // Ejecutando la consulta con el metodo execute.
+        $this -> db -> execute();
+
+        $this -> db -> query("UPDATE estudiante SET asignado = :asignado
+          WHERE ci_escolar = :ci_escolar
+        ");
+
+        $this -> db -> bind(':asignado', 1);	
+        $this -> db -> bind(':ci_escolar', $datos['ci_escolar']);
+
+				$this -> db -> execute();
+
+				$this -> db -> query("UPDATE seccion SET cant_estudiantes = :cant_estudiantes
+          WHERE id_seccion = :id_seccion
+        ");
+
+				$incrementar = ++$seccion -> cant_estudiantes;
+
+        $this -> db -> bind(':cant_estudiantes', $incrementar);	
+        $this -> db -> bind(':id_seccion', $datos['id_seccion']);
+
+        $this -> db -> execute();
+        $this -> db -> commit(); 
+
+      } catch (PDOException $e) {
+        $this -> db -> rollBack();
+        return [
+          'mensaje' => $this -> mensaje = $e -> getMessage()
+        ];
+				print "Error!: " . $e -> getMessage() . "</br>";
+      }
+    }
 
 		
   }

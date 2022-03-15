@@ -1,6 +1,7 @@
 <?php  
 
 	//Cargando librerias
+	session_start();
 	require_once 'config/configurar.php';
 
 	require_once 'helpers/url_helper.php';

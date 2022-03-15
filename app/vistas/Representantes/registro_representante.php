@@ -34,28 +34,6 @@
     <div class="row">
       
       <div class="col-3 offset-3">
-        <input class="form-control" type="text" name="nombre_pariente_1" id="nombre_pariente_1" placeholder="Nombre primer pariente">
-      </div> 
-      
-      <div class="col-3">
-        <input class="form-control" type="text" name="ci_pariente_1" id="ci_pariente_1" placeholder="Cedula primer pariente">
-      </div> 
-    </div>
-
-    <div class="row">
-      
-      <div class="col-3 offset-3">
-        <input class="form-control" type="text" name="nombre_pariente_2" id="nombre_pariente_2" placeholder="Nombre segundo pariente">
-      </div> 
-      
-      <div class="col-3">
-        <input class="form-control" type="text" name="ci_pariente_2" id="ci_pariente_2" placeholder="Cedula segundo pariente">
-      </div> 
-    </div>
-
-    <div class="row">
-      
-      <div class="col-3 offset-3">
         <input class="form-control" type="text" name="nom_po" id="nom_po" placeholder="Nombre de la profesion">
       </div> 
       

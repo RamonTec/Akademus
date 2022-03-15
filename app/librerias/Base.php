@@ -134,7 +134,6 @@
 		}
 
 		public function cerrar_session(){
-			session_start();
 			session_destroy();
 		}
 

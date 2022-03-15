@@ -37,7 +37,6 @@
 		}
 
 		public function cerrar_sesion(){
-			session_start();
 			session_destroy();
 			$this -> vista('Login/Login');
 		}

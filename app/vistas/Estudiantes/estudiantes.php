@@ -5,7 +5,7 @@
 <table class="table table-hover text-center tabla">
 	<thead>
 		<tr>
-			<th>Cedula de identidad</th>
+			<th>Cedula escolar</th>
 			<th>Primer nombre</th>
 			<th>Primer apellido</th>
 			<th>Sexo</th>
@@ -16,13 +16,24 @@
 	<tbody>
 		<?php foreach($datos['estudiantes'] as $estudiante) : ?>
 		<tr>
-			<td><?php echo $estudiante -> ci_est ?></td>
+			<td><?php echo $estudiante -> ci_escolar ?></td>
 			<td><?php echo $estudiante -> pnom ?></td>
 			<td><?php echo $estudiante -> pape ?></td>
 			<td><?php echo $estudiante -> sexo ?></td>
 			<td><?php echo $estudiante -> nacionalidad_e ?></td>
 			<td>								
-				<a href="<?php echo RUTA_URL;?>/Estudiantes/perfil_estudiante/<?php echo $estudiante -> ci_est ?>">Perfil</a>
+				<a href="<?php echo RUTA_URL;?>/Estudiantes/perfil_estudiante/<?php echo $estudiante -> ci_escolar ?>">Editar</a> - 
+				<?php
+				if ($estudiante -> asignado == '0'){
+					?>
+						<a href="<?php echo RUTA_URL;?>/Estudiantes/get_secciones/<?php echo $estudiante -> ci_escolar ?>">Asignar</a>
+					<?php
+				} else {
+					?>
+						<span>Asignado</span>
+					<?php
+				}
+				?>
 			</td>		
 		</tr>
 	<?php  endforeach;?>

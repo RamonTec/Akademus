@@ -4,6 +4,7 @@
 
 		public function __construct(){
 			$this -> estudianteModelo = $this -> modelo('Estudiante');
+			$this -> seccionModelo = $this -> modelo('Seccion');
 		}
  
 		public function index(){
@@ -23,7 +24,6 @@
 						break;
 
 					case '1':
-					
 						$this -> vista('Estudiantes/registrar_estudiante', $check_representante);
 
 						break;
@@ -45,7 +45,6 @@
 				$datos = [
 
 					//Datos de la tabla estudiante
-					'ci_est' => trim($_POST['ci_est']),
 					'ci_escolar' => trim($_POST['ci_escolar']),
 					'tipo_est' => trim($_POST['tipo_est']),
 					'fecha_n' => trim($_POST['fecha_n']),
@@ -57,35 +56,32 @@
 					'pape' => trim($_POST['pape']),
 					'segape' => trim($_POST['segape']),
 
-				
-					//Datos de la tabla direccion
-					'n_casa' => trim($_POST['n_casa']), 
-					'pto_ref' => trim($_POST['pto_ref']),
-					'calle' => trim($_POST['calle']),
-					'sector' => trim($_POST['sector']),
+					// datos para la tabla salud
+					'condicion_s' => trim($_POST['condicion_s']),
+					'obervacion_s' => trim($_POST['obervacion_s']),
 
-					//Datos de la tabla pais
-					'nom_pais' => trim($_POST['nom_pais']),
+					// Para tabla estudiante
+					'pariente_representate' => trim($_POST['pariente_representate']),
 
-					//Datos de la tabla municipio
-					'nombre_muni' => trim($_POST['nombre_muni']),
+					'usuario' => $_SESSION['id_usuario'],
 
-					//Datos de la tabla estado
-					'nom_estado' => trim($_POST['nom_estado']),
-
-					'usuario' => trim($_POST['usuario']),
-
- 
 				];
-				$this -> estudianteModelo -> insertar_estudiante($datos);
-				if (empty($this -> estudianteModelo -> mensaje)) {
-					Helper::redireccionar('/Login/inicio');
+				$estudiante = $this -> estudianteModelo -> insertar_estudiante($datos);
+				print_r($estudiante);
+				if (empty($estudiante["mensaje"])) {
+					print_r("aca?3");
+					Helper::redireccionar('/Estudiantes/asignar_estudiante');
 				} else{
-					$datos = ["mensaje" => $this -> estudianteModelo -> mensaje];
-					$this -> vista('Estudiantes/registrar_estudiante', $datos);
+					print_r("aca?2");
+					$datos = $estudiante;
+					$this -> vista('/Estudiantes/registrar_estudiante', $datos);
 				}
 			} else{
-				$this -> vista('Estudiantes/registrar_estudiante');
+				print_r("aca?");
+				$datos = [
+          'mensaje' => ''
+        ];
+				$this -> vista('/Estudiantes/registrar_estudiante', $datos);
 			}
 		}
 
@@ -156,4 +152,33 @@
 				$this -> vista('Estudiantes/actualizarEstudiante', $datos);
 			}
 		}
+
+		public function get_secciones($ci_escolar) {
+			$_SESSION["ci_escolar"] = $ci_escolar;
+			$secciones = $this -> seccionModelo -> obtener_secciones();
+			$datos = [
+				'secciones' => $secciones,
+				'mensaje' => ''
+			];
+			$this -> vista('Estudiantes/asignar_estudiante', $datos);
+		}
+
+		public function estudiante_seccion() {
+			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				$datos = [
+					'id_seccion' => trim($_POST['id_seccion']),
+					'ci_escolar' => $_SESSION['ci_escolar']
+				];
+				$this -> estudianteModelo -> asignar_estudiante($datos);
+				if (empty($this -> estudianteModelo -> mensaje)) {
+					Helper::redireccionar('/Estudiantes/estudiantes');
+				} else {
+					$datos = ["mensaje" => $this -> estudianteModelo -> mensaje];
+					print_r($datos);
+					$this -> vista('Estudiantes/registrar_estudiante', $datos);
+				}		
+			} else {
+				$this -> vista('Estudiantes/estudiantes', $datos);
+			}
+		} 
 	}

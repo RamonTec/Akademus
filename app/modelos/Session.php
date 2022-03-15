@@ -22,8 +22,7 @@
 					$clave_usuario = $datos['clave'];
 					$clave_des_encriptada = Helper::des($clave_usuario, $clave_encriptada);
 					
-					if ($clave_des_encriptada == $datos['clave']) {	
-						session_start();
+					if ($clave_des_encriptada == $datos['clave']) {
 						$_SESSION['nom_u'] = $resultado -> nom_u;
 						$_SESSION['privilegio'] = $resultado -> privilegio;
 						$_SESSION['id_usuario'] = $resultado -> id_u;

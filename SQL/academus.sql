@@ -37,6 +37,7 @@ create table profesor(
 	cod_prof 	varchar(20) unique not null,
 	tipo_prof 	varchar(20),
 	id_prof 	int,
+	asignado  int,
 	foreign key (id_prof) references persona (id_per) on update cascade on delete cascade
 );
 
@@ -48,9 +49,11 @@ create table salud(
 
 -- Creacion de la tabla seccion
 create table seccion(
-	id_seccion 		int auto_increment primary key not null,
-	cod_sec 		varchar(20) unique,
-	nom_sec 		varchar(20) unique
+	id_seccion 	int auto_increment primary key not null,
+	cod_sec 		varchar(20),
+	nom_sec 		varchar(20),
+	cant_estudiantes int,
+	turno				varchar(20)
 );
 
 -- Creacion de la tabla periodo escolar
@@ -120,30 +123,11 @@ create table direccion(
 	foreign key (id_md) references municipio(id_muni) on update cascade on delete cascade
 );
 
-create table estudiante(
-	id_est 			int auto_increment primary key not null,
-	ci_est			varchar(20) unique,
-	ci_escolar		varchar(20) unique,
-	fecha_n 		date not null,
-	lugar_n 		text not null,
-	sexo			char(1) not null,
-	pnom			varchar(20) not null,
-	segnom          varchar(20),
-	otrosnom		varchar(20),
-	pape			varchar(20) not null,
-	segape	        varchar(20),
-	otrosape		varchar(20),
-	nacionalidad_e  varchar(20),
-	id_de			int,
-	foreign key (id_de) references direccion (id_dir) on update cascade on delete cascade
-);
-
 -- Creacion  de la tabla representante
 create table representante(
   ci_pariente_1 varchar(20) unique,
   ci_pariente_2 varchar(20) unique,
-  nombre_pariente_1 varchar(20) not null,
-  nombre_pariente_2 varchar(20) not null,
+	parentesco_representante varchar(20) not null,
 	id_rep int auto_increment primary key not null,
 	id_rep_per			int,
 	foreign key (id_rep_per) references persona(id_per) on update cascade on delete cascade,
@@ -151,6 +135,24 @@ create table representante(
 	foreign key (id_pr) references profesion_u_oficio (id_po) on update cascade on delete cascade,
 	id_dr 			int,
 	foreign key (id_dr) references direccion (id_dir) on update cascade on delete cascade
+);
+
+create table estudiante(
+	id_est 			int auto_increment primary key not null,
+	ci_escolar		varchar(20) unique,
+	fecha_n 		date not null,
+	lugar_n 		text not null,
+	sexo			char(1) not null,
+	pnom			varchar(20) not null,
+	segnom          varchar(20),
+	pape			varchar(20) not null,
+	segape	        varchar(20),
+	nacionalidad_e  varchar(20),
+	id_de			int,
+	pariente_representate varchar(20),
+	asignado VARCHAR(20),
+	id_representante int,
+	foreign key (id_representante) references representante(id_rep) on update cascade on delete cascade
 );
 
 
@@ -212,18 +214,21 @@ CREATE TABLE estudiante_inscribe_matricula(
 
 -- CREACION TABLA REPRESENTANTE_REPRESENTA_ESTUDIANTE
 CREATE TABLE representante_representa_estudiante(
-    id_rer      int unique,
-    id_err      int unique,
+	  id_repre_tiene_estudiante int auto_increment primary key not null,
+    id_rer      int,
+    id_err      int,
 
     --  CREACION LLAVES FORANEAS
 
     --  creacion de la llave fornea de la tabla de REPRESENTANTE
     foreign key(id_rer) references representante (id_rep) on update cascade on delete cascade,
+
     --  creacion de la llave fornea de la tabla de estudiante
     foreign key(id_err) references estudiante (id_est) on update cascade on delete cascade
 );
 
 CREATE TABLE seccion_tiene_estudiante(
+	  id_seccion_tiene_estudiante int auto_increment primary key not null,
     id_estudiante   int,
     id_secc      int,
 
@@ -231,6 +236,19 @@ CREATE TABLE seccion_tiene_estudiante(
 
     --  creacion de la llave fornea de la tabla de REPRESENTANTE
     foreign key(id_estudiante) references estudiante (id_est) on update cascade on delete cascade,
+    --  creacion de la llave fornea de la tabla de estudiante
+    foreign key(id_secc) references seccion (id_seccion) on update cascade on delete cascade
+);
+
+CREATE TABLE seccion_tiene_profesor(
+		id_seccion_tiene_profesor int auto_increment primary key not null,
+    id_profesor   int,
+    id_secc      int,
+
+    --  CREACION LLAVES FORANEAS
+
+    --  creacion de la llave fornea de la tabla de REPRESENTANTE
+    foreign key(id_profesor) references profesor (id_prof) on update cascade on delete cascade,
     --  creacion de la llave fornea de la tabla de estudiante
     foreign key(id_secc) references seccion (id_seccion) on update cascade on delete cascade
 );

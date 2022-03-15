@@ -12,6 +12,23 @@
 			return new $modelo();
 		}
 
+		public function globals($variable, $caso) {
+			// metodo para guardar variables globales
+			switch ($caso) {
+				case 'id_usuario':
+					
+					break;
+
+				case 'id_representante':
+					
+					break;
+				
+				default:
+					# code...
+					break;
+			}
+		}	
+
 		//Cargar vista
 		public function vista($vista, $datos = []){
 			//Chequear si el archivo vista existe

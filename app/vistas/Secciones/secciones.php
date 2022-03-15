@@ -4,21 +4,22 @@
 <table class="table table-striped text-center tabla">
 	<thead>
 		<tr>
-			<th>Nombre de seccion</th>
-			<th>Codigo de seccion</th>
+			<th>Año</th>
+			<th>Seccion</th>
+			<th>Turno</th>
       <th>Acciones</th>
 		</tr> 
 	</thead>
-	<tbody>  
+	<tbody>
 		<?php foreach($datos['secciones'] as $seccion) : ?>
 		<tr>
-			<td><?php echo $seccion -> nom_sec ?></td>
 			<td><?php echo $seccion -> cod_sec ?></td>
+			<td><?php echo $seccion -> nom_sec ?></td>
+			<td><?php echo $seccion -> turno ?></td>
 			<td>
 				<a href="<?php echo RUTA_URL;?>/Secciones/editar_seccion/<?php echo $seccion -> id_seccion ?>">Editar</a> - 
-				<a href="<?php echo RUTA_URL;?>/Secciones/eliminar_seccion/<?php echo $seccion -> id_seccion ?>">Eliminar</a>
+				<a href="<?php echo RUTA_URL;?>/Secciones/eliminar_seccion/<?php echo $seccion -> id_seccion ?>">Eliminar</a>				
 			</td>
-
 		</tr>
 	<?php  endforeach;?>
 	</tbody>

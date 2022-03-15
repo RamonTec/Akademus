@@ -144,7 +144,7 @@
 			$this -> db -> query(
         "SELECT 
         persona.ci, persona.pnombre, persona.papellido, persona.sexo_p, persona.nacionalidad, 
-        profesor.tipo_prof, profesor.cod_prof, profesor.id_prof
+        profesor.tipo_prof, profesor.cod_prof, profesor.id_prof, profesor.asignado
         FROM persona 
         INNER JOIN profesor 
         ON persona.id_per = profesor.id_prof ");
@@ -197,7 +197,7 @@
 				// tanto de la tabla persona como de la tabla cargo y de la tabla usuario.
 				// Caso contrario soló se eliminara de la tabla usuario y de la tabla cargo.
 
-				// Consulta a la base de datos si existe un usuario con el id que se recibe desde el formulario.
+				// Consulta a la base de datos si existe un profesor con el id que se recibe desde el formulario.
 				$this -> db -> query("SELECT * FROM profesor WHERE id_prof = :id_prof");
 				$this -> db -> bind(':id_prof', $datos['id_prof']);
 
@@ -224,10 +224,18 @@
 				// Variable que almacena el resultado obtenido de la consulta anterior.
 				$existe_persona_usuario_representante = $this -> db -> registro();
 
+        // si tiene estudiantes o no
+        $this -> db -> query("SELECT * FROM estudiante WHERE id_representante = :id_rep");
+        $this -> db -> bind(":id_rep", $existe_persona_usuario_representante -> id_rep);
+
+        $tiene_estudiante = $this -> db -> registro();
+        
+
 				// Sí la consulta es igual a un TRUE entonces sólo eliminará en la tabla profesor.
 				if ($existe_persona_usuario_representante == true) {
+          
 
-					$this -> db -> query("DELETE FROM persona WHERE id_prof = :id_prof");
+					$this -> db -> query("DELETE FROM profesor WHERE id_prof = :id_prof");
 					$this -> db -> bind(':id_prof', $datos['id_prof']);
 
 					$this -> db -> execute();
@@ -236,11 +244,19 @@
 				// Caso contrario elimina en cascada desde la tabla persona.
 				} else {
 					
-					$this -> db -> query("DELETE FROM persona WHERE id_per = :id_per");
-					$this -> db -> bind(":id_per", $id_persona_representante_profesor);
+					if($tiene_estudiante) {
 
-					$this -> db -> execute();
-					$this -> db -> commit();
+            return [
+              "mensaje" => 'No puede ser eliminado, tiene un estudiante registrado'
+            ];
+
+          } else {
+            $this -> db -> query("DELETE FROM persona WHERE id_per = :id_per");
+            $this -> db -> bind(":id_per", $id_persona_representante_profesor);
+
+            $this -> db -> execute();
+            $this -> db -> commit();
+          }
 				}								
 
 			} catch (PDOException $e) {
@@ -293,6 +309,42 @@
           'cod_prof' => $datos['cod_prof'],
           'tipo_prof' => $datos['tipo_prof'],
           'id_per' => $datos['id_per'],
+          'mensaje' => $this -> mensaje = $e -> getMessage()
+        ];
+				print "Error!: " . $e -> getMessage() . "</br>";
+      }
+    }
+
+    // Metodo para asignar profesores a las secciones
+    public function asignar_seccion($datos) {
+      try {
+        
+        $this -> db -> beginTransaction();
+
+        // Insertando registro de usuario -> persona.															
+        $this -> db -> query("INSERT INTO seccion_tiene_profesor(id_profesor, id_secc)
+        VALUES(:id_profesor, :id_secc)");
+
+        // Vinculando valores con el bind para evitar inyección de codigo SQL.
+        $this -> db -> bind(':id_profesor', $datos['id_profesor']);
+        $this -> db -> bind(':id_secc', $datos['id_seccion']);
+
+        // Ejecutando la consulta con el metodo execute.
+        $this -> db -> execute();
+
+        $this -> db -> query("UPDATE profesor SET asignado = :asignado
+          WHERE id_prof = :id_prof
+        ");
+
+        $this -> db -> bind(':asignado', 1);	
+        $this -> db -> bind(':id_prof', $datos['id_profesor']);
+
+        $this -> db -> execute();
+        $this -> db -> commit(); 
+
+      } catch (PDOException $e) {
+        $this -> db -> rollBack();
+        return [
           'mensaje' => $this -> mensaje = $e -> getMessage()
         ];
 				print "Error!: " . $e -> getMessage() . "</br>";

@@ -23,7 +23,7 @@
 			<td><?php echo $representante -> nacionalidad ?></td>
 			<td>								
 				<a href="<?php echo RUTA_URL;?>/Representantes/actualizar_representante/<?php echo $representante -> id_per ?>">Editar</a> - 
-                <a href="<?php echo RUTA_URL;?>/Representantes/eliminar_representante/<?php echo $representante -> id_per ?>">Eliminar</a>
+        <a href="<?php echo RUTA_URL;?>/Representantes/eliminar_representante/<?php echo $representante -> id_per ?>">Eliminar</a>
 			</td>		
 		</tr>
 	<?php  endforeach;?>

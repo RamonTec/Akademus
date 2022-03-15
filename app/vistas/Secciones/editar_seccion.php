@@ -12,14 +12,19 @@
      
     <div class="row justify-content-center">  
       <div class="col-3 mt-4">        
-        <input type="text" class="form-control" name="nom_sec" value="<?php if($datos['nom_sec']) echo $datos['nom_sec']  ?>" id="nom_sec" placeholder="Seccion">
         <input type="text" class="form-control" name="cod_sec" value="<?php if($datos['cod_sec']) echo $datos['cod_sec']  ?>" id="cod_sec" placeholder="Codigo de seccion">
+        <input type="text" class="form-control" name="nom_sec" value="<?php if($datos['nom_sec']) echo $datos['nom_sec']  ?>" id="nom_sec" placeholder="Seccion">
+        <select class="form-control mt-4" id="turno" name="turno">
+          <option disabled value="" >--- Turno</option>
+          <option value="Mañana" >Mañana</option>
+          <option value="Tarde" >Tarde</option>
+        </select>
       </div>
     </div>
   <form>
 
   <div class="row justify-content-center">
-    <div class="col-1">
+    <div class="col-1 mt-4">
       <button type="submit" class="btn btn-primary">Modificar</button>
     </div>
   </div>

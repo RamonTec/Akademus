@@ -4,6 +4,7 @@
  
 		public function __construct(){
 			$this -> profesores_modelo = $this -> modelo('Profesor');
+			$this -> seccionModelo = $this -> modelo('Seccion');
 		}
 
 		public function index(){
@@ -161,5 +162,33 @@
 		];
 		$this -> vista('Profesores/profesores', $datos);		
 	}
+
+	public function get_secciones($id_prof) {
+		$_SESSION["id_profesor"] = $id_prof;
+		$secciones = $this -> seccionModelo -> obtener_secciones();
+		$datos = [
+			'secciones' => $secciones,
+			'mensaje' => ''
+		];
+		$this -> vista('Profesores/asignar_seccion', $datos);
+	}
+
+	public function profesor_seccion() {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$datos = [
+				'id_seccion' => trim($_POST['id_seccion']),
+				'id_profesor' => $_SESSION["id_profesor"],
+			];
+			$this -> profesores_modelo -> asignar_seccion($datos);
+			if (empty($this -> profesores_modelo -> mensaje)) {
+				Helper::redireccionar('/Profesores/profesores');
+			} else {
+				$datos = ["mensaje" => $this -> profesores_modelo -> mensaje];
+				$this -> vista('Profesores/registro_profesor', $datos);
+			}		
+		} else {
+			$this -> vista('Profesores/profesores', $datos);
+		}
+	} 
 }
 		
