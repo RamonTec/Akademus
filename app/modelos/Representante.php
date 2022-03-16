@@ -83,32 +83,33 @@
         $this -> db -> execute();
         $id_municipio = $this -> db -> lastInsertId();
 
-        $this -> db -> query("INSERT INTO direccion (n_casa, pto_ref, calle, sector, id_md) 
-        VALUES(:n_casa, :pto_ref, :calle, :sector, :id_md)");
-        $this -> db -> bind(":n_casa", $datos['n_casa']);
-        $this -> db -> bind(":pto_ref", $datos['pto_ref']); 
-        $this -> db -> bind(":calle", $datos['calle']);
-        $this -> db -> bind(":sector", $datos['sector']);
+        $this -> db -> query("INSERT INTO direccion (pto_ref, id_md) 
+        VALUES(:pto_ref, :id_md)");
+        $this -> db -> bind(":pto_ref", $datos['pto_ref']);
         $this -> db -> bind(":id_md", $id_municipio);
         $this -> db -> execute();
         $id_direccion_persona_representante = $this -> db -> lastInsertId();
 
-        $this -> db -> query("INSERT INTO profesion_u_oficio (posee_po, nom_po, lugar_po, tlf_po) 
-        VALUES(:posee_po, :nom_po, :lugar_po, :tlf_po)");
-        $this -> db -> bind(":posee_po", $datos['posee_po']);
+        $this -> db -> query("INSERT INTO profesion_u_oficio (nom_po) 
+        VALUES(:nom_po)");
         $this -> db -> bind(":nom_po", $datos['nom_po']);
-        $this -> db -> bind(":lugar_po", $datos['lugar_po']);
-        $this -> db -> bind(":tlf_po", $datos['tlf_po']);
         $this -> db -> execute();
         $id_profesion_persona_representante = $this -> db -> lastInsertId();
-
-        print_r($get_ci_representante);
 
         $this -> db -> query("INSERT INTO representante (id_rep_per, id_pr, id_dr)
         VALUES(:id_rep_per, :id_pr, :id_dr)");
         $this -> db -> bind(":id_pr", $id_profesion_persona_representante);
         $this -> db -> bind(":id_dr", $id_direccion_persona_representante);
         $this -> db -> bind(":id_rep_per", $get_ci_representante -> id_per);
+        $this -> db -> execute();
+
+        $id_representante_telefono = $this -> db -> lastInsertId();
+
+        $this -> db -> query("INSERT INTO telefono (numero1, id_te) 
+        VALUES(:numero1, :id_te)");
+        $this -> db -> bind(":numero1", $datos['numero1']);
+        $this -> db -> bind("id_te", $id_representante_telefono);
+        $this -> db -> execute();
 
         $this -> db -> execute();
         $this -> db -> commit();
@@ -158,22 +159,16 @@
         $this -> db -> execute();
         $id_municipio = $this -> db -> lastInsertId();
 
-        $this -> db -> query("INSERT INTO direccion (n_casa, pto_ref, calle, sector, id_md) 
-        VALUES(:n_casa, :pto_ref, :calle, :sector, :id_md)");
-        $this -> db -> bind(":n_casa", $datos['n_casa']);
+        $this -> db -> query("INSERT INTO direccion (pto_ref,id_md) 
+        VALUES(:pto_ref, :id_md)");
         $this -> db -> bind(":pto_ref", $datos['pto_ref']); 
-        $this -> db -> bind(":calle", $datos['calle']);
-        $this -> db -> bind(":sector", $datos['sector']);
         $this -> db -> bind(":id_md", $id_municipio);
         $this -> db -> execute();
         $id_direccion_persona_representante = $this -> db -> lastInsertId();
 
-        $this -> db -> query("INSERT INTO profesion_u_oficio (posee_po, nom_po, lugar_po, tlf_po) 
-        VALUES(:posee_po, :nom_po, :lugar_po, :tlf_po)");
-        $this -> db -> bind(":posee_po", $datos['posee_po']);
+        $this -> db -> query("INSERT INTO profesion_u_oficio (nom_po) 
+        VALUES(:nom_po)");
         $this -> db -> bind(":nom_po", $datos['nom_po']);
-        $this -> db -> bind(":lugar_po", $datos['lugar_po']);
-        $this -> db -> bind(":tlf_po", $datos['tlf_po']);
         $this -> db -> execute();
         $id_profesion_persona_representante = $this -> db -> lastInsertId();
 
@@ -182,8 +177,16 @@
         $this -> db -> bind(":id_rep_per", $id_persona_representante);
         $this -> db -> bind(":id_pr", $id_profesion_persona_representante);
         $this -> db -> bind(":id_dr", $id_direccion_persona_representante);
-
         $this -> db -> execute();
+
+        $id_representante_telefono = $this -> db -> lastInsertId();
+
+        $this -> db -> query("INSERT INTO telefono (numero1, id_te) 
+        VALUES(:numero1, :id_te)");
+        $this -> db -> bind(":numero1", $datos['numero1']);
+        $this -> db -> bind("id_te", $id_representante_telefono);
+        $this -> db -> execute();
+
         $this -> db -> commit();
 
 
@@ -330,12 +333,11 @@
 
         $this -> db -> execute();
 
-        $this -> db -> query("UPDATE profesor SET tipo_prof = :tipo_prof, cod_prof = :cod_prof
+        $this -> db -> query("UPDATE profesor SET tipo_prof = :tipo_prof
           WHERE id_prof = :id_per
         ");
 
-        $this -> db -> bind(':tipo_prof', $datos['tipo_prof']);	
-        $this -> db -> bind(':cod_prof', $datos['cod_prof']);	
+        $this -> db -> bind(':tipo_prof', $datos['tipo_prof']);
         $this -> db -> bind(':id_per', $datos['id_per']);
 
         $this -> db -> execute();
@@ -352,7 +354,6 @@
           'segapellido' => $datos['segapellido'],
           'nacionalidad' => $datos['nacionalidad'],
           'sexo_p' => $datos['sexo_p'],
-          'cod_prof' => $datos['cod_prof'],
           'tipo_prof' => $datos['tipo_prof'],
           'id_per' => $datos['id_per'],
           'mensaje' => $this -> mensaje = $e -> getMessage()

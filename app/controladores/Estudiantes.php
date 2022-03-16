@@ -14,6 +14,8 @@
 					'ci' => trim($_POST['ci'])
 				];
 
+				$_SESSION['ci_representante'] = trim($_POST['ci']);
+
 				$check_representante = $this -> estudianteModelo -> comprobarEstudiante($datos);
 
 				switch ($check_representante['mensaje']) {
@@ -69,15 +71,12 @@
 				$estudiante = $this -> estudianteModelo -> insertar_estudiante($datos);
 				print_r($estudiante);
 				if (empty($estudiante["mensaje"])) {
-					print_r("aca?3");
 					Helper::redireccionar('/Estudiantes/asignar_estudiante');
 				} else{
-					print_r("aca?2");
 					$datos = $estudiante;
 					$this -> vista('/Estudiantes/registrar_estudiante', $datos);
 				}
 			} else{
-				print_r("aca?");
 				$datos = [
           'mensaje' => ''
         ];

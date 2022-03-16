@@ -81,9 +81,8 @@
         // Obteniendo el ultimo id insertado en la tabla persona.
         $id_persona_profesor = $this -> db -> lastInsertId();
 
-				$this -> db -> query("INSERT INTO profesor (cod_prof, tipo_prof, id_prof) VALUES(:cod_prof, :tipo_prof, :id_prof)");
+				$this -> db -> query("INSERT INTO profesor (tipo_prof, id_prof) VALUES(:tipo_prof, :id_prof)");
         $this -> db -> bind(":tipo_prof", $datos['tipo_prof']);
-        $this -> db -> bind(":cod_prof", $datos['cod_prof']);
         $this -> db -> bind(":id_prof", $id_persona_profesor);
 
         $this -> db -> execute();
@@ -93,7 +92,6 @@
 				$this -> db -> rollBack();
         return [
           'ci' => $datos['ci'],
-          'cod_prof' => $datos['cod_prof'],
           'mensaje' => $this -> mensaje = $e -> getMessage()
         ];
 			}              
@@ -116,9 +114,8 @@
         if($registrar_persona == true) {
           $ci_persona_usuario = $registrar_persona -> id_per;
 
-          $this -> db -> query("INSERT INTO profesor (cod_prof, tipo_prof, id_prof) VALUES(:cod_prof, :tipo_prof, :id_prof)");
+          $this -> db -> query("INSERT INTO profesor (tipo_prof, id_prof) VALUES(:tipo_prof, :id_prof)");
           $this -> db -> bind(":tipo_prof", $datos['tipo_prof']);
-          $this -> db -> bind(":cod_prof", $datos['cod_prof']);
           $this -> db -> bind(":id_prof", $ci_persona_usuario);
 
           $this -> db -> execute();
@@ -144,7 +141,7 @@
 			$this -> db -> query(
         "SELECT 
         persona.ci, persona.pnombre, persona.papellido, persona.sexo_p, persona.nacionalidad, 
-        profesor.tipo_prof, profesor.cod_prof, profesor.id_prof, profesor.asignado
+        profesor.tipo_prof, profesor.id_prof, profesor.asignado
         FROM persona 
         INNER JOIN profesor 
         ON persona.id_per = profesor.id_prof ");
@@ -163,7 +160,7 @@
           "SELECT
           persona.id_per, 
           persona.ci, persona.pnombre, persona.papellido, persona.segapellido, persona.segnombre, persona.sexo_p, persona.nacionalidad, 
-          profesor.tipo_prof, profesor.cod_prof, profesor.id_prof
+          profesor.tipo_prof, profesor.id_prof
           FROM persona 
           INNER JOIN profesor 
           ON persona.id_per = profesor.id_prof 
@@ -284,12 +281,11 @@
 
         $this -> db -> execute();
 
-        $this -> db -> query("UPDATE profesor SET tipo_prof = :tipo_prof, cod_prof = :cod_prof
+        $this -> db -> query("UPDATE profesor SET tipo_prof = :tipo_prof
           WHERE id_prof = :id_per
         ");
 
         $this -> db -> bind(':tipo_prof', $datos['tipo_prof']);	
-        $this -> db -> bind(':cod_prof', $datos['cod_prof']);	
         $this -> db -> bind(':id_per', $datos['id_per']);
 
         $this -> db -> execute();
@@ -306,7 +302,6 @@
           'segapellido' => $datos['segapellido'],
           'nacionalidad' => $datos['nacionalidad'],
           'sexo_p' => $datos['sexo_p'],
-          'cod_prof' => $datos['cod_prof'],
           'tipo_prof' => $datos['tipo_prof'],
           'id_per' => $datos['id_per'],
           'mensaje' => $this -> mensaje = $e -> getMessage()

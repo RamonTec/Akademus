@@ -2,9 +2,10 @@
 <!---------------------------------------BARRA DE NAVEGACION------------------------------------->
 <div class="bn">
 	<section id="banner">
+	
 		<div class="container">
 			<div class="row justify-content-center">                  
-				<div class="col-md-4 mt-5">
+				<div class="col-md-4 mt-1">
 					<form id="inicio_sesion" class="mx-auto mt-5" action="<?php echo RUTA_URL?>/Logins/verificar_sesion" method="POST">
 
 						<div class="form-group mx-auto">                            
@@ -16,7 +17,7 @@
 						</div>  
 
 						<div class="form-group mx-auto">
-							<button class="btn w-100 mx-auto btn btn-primary" type="submit">Iniciar Sesión</button>
+							<button class="btn w-100 mx-auto btn btn-success" type="submit">Iniciar Sesión</button>
 						</div>
 
 						<?php

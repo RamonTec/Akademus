@@ -51,7 +51,7 @@
           </div>
         </div><!---- Cierre del quinto col ----->
         <div class="col-md-3 offset-5">
-          <button class="btn btn btn-primary mt-4 ml-5 mp-5" type="submit">Actualizar</button>
+          <button class="btn btn btn-success mt-4 ml-5 mp-5" type="submit">Actualizar</button>
         </div>
       </div><!---- Cierre del segundo row ----->
     </form>

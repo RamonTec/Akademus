@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
                 <div class="form-group">
-                    <button type="submit" class="btn boton-de-envio">Consultar</button>
+                    <button type="submit" class="btn btn-success">Consultar</button>
                 </div>
             </div>
         </div>

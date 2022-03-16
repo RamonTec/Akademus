@@ -35,7 +35,6 @@
         </div>
         <div class="form-group">
           <label for="respuesta_S">Cargo</label>
-          <input type="text" class="form-control" id="tipo_cargo" name="tipo_cargo" aria-describedby="emailHelp" placeholder="Cargo">
         </div>
         <br>
         <button class="btn boton-de-envio mt-4 ml-5 mp-5" type="submit">Actualizar usuario</button>

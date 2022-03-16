@@ -10,4 +10,4 @@
 
 	define('RUTA_URL','http://localhost/Akademus');
 
-	define('NOMBRE_SITIO', 'Academus');
+	define('NOMBRE_SITIO', 'Sistema De Informacion U.E. JOSE RAFAEL POCATERRA');

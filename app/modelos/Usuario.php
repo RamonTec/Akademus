@@ -39,22 +39,10 @@
 			// Obteniendo el ultimo id insertado en la tabla persona.
 			$id_persona_usuario = $this -> db -> lastInsertId();
 
-			// Insertando el registro de usuario -> cargo
-			$this -> db -> query("INSERT INTO cargo(tipo_cargo) VALUES(:tipo_cargo)");
-
-			// Vinculando valores con el bind para evitar inyeccion de codigo SQL.
-			$this -> db -> bind(':tipo_cargo', $datos['tipo_cargo']);
-
-			// Ejecutando la consulta con el metodo execute.
-			$this -> db -> execute();
-
-			// Obteniendo el ultimo id insertdo en la tabla cargo.
-			$id_cargo_usuario = $this -> db -> lastInsertId(); 
-
 			// Insertando el registro de usuario -> usuario
 			$this -> db -> query("INSERT INTO usuario(nom_u, clave, privilegio, respuesta_s, 
-				pregunta_s, activo, id_pu, id_cu)VALUES(:nom_u, :clave, :privilegio, :respuesta_s, :pregunta_s,
-				:activo, :id_pu, :id_cu)");
+				pregunta_s, activo, id_pu)VALUES(:nom_u, :clave, :privilegio, :respuesta_s, :pregunta_s,
+				:activo, :id_pu)");
 			print_r($datos);
 			// Encriptado de la clave ingresa por el usuario con metodo propio de encriptado.
 			$clave_encriptada = Helper::encriptar($datos['clave']);
@@ -82,7 +70,6 @@
 			$this -> db -> bind(':respuesta_s', $respuesta_encriptada);
 			$this -> db -> bind(':activo', '1');
 			$this -> db -> bind(':id_pu', $id_persona_usuario);
-			$this -> db -> bind(':id_cu', $id_cargo_usuario);
 
 			// Ejecutando la consulta con el metodo execute.
 			$this -> db -> execute();

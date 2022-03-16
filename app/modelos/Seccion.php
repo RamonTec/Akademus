@@ -13,31 +13,15 @@
       try {
         $this -> db -> beginTransaction();
 
-        $this -> db -> query("SELECT * FROM seccion WHERE nom_sec = :nom_sec");		
-				$this -> db -> bind(":nom_sec" , $datos['nom_sec']);
+        $this -> db -> query("INSERT INTO seccion (nom_sec, cod_sec, turno, cant_estudiantes) VALUES(:nom_sec, :cod_sec, :turno, :cant_estudiantes)");
 
-        $check_seccion_existe = $this -> db -> registro();
+        $this -> db -> bind(':nom_sec', $datos['nom_sec']);
+        $this -> db -> bind(':cod_sec', $datos['cod_sec']);
+        $this -> db -> bind(':turno', $datos['turno']);
+        $this -> db -> bind(':cant_estudiantes', 0);
 
-        if($check_seccion_existe == true) {
-
-          if($datos['cod_sec'] == $check_seccion_existe -> cod_sec) {
-            return $this -> mensaje = "Este codigo ya fue registrado";
-          } else if($datos['nom_sec'] == $check_seccion_existe -> nom_sec) {
-            return $this -> mensaje = "Esta seccion ya fue registrada";
-          }
-
-        } else {
-
-          $this -> db -> query("INSERT INTO seccion (nom_sec, cod_sec, turno) VALUES(:nom_sec, :cod_sec, :turno)");
-
-          $this -> db -> bind(':nom_sec', $datos['nom_sec']);
-          $this -> db -> bind(':cod_sec', $datos['cod_sec']);
-          $this -> db -> bind(':turno', $datos['turno']);
-
-          $this -> db -> execute();
-          $this -> db -> commit();
-
-        }
+        $this -> db -> execute();
+        $this -> db -> commit();
 
       } catch (PDOException $e) {
         $this -> db -> rollBack();
@@ -130,7 +114,7 @@
         "SELECT
         persona.id_per, 
         persona.ci, persona.pnombre, persona.papellido,
-        profesor.tipo_prof, profesor.cod_prof, profesor.id_prof,
+        profesor.tipo_prof, profesor.id_prof,
         seccion.id_seccion, seccion.nom_sec, seccion.cod_sec, seccion.turno,
         seccion_tiene_profesor.id_profesor, seccion_tiene_profesor.id_secc
         FROM profesor 

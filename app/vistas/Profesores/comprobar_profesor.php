@@ -1,5 +1,6 @@
 <?php require_once RUTA_APP . '/vistas/inc/header.php'; ?>
 <!---------------------------------------------------Formulario----------------------------------------->
+<h6 class="text-center mt-5">No se pueden registrar profesores si tienen cuentas de usuarios</h6>
 <div class="container formulario pt-5">   
     <form class="formulario-login col-md-8 col-xs-12 m-auto" action="<?php echo RUTA_URL; ?>/Profesores/index" method="POST">
         <div class="row justify-content-center">
@@ -12,7 +13,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
                 <div class="form-group">
-                    <button type="submit" id="btn_enviar" class="btn boton-de-envio">Comprobar cedula</button>
+                    <button type="submit" id="btn_enviar" class="btn btn-success">Comprobar cedula</button>
                 </div>
             </div>
         </div>

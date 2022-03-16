@@ -9,7 +9,7 @@
                 <input type="text" class="text-center form-control" name="ci_est" id="ci_est" placeholder="Cedula de identidad">
             </div>
             <div class="form-group mx-auto">
-                <button class="btn btn-primary w-100 mx-auto" type="submit">Reporte</button>
+                <button class="btn btn-success w-100 mx-auto" type="submit">Reporte</button>
             </div>
         </form>
     </div>

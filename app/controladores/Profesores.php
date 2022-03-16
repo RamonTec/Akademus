@@ -67,8 +67,7 @@
 				'nacionalidad' => trim($_POST['nacionalidad']),
 				'sexo_p' => trim($_POST['sexo_p']),
 
-				//Datos de la tabla profesor
-				'cod_prof' => trim($_POST['cod_prof']),				
+				//Datos de la tabla profesor		
 				'tipo_prof' => trim($_POST['tipo_prof'])
 				
 			];
@@ -96,8 +95,7 @@
 				'papellido' => trim($_POST['papellido']),
 				'segapellido' => trim($_POST['segapellido']),
 				'nacionalidad' => trim($_POST['nacionalidad']),
-				'sexo_p' => trim($_POST['sexo_p']),
-				'cod_prof' => trim($_POST['cod_prof']),				
+				'sexo_p' => trim($_POST['sexo_p']),				
 				'tipo_prof' => trim($_POST['tipo_prof']),
 				'id_per' => $id_prof
 				
@@ -122,7 +120,6 @@
 				'segapellido' => $profesor -> segapellido,
 				'nacionalidad' => $profesor -> nacionalidad,
 				'sexo_p' => $profesor -> sexo_p,
-				'cod_prof' => $profesor -> cod_prof,
 				'tipo_prof' => $profesor -> tipo_prof,
 				'id_prof' => $profesor -> id_prof,
         'mensaje' => ''
@@ -136,8 +133,7 @@
 	public function registro_profesor(){
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$datos = [
-				//Datos de la tabla profesor
-				'cod_prof' => trim($_POST['cod_prof']),				
+				//Datos de la tabla profesor				
 				'tipo_prof' => trim($_POST['tipo_prof']),
 				'ci_per' => trim($_POST['ci_per'])
 			];

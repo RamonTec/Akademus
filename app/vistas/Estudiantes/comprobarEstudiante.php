@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
                 <div class="form-group">
-                    <button type="submit" class="btn boton-de-envio">Comprobar cedula</button>
+                    <button type="submit" class="btn btn-success">Comprobar cedula</button>
                 </div>
             </div>
         </div>

@@ -27,8 +27,6 @@
 				'pregunta_s' => trim($_POST['pregunta_s']),
 				'respuesta_s' =>trim ($_POST['respuesta_s']),
 	
-				//Datos para la tabla cargo
-				'tipo_cargo' => trim($_POST['tipo_cargo'])
 			);
 
 

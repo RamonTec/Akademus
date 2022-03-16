@@ -25,7 +25,7 @@
 
   <div class="row justify-content-center">
     <div class="col-1 mt-4">
-      <button type="submit" class="btn btn-primary">Modificar</button>
+      <button type="submit" class="btn btn-success">Modificar</button>
     </div>
   </div>
 

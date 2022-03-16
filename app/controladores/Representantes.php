@@ -60,10 +60,7 @@
 				'sexo_p' => trim($_POST['sexo_p']),
 
 				//Datos de la tabla direccion
-				'n_casa' => trim($_POST['n_casa']), 
 				'pto_ref' => trim($_POST['pto_ref']),
-				'calle' => trim($_POST['calle']),
-				'sector' => trim($_POST['sector']),
 
 				//Datos de la tabla pais
 				'nom_pais' => trim($_POST['nom_pais']),
@@ -75,19 +72,10 @@
 				'nom_estado' => trim($_POST['nom_estado']),
 
 				//Datos de la tabla telefono
-				'cod_area1' => trim($_POST['cod_area1']), 
 				'numero1' => trim($_POST['numero1']),
-				'tipo1' => trim($_POST['tipo1']),
 
 				//Datos de la tabla representante
-				'posee_po' => trim($_POST['posee_po']),
-				'nom_po' => trim($_POST['nom_po']),
-				'lugar_po' => trim($_POST['lugar_po']),
-				'tlf_po' => trim($_POST['tlf_po']),
-				'ci_pariente_1' => trim($_POST['ci_pariente_1']),
-				'ci_pariente_2' => trim($_POST['ci_pariente_2']),
-				'nombre_pariente_1' => trim($_POST['nombre_pariente_1']),
-				'nombre_pariente_2' => trim($_POST['nombre_pariente_2'])
+				'nom_po' => trim($_POST['nom_po'])
 			];
 
 			$this -> representante_modelo -> registrar_representante_persona($datos);
@@ -109,13 +97,9 @@
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$datos = [
 				//Datos para la tabla persona
-				'ci' => trim($_POST['ci_representante']),
+				'ci' => $_SESSION['ci_representante'],
 
-				//Datos de la tabla direccion
-				'n_casa' => trim($_POST['n_casa']), 
 				'pto_ref' => trim($_POST['pto_ref']),
-				'calle' => trim($_POST['calle']),
-				'sector' => trim($_POST['sector']),
 
 				//Datos de la tabla pais
 				'nom_pais' => trim($_POST['nom_pais']),
@@ -126,27 +110,19 @@
 				//Datos de la tabla estado
 				'nom_estado' => trim($_POST['nom_estado']),
 
-				//Datos de la tabla telefono
-				'cod_area1' => trim($_POST['cod_area1']), 
 				'numero1' => trim($_POST['numero1']),
-				'tipo1' => trim($_POST['tipo1']),
 
-				//Datos de la tabla representante
-				'posee_po' => trim($_POST['posee_po']),
 				'nom_po' => trim($_POST['nom_po']),
-				'lugar_po' => trim($_POST['lugar_po']),
-				'tlf_po' => trim($_POST['tlf_po']),
-				'ci_pariente_1' => trim($_POST['ci_pariente_1']),
-				'ci_pariente_2' => trim($_POST['ci_pariente_2']),
-				'nombre_pariente_1' => trim($_POST['nombre_pariente_1']),
-				'nombre_pariente_2' => trim($_POST['nombre_pariente_2'])
 			];
 
 			$this -> representante_modelo -> registrar_representante($datos);
 			if (empty($this -> representante_modelo -> mensaje)) {
 				Helper::redireccionar('/Representantes/representantes');
 			} else {
-				$datos = ["mensaje" => $this -> representante_modelo -> mensaje];
+				$datos = [
+					"ci_representante" => $_SESSION["ci_representante"],
+					"mensaje" => $this -> representante_modelo -> mensaje,
+				];
 				$this -> vista('Representantes/registro_representante', $datos);
 			}		
 		} else {

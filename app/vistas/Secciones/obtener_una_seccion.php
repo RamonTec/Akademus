@@ -15,7 +15,7 @@
         <div class="row justify-content-center mt-5">
           <div class="col-md-6 text-center">
             <div class="form-group">
-              <button type="submit" class="btn boton-de-envio">Obtener seccion</button>
+              <button type="submit" class="btn btn-success">Obtener seccion</button>
             </div>
           </div>
         </div>

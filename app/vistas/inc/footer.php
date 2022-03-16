@@ -2,7 +2,7 @@
 	<footer class="footer mt-5">
 		<div class="container"><!--- Primer container --->
 			<div>
-				<p class="text-center">Academia derechos reservados 2021-2022.</p>
+				<p class="text-center">POCATERRA derechos reservados 2021-2022.</p>
 			</div>
 		</div><!--- Cierre del primer container ---->
 	</footer>

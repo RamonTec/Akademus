@@ -1,12 +1,14 @@
 <?php require_once RUTA_APP . '/vistas/inc/header.php' ?>
 <div class="container mt-5">
 <h4><p class="text-center pb-3 gestion-usuario">Gestion de secciones</p></h4>
+<h6 class="text-center">Las secciones con estudiantes asignados no pueden ser eliminadas</h6>
 <table class="table table-striped text-center tabla">
 	<thead>
 		<tr>
 			<th>Año</th>
 			<th>Seccion</th>
 			<th>Turno</th>
+			<th>Cantidad</th>
       <th>Acciones</th>
 		</tr> 
 	</thead>
@@ -16,6 +18,7 @@
 			<td><?php echo $seccion -> cod_sec ?></td>
 			<td><?php echo $seccion -> nom_sec ?></td>
 			<td><?php echo $seccion -> turno ?></td>
+			<td><?php echo $seccion -> cant_estudiantes ?></td>
 			<td>
 				<a href="<?php echo RUTA_URL;?>/Secciones/editar_seccion/<?php echo $seccion -> id_seccion ?>">Editar</a> - 
 				<a href="<?php echo RUTA_URL;?>/Secciones/eliminar_seccion/<?php echo $seccion -> id_seccion ?>">Eliminar</a>				

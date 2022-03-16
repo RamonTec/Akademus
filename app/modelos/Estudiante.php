@@ -79,9 +79,9 @@
 
 				//Insertar datos en la tabla estudiante para el registro de estudiante
 				$this -> db -> query("INSERT into estudiante (ci_escolar, fecha_n, 
-				lugar_n, sexo, pnom, segnom, pape, segape, pariente_representate, nacionalidad_e, id_representante) 
+				lugar_n, sexo, pnom, segnom, pape, segape, pariente_representate, nacionalidad_e, id_representante, asignado) 
 				VALUES(:ci_escolar, :fecha_n, :lugar_n, :sexo, :pnom, :segnom, 
-				:pape, :segape, :pariente_representate, :nacionalidad_e, :id_representante)");
+				:pape, :segape, :pariente_representate, :nacionalidad_e, :id_representante, :asignado)");
 
 				$this -> db -> bind(':ci_escolar', $datos['ci_escolar']);
 				$this -> db -> bind(':fecha_n', $datos['fecha_n']);
@@ -94,6 +94,7 @@
 				$this -> db -> bind(':segape', $datos['segape']);
 				$this -> db -> bind(':pariente_representate', $datos['pariente_representate']);
 				$this -> db -> bind(':id_representante', $_SESSION['id_representante']);
+				$this -> db -> bind(':asignado', '0');
 				$this -> db -> execute();
 				$id_estudiante = $this -> db -> lastInsertId();
 

@@ -48,7 +48,7 @@
         <div class="row justify-content-center mt-5">
           <div class="col-md-6 text-center">
             <div class="form-group">
-              <button type="submit" class="btn btn-primary">Verificar</button>
+              <button type="submit" class="btn btn-success">Verificar</button>
             </div>
           </div>
         </div>
