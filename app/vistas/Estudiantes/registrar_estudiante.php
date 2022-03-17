@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-2 offset-2 mt-4">
         <div class="form-group">
-          <select class="form-control" id="nacionalidad_e" name="nacionalidad_e">
+          <select required class="form-control" id="nacionalidad_e" name="nacionalidad_e">
             <option disabled selected value="0">Nacionalidad *</option>
             <option value="V">Venezolano</option>
             <option value="E">Extranjero</option>
@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-2 offset-2">
         <div class="form-group">
-          <select class="form-control" id="sexo" name="sexo">
+          <select required class="form-control" id="sexo" name="sexo">
             <option selected disabled value="0">Genero *</option>
             <option value="H">Hombre</option>
             <option value="M">Mujer</option>
@@ -33,24 +33,24 @@
         </div>          
       </div>
       <div class="col-3">        
-        <input type="text" class="form-control" name="pnom" id="pnom" placeholder="Primer nombre *">
-        <input type="text" class="form-control" name="pape" id="pape" placeholder="Primer apellido *">
+        <input required type="text" class="form-control" name="pnom" id="pnom" placeholder="Primer nombre *">
+        <input required type="text" class="form-control" name="pape" id="pape" placeholder="Primer apellido *">
       </div>
       <div class="col-3">
-        <input type="text" class="form-control" name="segnom" id="segnom" placeholder="Segundo nombre *">
-        <input type="text" class="form-control" name="segape" id="segape" placeholder="Segundo apellido">
+        <input required type="text" class="form-control" name="segnom" id="segnom" placeholder="Segundo nombre *">
+        <input required type="text" class="form-control" name="segape" id="segape" placeholder="Segundo apellido">
       </div>
     </div>   
 
     <div class="row">
       <div class="col-2 mt-4 offset-2">        
-        <select class="form-control" id="tipo_est" name="tipo_est">
+        <select required class="form-control" id="tipo_est" name="tipo_est">
           <option disabled selected >Tipo de estudiante *</option>
           <option value="Nuevo ingreso" >Nuevo ingreso</option>
           <option value="Regular" >Regular</option>
         </select>
 
-        <select class="form-control mt-4" id="tipo_est" name="pariente_representate">
+        <select required class="form-control mt-4" id="tipo_est" name="pariente_representate">
           <option selected disabled>Parentesco del representante *</option>
           <option value="Padre" >Padre</option>
           <option value="Madre" >Madre</option>
@@ -63,14 +63,14 @@
       
       <div class="col-3">          
         <label for="exampleInputEmail1">Nacimiento *</label>
-        <input type="text" class="form-control" name="lugar_n" id="lugar_n" placeholder="Lugar de nacimiento *">
-        <input type="date" class="form-control" name="fecha_n" id="fecha_n" placeholder="Fecha de nacimiento *">
+        <input required type="text" class="form-control" name="lugar_n" id="lugar_n" placeholder="Lugar de nacimiento *">
+        <input required type="date" class="form-control" name="fecha_n" id="fecha_n" placeholder="Fecha de nacimiento *">
       </div>
 
       <div class="col-3">          
         <label for="exampleInputEmail1">Datos medicos *</label>
-        <input type="text" class="form-control" name="condicion_s" id="condicion_s" placeholder="Condicion medica *">
-        <input type="text" class="form-control" name="obervacion_s" id="obervacion_s" placeholder="Descripcion *">
+        <input required type="text" class="form-control" name="condicion_s" id="condicion_s" placeholder="Condicion medica *">
+        <input required type="text" class="form-control" name="obervacion_s" id="obervacion_s" placeholder="Descripcion *">
       </div>
     </div>
 

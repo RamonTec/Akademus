@@ -7,12 +7,12 @@
     <div class="row justify-content-center">
       <div class="col-4 mt-4">
         <div class="form-group">
-          <input class="form-control" type="text" name="ci" id="ci" placeholder="Cedula de identidad*">
+          <input required class="form-control" type="text" name="ci" id="ci" placeholder="Cedula de identidad*">
         </div>
       </div>
       <div class="col-2 mt-4">
         <div class="form-group">          
-          <select class="form-control" id="nacionalidad" name="nacionalidad">
+          <select required class="form-control" id="nacionalidad" name="nacionalidad">
             <option selected disabled>Nacionalidad*</option>
             <option value="V">Venezolano</option>
             <option value="E">Extranjero</option>
@@ -21,7 +21,7 @@
       </div>
       <div class="col-2 mt-4">
         <div class="form-group">          
-          <select class="form-control" id="sexo_p" name="sexo_p">
+          <select required class="form-control" id="sexo_p" name="sexo_p">
             <option selected disabled>Sexo*</option>
             <option value="M">Hombre</option>
             <option value="F">Mujer</option>
@@ -32,17 +32,17 @@
     </div>    
     <div class="row justify-content-center">
       <div class="col-4 mt-4">        
-        <input class="form-control" type="text" name="pnombre" id="pnombre" placeholder="Primer nombre*">
-        <input class="form-control" type="text" name="papellido" id="papellido" placeholder="Primer apellido*">        
+        <input required class="form-control" type="text" name="pnombre" id="pnombre" placeholder="Primer nombre*">
+        <input required class="form-control" type="text" name="papellido" id="papellido" placeholder="Primer apellido*">        
       </div>
       <div class="col-4 mt-4">
-        <input class="form-control" type="text" name="segnombre" id="segnombre" placeholder="Segundo nombre*">
-        <input class="form-control" type="text" name="segapellido" id="segapellido" placeholder="Segundo apellido*">        
+        <input required class="form-control" type="text" name="segnombre" id="segnombre" placeholder="Segundo nombre*">
+        <input required class="form-control" type="text" name="segapellido" id="segapellido" placeholder="Segundo apellido*">        
       </div>
     </div>
     <div class="row justify-content-center">  
       <div class="col-8 mt-4">
-          <select class="form-control" id="tipo_prof" name="tipo_prof">
+          <select required class="form-control" id="tipo_prof" name="tipo_prof">
             <option selected disabled>Tipo de profesor*</option>
             <option value="Docente">Docente</option>
             <option value="Ayudante">Ayudante</option>

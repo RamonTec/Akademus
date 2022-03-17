@@ -7,20 +7,20 @@
 
       <div class="row justify-content-center">
         <div class="col-md-3">      
-          <input class="form-control mt-4" id="ci" name="ci" placeholder="Cedula de identidad">
+          <input required class="form-control mt-4" id="ci" name="ci" placeholder="Cedula de identidad">
           <span id="ci_mensaje"></span>   
         </div>
       </div>
 
       <div class="row justify-content-center"><!---- Inicio del primer row ----->
         <div class="col-md-3">      
-          <select id="inputState" id="nacionalidad" name="nacionalidad" class="form-control">
+          <select required id="inputState" id="nacionalidad" name="nacionalidad" class="form-control">
             <option disabled selected>Nacionalidad...</option>
             <option value="V">Venezolano</option>
             <option value="E">Extranjero</option>
           </select>
 
-          <select id="sexo_p" name="sexo_p" class="form-control mt-4">
+          <select required id="sexo_p" name="sexo_p" class="form-control mt-4">
             <option disabled selected>Sexo...</option>
             <option value="M">Hombre</option>
             <option value="F">Mujer</option>
@@ -31,15 +31,15 @@
 
         <div class="col-md-3"><!---- Inicio del primer col ----->
           <div class="form-group">
-            <input type="text" class="form-control" id="pnombre" name="pnombre" placeholder="Primer nombre">
-            <input type="text" class="form-control mt-4" id="segnombre" name="segnombre" placeholder="Segundo nombre">             
+            <input required type="text" class="form-control" id="pnombre" name="pnombre" placeholder="Primer nombre">
+            <input required type="text" class="form-control mt-4" id="segnombre" name="segnombre" placeholder="Segundo nombre">             
           </div>
         </div><!---- Cierre del primer col ----->
 
         <div class="col-md-3"><!---- Inicio del segundo col ----->
           <div class="form-group">              
-            <input type="text" class="form-control" id="papellido" name="papellido" placeholder="Primer apellido">
-            <input type="text" class="form-control mt-4" id="segapellido" name="segapellido" placeholder="Segundo apellido">
+            <input required type="text" class="form-control" id="papellido" name="papellido" placeholder="Primer apellido">
+            <input required type="text" class="form-control mt-4" id="segapellido" name="segapellido" placeholder="Segundo apellido">
           </div>
         </div><!---- Cierre del segundo col ----->
       </div><!---- Cierre del primer row ----->
@@ -47,8 +47,8 @@
       <div class="row pt-3 justify-content-center"><!---- Inicio del segundo row ----->        
         <div class="col-md-3"><!---- Inicio del tercer col ----->
           <div class="form-group">
-            <input type="text" class="form-control mt-4" id="nom_u" name="nom_u" placeholder="Nombre de usuario">
-            <input type="password" class="form-control mt-4" id="clave" name="clave" placeholder="Primer contraseña">
+            <input required type="text" class="form-control mt-4" id="nom_u" name="nom_u" placeholder="Nombre de usuario">
+            <input required type="password" class="form-control mt-4" id="clave" name="clave" placeholder="Primer contraseña">
           </div>
         </div><!---- Cierre del tercer col ----->
         <div class="col-md-3"><!---- Inicio del cuarto col ----->
@@ -56,7 +56,7 @@
             <?php
               if ($datos["mensaje"] == "No") {
                 ?>                
-                <select id="inputState" id="privilegio" name="privilegio" class="form-control mt-4">
+                <select required id="inputState" id="privilegio" name="privilegio" class="form-control mt-4">
                     <option disabled selected>Privilegio</option>              
                     <option value="Director">Director</option>
                     <option value="Seccional">Seccional</option>
@@ -64,7 +64,7 @@
                 <?php 
               } else{
                 ?>
-                  <select id="inputState" id="privilegio" name="privilegio" class="form-control mt-4">
+                  <select required id="inputState" id="privilegio" name="privilegio" class="form-control mt-4">
                     <option disabled selected>Privilegio</option>
                     <option value="Seccional">Seccional</option>
                   </select>
@@ -76,7 +76,7 @@
 
         <div class="col-md-3"><!---- Inicio del quinto col ----->
           <div class="form-group">
-            <select id="inputState" id="pregunta_s" name="pregunta_s" class="form-control mt-4">
+            <select required id="inputState" id="pregunta_s" name="pregunta_s" class="form-control mt-4">
               <option disabled selected>Pregunta secreta</option>
               <option value="Nombre de mi primer mascota">Nombre de mi primer mascota</option>
               <option value="Carro favorito">Carro favorito</option>

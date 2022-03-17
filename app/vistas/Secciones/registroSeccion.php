@@ -12,7 +12,7 @@
      
     <div class="row justify-content-center">  
       <div class="col-3 mt-4">        
-        <select class="form-control mt-4" id="cod_sec" name="cod_sec">
+        <select required class="form-control mt-4" id="cod_sec" name="cod_sec">
           <option disabled value="" >--- Preescolar</option>
           <option value="Primer nivel" >Primer nivel</option>
           <option value="Segundo nivel" >Segundo nivel</option>
@@ -27,14 +27,14 @@
           <option value="Sexto Grado" >Sexto Grado</option>
         </select>
 
-        <select class="form-control mt-4" id="nom_sec" name="nom_sec">
+        <select required class="form-control mt-4" id="nom_sec" name="nom_sec">
           <option disabled value="" >--- Seccion</option>
           <option value="A" >A</option>
           <option value="B" >B</option>
           <option value="C" >C</option>
         </select>
 
-        <select class="form-control mt-4" id="turno" name="turno">
+        <select required class="form-control mt-4" id="turno" name="turno">
           <option disabled value="" >--- Turno</option>
           <option value="Mañana" >Mañana</option>
           <option value="Tarde" >Tarde</option>

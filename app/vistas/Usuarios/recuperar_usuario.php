@@ -17,14 +17,14 @@
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group text-center">
               <label for="ci"><i class="fas fa-user"></i></label>
-              <input type="text" class="text-center form-control" name="ci" id="ci" placeholder="Cedula de identidad">
+              <input required type="text" class="text-center form-control" name="ci" id="ci" placeholder="Cedula de identidad">
             </div>
           </div>
         </div>
 
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <select id="inputState" id="pregunta_s" name="pregunta_s" class="form-control">
+            <select required id="inputState" id="pregunta_s" name="pregunta_s" class="form-control">
               <option selected>Pregunta secreta</option>
               <option value="Nombre de mi primer mascota">Nombre de mi primer mascota</option>
               <option value="Carro favorito">Carro favorito</option>
@@ -39,8 +39,8 @@
         <div class="row justify-content-center">
           <div class="col-md-6">
             <div class="form-group text-center">
-              <label for="respuesta_S"><i class="fas fa-unlock-alt"></i></label>
-              <input type="password" class="text-center form-control" name="respuesta_s" id="respuesta_s" placeholder="Respuesta secreta">
+              <label required for="respuesta_S"><i class="fas fa-unlock-alt"></i></label>
+              <input required type="password" class="text-center form-control" name="respuesta_s" id="respuesta_s" placeholder="Respuesta secreta">
             </div>
           </div>
         </div>

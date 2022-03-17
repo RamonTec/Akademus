@@ -14,7 +14,7 @@
           <div class="row justify-content-center">
              <div class="col-md-4">
                  <div class="form-group text-center">                     
-                    <input type="text" class="text-center form-control" name="nombre_viejo" id="nombre_viejo" placeholder="Nombre de usuario viejo">
+                    <input required type="text" class="text-center form-control" name="nombre_viejo" id="nombre_viejo" placeholder="Nombre de usuario viejo">
 
                  </div>
              </div>
@@ -22,7 +22,7 @@
          <div class="row justify-content-center">
              <div class="col-md-4">
                  <div class="form-group text-center">                     
-                     <input type="text" class="text-center form-control" name="nom_u" id="nom_u" placeholder="Nombre de usuario nuevo">
+                     <input required type="text" class="text-center form-control" name="nom_u" id="nom_u" placeholder="Nombre de usuario nuevo">
 
                  </div>
              </div>
@@ -30,7 +30,7 @@
          <div class="row justify-content-center">
              <div class="col-md-4">
                  <div class="form-group text-center">                     
-                    <input type="password" class="text-center form-control" name="clave" id="clave" placeholder="Clave">
+                    <input required type="password" class="text-center form-control" name="clave" id="clave" placeholder="Clave">
                  </div>
              </div>
          </div>

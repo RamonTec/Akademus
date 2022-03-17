@@ -12,8 +12,8 @@
      
     <div class="row justify-content-center">  
       <div class="col-3 mt-4">        
-        <input type="text" class="form-control" name="ci_per" id="ci_per" placeholder="Cedula de identidad*">
-        <input type="text" class="form-control" name="tipo_prof" id="tipo_prof" placeholder="Tipo de profesor*">
+        <input required type="text" class="form-control" name="ci_per" id="ci_per" placeholder="Cedula de identidad*">
+        <input required type="text" class="form-control" name="tipo_prof" id="tipo_prof" placeholder="Tipo de profesor*">
       </div>
     </div>
     <div class="row justify-content-center">

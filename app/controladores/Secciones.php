@@ -42,6 +42,7 @@
           'id_seccion' => $seccion -> id_seccion,
           'nom_sec' => $seccion -> nom_sec,
           'cod_sec' => $seccion -> cod_sec,
+          'turno' => $seccion -> turno,
           'mensaje' => ''
         ];
         $this -> vista('Secciones/editar_seccion', $datos);

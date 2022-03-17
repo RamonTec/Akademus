@@ -6,8 +6,8 @@
       <div class="row pt-3"><!---- Inicio del segundo row ----->        
         <div class="col-md-3 offset-1"><!---- Inicio del tercer col ----->
           <div class="form-group">
-            <input type="text" class="form-control mt-4" id="nom_u" name="nom_u" value="<?php if($datos['nom_u']) echo $datos['nom_u']  ?>" placeholder="Nombre de usuario">
-            <input type="password" class="form-control mt-4" id="clave" name="clave" placeholder="Primer contraseña">  
+            <input required type="text" class="form-control mt-4" id="nom_u" name="nom_u" value="<?php if($datos['nom_u']) echo $datos['nom_u']  ?>" placeholder="Nombre de usuario">
+            <input required type="password" class="form-control mt-4" id="clave" name="clave" placeholder="Primer contraseña">  
           </div>
         </div><!---- Cierre del tercer col ----->
         <div class="col-md-3"><!---- Inicio del cuarto col ----->
@@ -17,19 +17,15 @@
               $privilegio = trim($datos['privilegio']);                            
                 if ($privilegio != "Director") {
                   ?>                
-                  <select id="inputState" id="privilegio" name="privilegio" class="form-control mt-4">                              
+                  <select required id="inputState" id="privilegio" name="privilegio" class="form-control mt-4">                              
                       <option value="Director" <?php if($privilegio == 'Director') echo 'selected' ?> >Director</option>
-                      <option value="Autorizado" <?php if($privilegio == 'Autorizado') echo 'selected' ?> > Autorizado</option>
                       <option value="Seccional" <?php if($privilegio == 'Seccional') echo 'selected' ?> > Seccional</option>
-                      <option value="Academico" <?php if($privilegio == 'Academico') echo 'selected' ?> > Academico</option>
                     </select>
                   <?php 
                 } else{
                   ?>
-                    <select id="inputState" id="privilegio" name="privilegio" class="form-control mt-4">                              
-                      <option value="Autorizado" <?php if($privilegio == 'Autorizado') echo 'selected' ?>  >Autorizado</option>
+                    <select id="inputState" id="privilegio" name="privilegio" class="form-control mt-4">                         
                       <option value="Seccional" <?php if($privilegio == 'Seccional') echo 'selected' ?>  >Seccional</option>
-                      <option value="Academico" <?php if($privilegio == 'Academico') echo 'selected' ?>  >Academico</option>
                     </select>
                   <?php
                 }
@@ -38,7 +34,7 @@
         </div><!---- Cierre del cuarto col ----->
         <div class="col-md-3"><!---- Inicio del quinto col ----->
           <div class="form-group">
-            <select id="inputState" id="pregunta_s" name="pregunta_s" class="form-control mt-4">
+            <select required id="inputState" id="pregunta_s" name="pregunta_s" class="form-control mt-4">
               <option selected>Pregunta secreta</option>
               <option value="Nombre de mi primer mascota">Nombre de mi primer mascota</option>
               <option value="Carro favorito">Carro favorito</option>

@@ -132,84 +132,27 @@
 
 	// Método que instancia la vista actualizar_representante.
 	public function actualizar_representante($ci){
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$datos = [
-				// Variable para actualizar al representante
-				'ci' => trim($_POST['ci']),
-				//Datos de la tabla direccion				
-				'n_casa' => trim($_POST['n_casa']), 
-				'pto_ref' => trim($_POST['pto_ref']),
-				'calle' => trim($_POST['calle']),
-				'sector' => trim($_POST['sector']),
-				//Datos de la tabla pais
-				'nom_pais' => trim($_POST['nom_pais']),
-				//Datos de la tabla municipio
-				'nombre_muni' => trim($_POST['nombre_muni']),
-				//Datos de la tabla estado
-				'nom_estado' => trim($_POST['nom_estado']),
-				//Datos de la tabla telefono
-				'cod_area1' => trim($_POST['cod_area1']), 
-				'numero1' => trim($_POST['numero1']),
-				'tipo1' => trim($_POST['tipo1']),
-				//Datos de la tabla representante
-				'tutor_legal' => trim($_POST['tutor_legal']),				
-				'posee_po' => trim($_POST['posee_po']),
-				'nom_po' => trim($_POST['nom_po']),
-				'lugar_po' => trim($_POST['lugar_po']),
-				'tlf_po' => trim($_POST['tlf_po'])
-			];
-			$this -> representante_modelo -> editar_representante($datos);
-			if (empty($this -> representante_modelo -> mensaje)) {
-				Helper::redireccionar('/Representantes/representante');
-			} else {
-				die('Algo salio mal');
-			}
-		} else {
-			$representante = $this -> representante_modelo -> obtener_representante_por_ci($ci);			
-			$datos = [ 
-				'ci' => $representante -> ci,
-				'pnombre' => $representante -> pnombre,
-				'segnombre' => $representante -> segnombre,
-				'papellido' => $representante -> papellido,
-				'segapellido' => $representante -> segapellido,
-				'nacionalidad' => $representante -> nacionalidad,
-				'sexo_p' => $representante -> sexo_p,
-				
-				'n_casa' => $representante -> n_casa,				
-				'pto_ref' => $representante -> pto_ref,
-				'calle'	=> $representante -> calle,
-				'sector' => $representante -> sector,
-
-				'nom_pais' => $representante -> nom_pais,
-				'nombre_muni' => $representante -> nombre_muni,
-				'nom_estado' => $representante -> nom_estado,
-
-				'cod_area1' => $representante -> cod_area1,
-				'numero1' => $representante -> numero1,
-				'tipo1' => $representante -> tipo1,
-
-				'tutor_legal' => $representante -> tutor_legal,				
-				'posee_po' => $representante -> posee_po,
-				'nom_po' => $representante -> nom_po,
-				'lugar_po' => $representante -> lugar_po,
-				'tlf_po' => $representante -> tlf_po
-			];
-			$this -> vista('Representantes/editar_representante', $datos);
-		}	
+			$_SESSION['id_representante_persona'] = $ci;
+			$representante = $this -> representante_modelo -> obtener_representante_por_ci($ci);	
+			print_r($representante);		
+			
+			$this -> vista('Representantes/editar_representante', $representante);
 	}
 
-	public function eliminar_representante($ci) {
+	public function eliminar_representante($id_per) {
 		$datos = [
-			'ci_representante' => $ci
+			'id_per' => $id_per
 		];
 		$representante_eliminado = $this -> representante_modelo -> borrar_representante($datos);
 		if (empty($representante_eliminado['mensaje'])) {
 			$datos = [
 				'mensaje' => 'Representante eliminado existosamente'
 			];
+			print_r("aca");
 			Helper::redireccionar('/Representantes/representantes', $datos);
 		} else {
-			$this -> vista('Secciones/secciones', $secciones);
+			print_r("aca");
+			$this -> vista('Representantes/Representantes', $secciones);
 		}
 	}
 
@@ -223,12 +166,49 @@
 				$this -> vista('Representantes/estudiantes_representante', $representante);
 			} else{ 
 				$datos = ["mensaje" => $this -> representante_modelo -> mensaje];
-				print_r($representante);
 				$this -> vista('Representantes/obtener_representante', $representante);
 			}
 		} else{
         $this -> vista('Representantes/obtener_representante');
     }
+	}
+
+	public function modificar_representante() {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$datos = [
+				'ci' => trim($_POST['ci']),
+				'pnombre' => trim($_POST['pnombre']),
+				'segnombre' => trim($_POST['segnombre']),
+				'papellido' => trim($_POST['papellido']),
+				'segapellido' => trim($_POST['segapellido']),
+				'nacionalidad' => trim($_POST['nacionalidad']),
+				'sexo_p' => trim($_POST['sexo_p']),
+
+				//Datos de la tabla direccion
+				'pto_ref' => trim($_POST['pto_ref']),
+
+				//Datos de la tabla pais
+				'nom_pais' => trim($_POST['nom_pais']),
+
+				//Datos de la tabla municipio
+				'nombre_muni' => trim($_POST['nombre_muni']),
+
+				//Datos de la tabla estado
+				'nom_estado' => trim($_POST['nom_estado']),
+
+				//Datos de la tabla telefono
+				'numero1' => trim($_POST['numero1']),
+
+				//Datos de la tabla representante
+				'nom_po' => trim($_POST['nom_po'])
+			];
+			$repre = $this -> representante_modelo -> editar_representante($datos);
+			if (empty($repre['mensaje'])) {
+				Helper::redireccionar('/Representantes/representantes');
+			} else {
+				$this -> vista('Representantes/editar_representante', $repre);
+			}
+		}
 	}
 
 	

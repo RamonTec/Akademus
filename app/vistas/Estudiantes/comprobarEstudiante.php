@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="form-group text-center">                    
-                    <input type="text" class="text-center form-control" name="ci" placeholder="Cedula de identidad">
+                    <input required type="text" class="text-center form-control" name="ci" placeholder="Cedula de identidad">
                 </div>
             </div>
         </div>

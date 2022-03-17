@@ -11,26 +11,26 @@
         <h3>Edicion de usuario</h3>
         <div class="form-group">
           <label for="nombre_u">Nombre de usuario</label>
-          <input type="text" class="form-control" id="nombre_u" name="nombre_u" aria-describedby="emailHelp" placeholder="Nombre de usuario" value="<?php echo $datos['nombre_u'] ?>">
+          <input required type="text" class="form-control" id="nombre_u" name="nombre_u" aria-describedby="emailHelp" placeholder="Nombre de usuario" value="<?php echo $datos['nombre_u'] ?>">
         </div>
         <div class="form-group">
           <label for="clave">Contraseña</label>
-          <input type="password" class="form-control" id="clave" name="clave" placeholder="Clave"
+          <input required type="password" class="form-control" id="clave" name="clave" placeholder="Clave"
           value="<?php echo $datos['clave'] ?>">
         </div>
         <div class="form-group">
           <label for="privilegio">Privilegio de usuario</label>
-          <input type="text" class="form-control" id="privilegio" name="privilegio" aria-describedby="emailHelp" placeholder="Privilegio" 
+          <input required type="text" class="form-control" id="privilegio" name="privilegio" aria-describedby="emailHelp" placeholder="Privilegio" 
           value="<?php echo $datos['privilegio'] ?>">
         </div>
         <div class="form-group">
           <label for="pregunta_S">Pregunta secreta</label>
-          <input type="text" class="form-control" id="pregunta_S" name="pregunta_S" aria-describedby="emailHelp" placeholder="Pregunta secreta"
+          <input required type="text" class="form-control" id="pregunta_S" name="pregunta_S" aria-describedby="emailHelp" placeholder="Pregunta secreta"
           value="<?php echo $datos['pregunta_s'] ?>">
         </div>
         <div class="form-group">
           <label for="respuesta_S">Respuesta secreta</label>
-          <input type="text" class="form-control" id="respuesta_S" name="respuesta_S" aria-describedby="emailHelp" placeholder="Respuesta secreta"
+          <input required type="text" class="form-control" id="respuesta_S" name="respuesta_S" aria-describedby="emailHelp" placeholder="Respuesta secreta"
           value="<?php echo $datos['respuesta_s'] ?>">
         </div>
         <div class="form-group">

@@ -242,15 +242,17 @@
 
           $get_id_representante = $this -> db -> registro();
           
-          $this -> db -> query("SELECT * FROM estudiante WHERE id_representante = :id_rep");
-          $this -> db -> bind(':id_representante', $get_id_representante -> id_rep);
+          $this -> db -> query("SELECT * FROM estudiante WHERE id_representante = :id_representante");
+          $this -> db -> bind(':id_representante', $get_id_representante -> id_rep_per);
 
           $get_estudiante_representado = $this -> db -> registro();
 
           // Si existe significa que el representante tiene un estudiante inscrito, por lo tanto no se puede eliminar
           if($get_estudiante_representado == true) {
 
-            return $this -> mensaje = 'No se puede eliminar, tiene estudiantes registrados';
+            return  [
+              'mensaje' => 'No se puede eliminar, tiene estudiantes registrados'
+            ];
 
             // Si no aparece algun estudiante significa que se puede eliminar el representante
           } else {
@@ -260,14 +262,21 @@
             $this -> db -> bind(':id_rep_per', $get_id_representante -> id_rep_per);
 
             $this -> db -> execute();
+
+            $this -> db -> query("DELETE * FROM persona WHERE id_per = :id_per");
+            $this -> db -> bind(':id_per', $get_ci_representante -> id_per);
+
+            $this -> db -> execute();
+
             $this -> db -> commit();
           }
         }
 
       } catch (PDOException $e) {
 				$this -> db -> rollBack();
-        print "Error!: " . $e -> getMessage() . "</br>";
-        return $this -> mensaje = 'Error';
+        return [
+          'mensaje' => $e -> getMessage()
+        ];
 			}
     }
 
@@ -318,6 +327,30 @@
       try {
         $this -> db -> beginTransaction();
 
+        $this -> db -> query(
+          "SELECT
+          persona.id_per, persona.nacionalidad, persona.sexo_p,
+          persona.ci, persona.pnombre, persona.segnombre, persona.papellido, persona.segapellido,
+          representante.id_rep_per, representante.id_rep, representante.id_dr,
+          direccion.pto_ref, municipio.nombre_muni, direccion.id_dir,
+          estado.nom_estado, pais.nom_pais, estado.id_estado, municipio.id_muni, pais.id_pais,
+          telefono.numero1, telefono.id_tlf,
+          profesion_u_oficio.nom_po, profesion_u_oficio.id_po
+          FROM persona 
+          INNER JOIN representante ON persona.id_per = representante.id_rep_per
+          INNER JOIN direccion ON direccion.id_dir = representante.id_dr
+          INNER JOIN municipio ON municipio.id_muni = direccion.id_md
+          INNER JOIN estado ON estado.id_estado = municipio.id_em
+          INNER JOIN pais ON pais.id_pais = estado.id_ep
+          INNER JOIN telefono ON telefono.id_te = representante.id_rep
+          INNER JOIN profesion_u_oficio ON profesion_u_oficio.id_po = representante.id_pr
+          WHERE persona.id_per = :id_per"
+        );
+  
+        $this -> db -> bind(':id_per', $_SESSION['id_representante_persona']);
+
+        $persona_join = $this -> db -> registro();
+
         $this -> db -> query("UPDATE persona SET pnombre = :pnombre, segnombre = :segnombre, papellido = :papellido, segapellido = :segapellido, nacionalidad = :nacionalidad, sexo_p = :sexo_p, ci = :ci
           WHERE id_per = :id_per
         ");
@@ -329,16 +362,48 @@
         $this -> db -> bind(':nacionalidad', $datos['nacionalidad']);	
         $this -> db -> bind(':sexo_p', $datos['sexo_p']);	
         $this -> db -> bind(':ci', $datos['ci']);	
-        $this -> db -> bind(':id_per', $datos['id_per']);
-
+        $this -> db -> bind(':id_per', $persona_join -> id_per);
         $this -> db -> execute();
 
-        $this -> db -> query("UPDATE profesor SET tipo_prof = :tipo_prof
-          WHERE id_prof = :id_per
+        $this -> db -> query("UPDATE pais SET nom_pais = :nom_pais
+          WHERE id_pais = :id_pais
         ");
 
-        $this -> db -> bind(':tipo_prof', $datos['tipo_prof']);
-        $this -> db -> bind(':id_per', $datos['id_per']);
+        $this -> db -> bind(':nom_pais', $datos['nom_pais']);
+        $this -> db -> bind(':id_pais', $persona_join -> id_pais);
+        $this -> db -> execute();
+
+        $this -> db -> query("UPDATE estado SET nom_estado = :nom_estado
+          WHERE id_estado = :id_estado
+        ");
+
+        $this -> db -> bind(':nom_estado', $datos['nom_estado']);
+        $this -> db -> bind(':id_estado', $persona_join -> id_estado);
+        $this -> db -> execute();
+
+        $this -> db -> query("UPDATE municipio SET nombre_muni = :nombre_muni
+          WHERE id_muni = :id_muni
+        ");
+
+        $this -> db -> bind(':nombre_muni', $datos['nombre_muni']);
+        $this -> db -> bind(':id_muni', $persona_join -> id_muni);
+        $this -> db -> execute();
+
+        $this -> db -> query("UPDATE telefono SET numero1 = :numero1
+          WHERE id_tlf = :id_tlf
+        ");
+
+        $this -> db -> bind(':numero1', $datos['numero1']);
+        $this -> db -> bind(':id_tlf', $persona_join -> id_tlf);
+        $this -> db -> execute();
+        
+
+        $this -> db -> query("UPDATE profesion_u_oficio SET nom_po = :nom_po
+          WHERE id_po = :id_po
+        ");
+
+        $this -> db -> bind(':nom_po', $datos['nom_po']);
+        $this -> db -> bind(':id_po', $persona_join -> id_po);
 
         $this -> db -> execute();
         $this -> db -> commit();
@@ -347,22 +412,44 @@
       } catch (PDOException $e) {
         $this -> db -> rollBack();
         return [
-          'ci' => $datos['ci'],
-          'pnombre' => $datos['pnombre'],
-          'segnombre' => $datos['segnombre'],
-          'papellido' => $datos['papellido'],
-          'segapellido' => $datos['segapellido'],
-          'nacionalidad' => $datos['nacionalidad'],
-          'sexo_p' => $datos['sexo_p'],
-          'tipo_prof' => $datos['tipo_prof'],
-          'id_per' => $datos['id_per'],
-          'mensaje' => $this -> mensaje = $e -> getMessage()
+          "new_ci" => $datos['ci'], 
+          "0" => $persona_join,
+          "mensaje" => $e -> getMessage()
         ];
 				print "Error!: " . $e -> getMessage() . "</br>";
       }
     }
 
     public function obtener_representante_por_ci($datos) {
+      // inner join para: representante, persona, estudiante, seccion
+      $this -> db -> query(
+        "SELECT
+        persona.id_per, 
+        persona.ci, persona.pnombre, persona.papellido, persona.segapellido, persona.segnombre, persona.sexo_p, persona.nacionalidad,
+        representante.id_rep_per, representante.id_rep, representante.id_dr,
+        direccion.pto_ref, municipio.nombre_muni,
+        estado.nom_estado, pais.nom_pais,
+        telefono.numero1,
+        profesion_u_oficio.nom_po
+        FROM persona 
+        INNER JOIN representante ON persona.id_per = representante.id_rep_per
+        INNER JOIN direccion ON direccion.id_dir = representante.id_dr
+        INNER JOIN municipio ON municipio.id_muni = direccion.id_md
+        INNER JOIN estado ON estado.id_estado = municipio.id_em
+        INNER JOIN pais ON pais.id_pais = estado.id_ep
+        INNER JOIN telefono ON telefono.id_te = representante.id_rep
+        INNER JOIN profesion_u_oficio ON profesion_u_oficio.id_po = representante.id_pr
+        WHERE persona.id_per = :id_per"
+      );
+
+      $this -> db -> bind(':id_per', $datos);
+
+      $representantes = $this -> db -> registros();
+      
+      return [
+        'mensaje' => '',
+        '0' => $representantes[0]
+      ];
 
     }
 

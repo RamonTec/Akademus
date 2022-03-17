@@ -9,11 +9,11 @@
 					<form id="inicio_sesion" class="mx-auto mt-5" action="<?php echo RUTA_URL?>/Logins/verificar_sesion" method="POST">
 
 						<div class="form-group mx-auto">                            
-							<input type="text" class="text-center form-control" name="nom_u" id="nom_u" placeholder="Ingrese su usuario">
+							<input required type="text" class="text-center form-control" name="nom_u" id="nom_u" placeholder="Ingrese su usuario">
 						</div>
 						
 						<div class="form-group mx-auto">                            
-							<input type="password" class="text-center form-control" name="clave" id="clave" placeholder="Ingrese su clave">
+							<input required type="password" class="text-center form-control" name="clave" id="clave" placeholder="Ingrese su clave">
 						</div>  
 
 						<div class="form-group mx-auto">
