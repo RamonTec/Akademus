@@ -14,67 +14,80 @@
 		//funcion postgresql con parametros
 		public function agregar_usuario($datos){
 
-			// Habilitando las transacciones a la base de datos con el metodo beginTransaction.
-			$this -> db -> beginTransaction();
+			try {
+				// Habilitando las transacciones a la base de datos con el metodo beginTransaction.
+					$this -> db -> beginTransaction();
 
-			
-			// Insertando registro de usuario -> persona.															
-			$this -> db -> query("INSERT INTO persona(ci, pnombre, segnombre, papellido, segapellido, nacionalidad, sexo_p)
-					VALUES(:ci, :pnombre, :segnombre, :papellido, :segapellido, :nacionalidad, :sexo_p)");
+					
+					// Insertando registro de usuario -> persona.															
+					$this -> db -> query("INSERT INTO persona(ci, pnombre, segnombre, papellido, segapellido, nacionalidad, sexo_p)
+							VALUES(:ci, :pnombre, :segnombre, :papellido, :segapellido, :nacionalidad, :sexo_p)");
 
-					print_r($datos['sexo_p']);
+							
 
-			// Vinculando valores con el bind para evitar inyección de codigo SQL.
-			$this -> db -> bind(':ci', $datos['ci']);
-			$this -> db -> bind(':pnombre', $datos['pnombre']);
-			$this -> db -> bind(':segnombre', $datos['segnombre']);
-			$this -> db -> bind(':papellido', $datos['papellido']);
-			$this -> db -> bind(':segapellido', $datos['segapellido']);
-			$this -> db -> bind(':nacionalidad', $datos['nacionalidad']);
-			$this -> db -> bind(':sexo_p', $datos['sexo_p']);
+					// Vinculando valores con el bind para evitar inyección de codigo SQL.
+					$this -> db -> bind(':ci', $datos['ci']);
+					$this -> db -> bind(':pnombre', $datos['pnombre']);
+					$this -> db -> bind(':segnombre', $datos['segnombre']);
+					$this -> db -> bind(':papellido', $datos['papellido']);
+					$this -> db -> bind(':segapellido', $datos['segapellido']);
+					$this -> db -> bind(':nacionalidad', $datos['nacionalidad']);
+					$this -> db -> bind(':sexo_p', $datos['sexo_p']);
 
-			// Ejecutando la consulta con el metodo execute.
-			$this -> db -> execute(); 
+					// Ejecutando la consulta con el metodo execute.
+					$this -> db -> execute(); 
 
-			// Obteniendo el ultimo id insertado en la tabla persona.
-			$id_persona_usuario = $this -> db -> lastInsertId();
+					// Obteniendo el ultimo id insertado en la tabla persona.
+					$id_persona_usuario = $this -> db -> lastInsertId();
 
-			// Insertando el registro de usuario -> usuario
-			$this -> db -> query("INSERT INTO usuario(nom_u, clave, privilegio, respuesta_s, 
-				pregunta_s, activo, id_pu)VALUES(:nom_u, :clave, :privilegio, :respuesta_s, :pregunta_s,
-				:activo, :id_pu)");
-			print_r($datos);
-			// Encriptado de la clave ingresa por el usuario con metodo propio de encriptado.
-			$clave_encriptada = Helper::encriptar($datos['clave']);
+					// Insertando el registro de usuario -> usuario
+					$this -> db -> query("INSERT INTO usuario(nom_u, clave, privilegio, respuesta_s, 
+						pregunta_s, activo, id_pu)VALUES(:nom_u, :clave, :privilegio, :respuesta_s, :pregunta_s,
+						:activo, :id_pu)");
+					// Encriptado de la clave ingresa por el usuario con metodo propio de encriptado.
+					$clave_encriptada = Helper::encriptar($datos['clave']);
 
-			// Encriptado de la clave con md5.
-			// $clave_encriptada = password_hash($clave_encriptada, PASSWORD_DEFAULT);
+					// Encriptado de la clave con md5.
+					// $clave_encriptada = password_hash($clave_encriptada, PASSWORD_DEFAULT);
 
-			// Encriptado de pregunta de seguridad del usuario con metodo propio de encriptado.
-				$pregunta_encriptada = Helper::encriptar($datos['pregunta_s']);
+					// Encriptado de pregunta de seguridad del usuario con metodo propio de encriptado.
+						$pregunta_encriptada = Helper::encriptar($datos['pregunta_s']);
 
-			// Encriptado de la pregunta de seguridad con md5.
-			// $pregunta_encriptada = password_hash($pregunta_encriptada, PASSWORD_DEFAULT);
+					// Encriptado de la pregunta de seguridad con md5.
+					// $pregunta_encriptada = password_hash($pregunta_encriptada, PASSWORD_DEFAULT);
 
-			// Encriptado de la respuesta secreta ingresada por el usuario con metodo propio.
-			$respuesta_encriptada = Helper::encriptar($datos['respuesta_s']);
+					// Encriptado de la respuesta secreta ingresada por el usuario con metodo propio.
+					$respuesta_encriptada = Helper::encriptar($datos['respuesta_s']);
 
-			// Encriptado con md5.
-			// $respuesta_encriptada = password_hash($respuesta_encriptada, PASSWORD_DEFAULT);
+					// Encriptado con md5.
+					// $respuesta_encriptada = password_hash($respuesta_encriptada, PASSWORD_DEFAULT);
 
-			// Vinculando valores con el bind para evitar inyección de codigo SQL.
-			$this -> db -> bind(':nom_u', $datos['nom_u']);
-			$this -> db -> bind(':clave', $clave_encriptada);
-			$this -> db -> bind(':privilegio', $datos['privilegio']);
-			$this -> db -> bind(':pregunta_s', $pregunta_encriptada);
-			$this -> db -> bind(':respuesta_s', $respuesta_encriptada);
-			$this -> db -> bind(':activo', '1');
-			$this -> db -> bind(':id_pu', $id_persona_usuario);
+					// Vinculando valores con el bind para evitar inyección de codigo SQL.
+					$this -> db -> bind(':nom_u', $datos['nom_u']);
+					$this -> db -> bind(':clave', $clave_encriptada);
+					$this -> db -> bind(':privilegio', $datos['privilegio']);
+					$this -> db -> bind(':pregunta_s', $pregunta_encriptada);
+					$this -> db -> bind(':respuesta_s', $respuesta_encriptada);
+					$this -> db -> bind(':activo', '1');
+					$this -> db -> bind(':id_pu', $id_persona_usuario);
 
-			// Ejecutando la consulta con el metodo execute.
-			$this -> db -> execute();
-			// Guardando la consulta con el metodo commit.
-			$this -> db -> commit();
+					// Ejecutando la consulta con el metodo execute.
+					$this -> db -> execute();
+					// Guardando la consulta con el metodo commit.
+					$this -> db -> commit();
+
+					return [
+						'code' => 0,
+						'mensaje' => "Usuario registrado exitosamente"
+					];
+			} catch (PDOException $e) {
+				$this -> db -> rollBack();
+				return [
+					'code' => 1,
+					'mensaje' => $e -> getMessage()
+				];
+				print "Error!: " . $e -> getMessage() . "</br>";
+			}
 
 		}
 

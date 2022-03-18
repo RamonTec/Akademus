@@ -109,6 +109,7 @@ create table estudiante(
 	id_de			int,
 	pariente_representate varchar(20),
 	asignado VARCHAR(20),
+	tipo_est varchar(20) not null,
 	id_representante int,
 	foreign key (id_representante) references representante(id_rep) on update cascade on delete cascade
 );

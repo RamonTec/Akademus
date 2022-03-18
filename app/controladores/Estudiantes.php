@@ -69,9 +69,8 @@
 
 				];
 				$estudiante = $this -> estudianteModelo -> insertar_estudiante($datos);
-				print_r($estudiante);
 				if (empty($estudiante["mensaje"])) {
-					Helper::redireccionar('/Estudiantes/asignar_estudiante');
+					$this -> vista('/Estudiantes/estudiantes');
 				} else{
 					$datos = $estudiante;
 					$this -> vista('/Estudiantes/registrar_estudiante', $datos);
@@ -97,20 +96,14 @@
 			$estudiante = $this -> estudianteModelo -> obtener_estudiante_perfil($ci_est);
 				
 			$datos = [ 
-				'ci_est' => $estudiante -> ci_est,
 				'ci_escolar' => $estudiante -> ci_escolar,
-				'pasaporte' => $estudiante -> pasaporte,
-				'ci_diplomatica' => $estudiante -> ci_diplomatica,
-				'tipo_est' => $estudiante -> tipo_est,
 				'fecha_n' => $estudiante -> fecha_n,
 				'lugar_n' => $estudiante -> lugar_n,
 				'sexo' => $estudiante -> sexo,
 				'pnom' => $estudiante -> pnom,
 				'segnom' => $estudiante -> segnom,
-				'otrosnom' => $estudiante -> otrosnom,
 				'pape' => $estudiante -> pape,
-				'segape' => $estudiante -> segape,
-				'otrosape' => $estudiante -> otrosape			
+				'segape' => $estudiante -> segape		
 			];
 
 			$this -> vista("Estudiantes/perfil_estudiante", $datos);
@@ -118,38 +111,48 @@
 		}
  
 		public function actualizarEstudiante($ci){
+			$estudiante = $this -> estudianteModelo -> obtenerEstudiante($ci);
+
+			$datos = [
+				'mensaje' => '',
+				'estudiante' => $estudiante
+			];
+			$this -> vista('Estudiantes/actualizarEstudiante', $datos);
+		}
+
+		public function modificar_estudiante() {
 			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$datos = [
-					'ci' => trim($_POST['ci']),
-					'pnombre' => trim($_POST['pnombre']),
-					'segnombre' => trim($_POST['segnombre']),
-					'otrosnombres' => trim($_POST['otrosnombres']),
-					'papellido' => trim($_POST['papellido']),
-					'segapellido' => trim($_POST['segapellido']),
-					'otrosapellidos' => trim($_POST['otrosapellidos']),
+					'ci_escolar' => trim($_POST['ci_escolar']),
+					'pnom' => trim($_POST['pnom']),
+					'segnom' => trim($_POST['segnom']),
+					'pape' => trim($_POST['pape']),
+					'segape' => trim($_POST['segape']),
 					'sexo' => trim($_POST['sexo']),
-					'nacionalidad' => trim($_POST['nacionalidad'])
+					'nacionalidad_e' => trim($_POST['nacionalidad_e']),
+
+					'pariente_representate' => trim($_POST['pariente_representate']),
+					'tipo_est' => trim($_POST['tipo_est']),
+
+					'lugar_n' => trim($_POST['lugar_n']),
+					'fecha_n' => trim($_POST['fecha_n']),
+
+					'condicion_s' => trim($_POST['condicion_s']),
+					'obervacion_s' => trim($_POST['obervacion_s'])
 				];
 				$this -> estudianteModelo -> modificarEstudiante($datos);
 				if (empty($this -> estudianteModelo -> mensaje)) {
 					Helper::redireccionar('/Estudiantes/estudiantes');
 				} else{
-					die('Algo salio mal');
+					$this -> vista('Estudiantes/actualizarEstudiante', $datos);
 				}
 			} else{
-
-				$usuario = $this -> estudianteModelo -> obtenerEstudiante($ci);
-
-				$datos = [
-					'nombre_u' => $usuario -> nombre_u,
-					'privilegio' => $usuario -> privilegio,
-					'clave' => $usuario -> clave,
-					'pregunta_s' => $usuario -> pregunta_s,
-					'respuesta_s' => $usuario -> respuesta_s,
-					'activo' => $usuario -> activo
-				];
 				$this -> vista('Estudiantes/actualizarEstudiante', $datos);
 			}
+		}
+
+		public function asignar_estudiante() {
+
 		}
 
 		public function get_secciones($ci_escolar) {
@@ -173,7 +176,7 @@
 					Helper::redireccionar('/Estudiantes/estudiantes');
 				} else {
 					$datos = ["mensaje" => $this -> estudianteModelo -> mensaje];
-					print_r($datos);
+					
 					$this -> vista('Estudiantes/registrar_estudiante', $datos);
 				}		
 			} else {

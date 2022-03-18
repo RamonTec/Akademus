@@ -1,9 +1,10 @@
 <?php  
-
 class Reportes Extends Controlador{
 
 	public function __construct(){
 		$this -> reportesModelo = $this -> modelo('Reporte');
+		$this -> representante_modelo = $this -> modelo('Representante');
+		$this -> seccionModelo = $this -> modelo('Seccion');
 	}
 
 	public function reportes(){
@@ -12,6 +13,65 @@ class Reportes Extends Controlador{
  
 	public function index(){
 		$this -> vista('Reportes/Estudiantes');
+	}
+
+	public function obtenerSecciones() {
+		$secciones = $this -> seccionModelo -> obtener_secciones();	
+		$pdf = new fpdf('P','mm');
+		$pdf -> AliasNbPages();
+		$pdf -> AddPage('P','A4');
+		$pdf -> SetFont('Times','B',12);
+		$pdf -> Cell(0,5, utf8_decode('Republica Bolivariana de Venezuela'),0,0,'C');
+		$pdf -> Ln(10);
+		$pdf -> Cell(0,5, utf8_decode('Ministerio del Poder Popular para la Educación'),0,0,'C');
+		$pdf -> Ln(10);
+		$i=1;
+		for ($i=0; $i < count($secciones); $i++) {
+			print_r($secciones[$i]);
+			$pdf->Cell(10,6,$i,1,0,'C',1);
+			$pdf->Cell(140,6,utf8_decode($secciones[$i] -> id_seccion),1,1,'L',1);
+			$i++;
+		}
+		$pdf->Output();
+		ob_end_clean();
+	}
+
+	public function obtenerListaEstudiantes() {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$datos = [
+				'ci' => trim($_POST['ci'])
+			]; 
+			$estudiantes = $this -> representante_modelo -> get_estudiantes_by_reprepresentante($datos);
+		//	print_r($estudiantes['estudiantes']);
+			if (empty($estudiantes["mensaje"])) {
+				$estudiantez = $estudiantes['estudiantes'];
+				$pdf = new fpdf('P','mm',array(215,200));
+				$pdf -> AliasNbPages();
+				$pdf -> AddPage('P','A4');
+				$pdf -> SetFont('Arial','B',12);
+				$pdf -> Cell(0,5, utf8_decode('Republica Bolivariana de Venezuela'),0,0,'C');
+				$pdf -> Ln(10);
+				$pdf -> Cell(0,5, utf8_decode('Ministerio del Poder Popular para la Educación'),0,0,'C');
+				$pdf -> Ln(10);
+				$i=1;
+				foreach ($estudiantez as $estudiante) {
+					print_r($estudiante -> pnom);
+					$pdf->Cell(10,6,$i,1,0,'C',1);
+					$pdf->Cell(140,6,utf8_decode( trim($estudiante -> pnom)),1,1,'L',1);
+					$i++;
+					/*$pdf->Cell(70,6,utf8_decode($estudiante->e_nombre),1,0,'C');
+					$pdf->Cell(20,6,utf8_decode($estudiante->e_apellido),1,0,'C');
+					$pdf->Cell(70,6,'NO SE',1,1,'C');*/
+				}
+				$pdf -> Output();
+			} else{ 
+				$datos = ["mensaje" => $this -> representante_modelo -> mensaje];
+				$this -> vista('Reportes/obtenerListaEstudiantes', $representante);
+			}
+		} else{
+        $this -> vista('Reportes/obtenerListaEstudiantes');
+    }
+
 	}
 
 	public function ficha_inscripcion() {

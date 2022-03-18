@@ -21,10 +21,39 @@
 						</div>
 
 						<?php
-							if($datos) {
+							if($datos['mensaje'] === 'Usuario registrado exitosamente') {
 								?> 
-									<div class="text-center alert alert-danger mt-3" role="alert">
-										<?php print_r($datos['mensaje']) ?>
+									<div class="row justify-content-center mt-5">
+						
+										<div class="alert alert-success alert-dismissible fade show" role="alert">
+											<?php 
+												echo($datos['mensaje']);
+											?>
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+						
+									</div>
+								<?php
+							} else if($datos['mensaje'] == '') {
+								echo ($datos['mensaje']);
+								?> 
+									
+								<?php
+							} else {
+								?> 
+									<div class="row justify-content-center mt-5">
+						
+										<div class="alert alert-danger alert-dismissible fade show" role="alert">
+											<?php 
+												echo($datos['mensaje']);
+											?>
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+						
 									</div>
 								<?php
 							}
@@ -52,5 +81,6 @@
 		</div>
 	</section class="pb-5">
 </div class="pb-5">
+
 <script src="<?php echo RUTA_URL ?>/js/Validacion_inicio_sesion/validacion_inicio_sesion.js"></script>
 <?php require_once RUTA_APP . '/vistas/inc/footer.php' ?>

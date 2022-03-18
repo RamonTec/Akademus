@@ -22,7 +22,7 @@
 			<td><?php echo $estudiante -> sexo ?></td>
 			<td><?php echo $estudiante -> nacionalidad_e ?></td>
 			<td>								
-				<a href="<?php echo RUTA_URL;?>/Estudiantes/perfil_estudiante/<?php echo $estudiante -> ci_escolar ?>">Editar</a> - 
+				<a href="<?php echo RUTA_URL;?>/Estudiantes/actualizarEstudiante/<?php echo $estudiante -> ci_escolar ?>">Editar</a> - 
 				<?php
 				if ($estudiante -> asignado == '0'){
 					?>

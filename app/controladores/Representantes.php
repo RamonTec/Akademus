@@ -134,7 +134,7 @@
 	public function actualizar_representante($ci){
 			$_SESSION['id_representante_persona'] = $ci;
 			$representante = $this -> representante_modelo -> obtener_representante_por_ci($ci);	
-			print_r($representante);		
+			
 			
 			$this -> vista('Representantes/editar_representante', $representante);
 	}
@@ -148,10 +148,10 @@
 			$datos = [
 				'mensaje' => 'Representante eliminado existosamente'
 			];
-			print_r("aca");
+			
 			Helper::redireccionar('/Representantes/representantes', $datos);
 		} else {
-			print_r("aca");
+			
 			$this -> vista('Representantes/Representantes', $secciones);
 		}
 	}

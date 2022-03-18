@@ -6,13 +6,13 @@
 
         <div class="col-4 mt-3">
           <div class="text-center">
-            <a target="_blank" class="btn btn-success" href="<?php echo RUTA_URL ?>/Reportes/ficha_inscripcion">Seccion</a>
+            <a class="btn btn-success" href="<?php echo RUTA_URL ?>/Reportes/obtenerSecciones">Seccion</a>
           </div>
         </div>
 
         <div class="col-4 mt-3">
           <div class="text-center">
-            <a target="_blank" class="btn btn-success" href="<?php echo RUTA_URL; ?>/Reportes/actaRepresentante">Estudiantes</a>
+            <a class="btn btn-success" href="<?php echo RUTA_URL; ?>/Reportes/obtenerListaEstudiantes">Estudiantes</a>
           </div>
         </div>
 

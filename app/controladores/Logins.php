@@ -10,7 +10,10 @@
 		public function index(){
 			// $usuarios = $this -> loginModelo -> obtenerUsuarios();
 			// $datos = ['usuarios' => $usuarios -> total]; 
-			$this -> vista('Login/Login');
+			$datos = [
+				'mensaje' => ""
+			];
+			$this -> vista('Login/Login', $datos);
 		}
 
 		public function verificar_sesion(){
@@ -27,19 +30,28 @@
 					$datos = ["mensaje" => $this -> loginModelo -> mensaje];
 					$this -> vista('Login/Login', $datos);
 				} 
-			} else{ 
-				$this -> vista('Login/Login');
+			} else{
+				$datos = [
+					'mensaje' => "No iniciado"
+				];
+				$this -> vista('Login/Login', $datos);
 			} 
 		}
 		
 		public function inicio(){
-			$this -> vista('Login/inicio');
+			$datos = [
+				'mensaje' => "No iniciado"
+			];
+			$this -> vista('Login/inicio', $datos);
 		}
 
 		public function cerrar_sesion(){
 			$_SESSION['nom_u'] = FALSE;
 			session_destroy();
-			$this -> vista('Login/Login');
+			$datos = [
+				'mensaje' => ''
+			];
+			$this -> vista('Login/Login', $datos);
 		}
 
 	}

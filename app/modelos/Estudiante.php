@@ -161,11 +161,99 @@
 			return $resultados;
 		}
 
-		public function obtener_estudiante_perfil($ci_est){
-			$this -> db -> query("SELECT * FROM estudiante WHERE ci_est = :ci_est");
-			$this -> db -> bind(':ci_est', $ci_est);
+		public function obtenerEstudiante($ci_est){
+			$this -> db -> query(
+				"SELECT 
+				estudiante.id_est,
+				estudiante.pnom, estudiante.pape, estudiante.ci_escolar, estudiante.nacionalidad_e,
+				estudiante.sexo, estudiante.pariente_representate, estudiante.tipo_est,
+				estudiante.lugar_n, estudiante.fecha_n, estudiante.segape, estudiante.segnom,
+				estudiante_padece_salud.id_eps, estudiante_padece_salud.id_sep,
+				salud.condicion_s, salud.obervacion_s, salud.id_s
+				FROM estudiante
+			INNER JOIN estudiante_padece_salud on estudiante.id_est = estudiante_padece_salud.id_eps
+			INNER JOIN salud on salud.id_s = estudiante_padece_salud.id_sep
+			WHERE ci_escolar = :ci_escolar");
+			$this -> db -> bind(':ci_escolar', $ci_est);
 			$fila = $this -> db -> registro();
+			$_SESSION['ci_escolar'] = $fila -> ci_escolar;
 			return $fila;
+		}
+
+		public function modificarEstudiante($datos) {
+			try {
+				
+				$this -> db -> beginTransaction();
+
+				$this -> db -> query(
+					"SELECT 
+					estudiante.id_est, estudiante.pnom, estudiante.pape, estudiante.ci_escolar, estudiante.nacionalidad_e,
+					estudiante.sexo, estudiante.pariente_representate, estudiante.tipo_est,
+					estudiante.lugar_n, estudiante.fecha_n, estudiante.segape, estudiante.segnom,
+					estudiante_padece_salud.id_eps, estudiante_padece_salud.id_sep,
+					salud.condicion_s, salud.obervacion_s, salud.id_s
+					FROM estudiante
+					INNER JOIN estudiante_padece_salud on estudiante.id_est = estudiante_padece_salud.id_eps
+					INNER JOIN salud on salud.id_s = estudiante_padece_salud.id_sep
+					WHERE ci_escolar = :ci_escolar"
+				);
+				$this -> db -> bind(':ci_escolar', $_SESSION['ci_escolar']);
+
+				$estudiante_obtenido = $this -> db -> registro();
+
+				//Insertar datos en la tabla estudiante para el registro de estudiante
+				$this -> db -> query("UPDATE estudiante SET ci_escolar = :ci_escolar, lugar_n = :lugar_n, fecha_n = :fecha_n,
+				pnom = :pnom, segnom = :segnom, pape = :pape, segape = :segape, pariente_representate = :pariente_representate, 
+				nacionalidad_e = :nacionalidad_e, sexo = :sexo,
+				tipo_est = :tipo_est
+				WHERE id_est = :id_est"
+				);
+
+				print_r($estudiante_obtenido -> id_est);
+
+				$this -> db -> bind(':ci_escolar', $datos['ci_escolar']);
+				$this -> db -> bind(':fecha_n', $datos['fecha_n']);
+				$this -> db -> bind(':lugar_n', $datos['lugar_n']);
+				$this -> db -> bind(':nacionalidad_e', $datos['nacionalidad_e']);
+				$this -> db -> bind(':sexo', $datos['sexo']);
+				$this -> db -> bind(':pnom', $datos['pnom']);
+				$this -> db -> bind(':tipo_est', $datos['tipo_est']);
+				$this -> db -> bind(':segnom', $datos['segnom']);
+				$this -> db -> bind(':pape', $datos['pape']);
+				$this -> db -> bind(':segape', $datos['segape']);
+				$this -> db -> bind(':pariente_representate', $datos['pariente_representate']);
+				$this -> db -> bind(':id_est', $estudiante_obtenido -> id_est);
+				$this -> db -> execute();
+
+				// Para tabla salud
+				$this -> db -> query("UPDATE salud SET condicion_s = :condicion_s, obervacion_s = :obervacion_s WHERE id_s = :id_s");
+				$this -> db -> bind(':condicion_s', $datos['condicion_s']);			
+				$this -> db -> bind(':obervacion_s', $datos['obervacion_s']);
+				$this -> db -> bind(':id_s', $estudiante_obtenido -> id_s);
+				
+				$this -> db -> execute();
+				$this -> db -> commit();
+
+			} catch (PDOException $e) {
+        $this -> db -> rollBack();
+				print_r($e -> getMessage());
+        return [
+					'ci_escolar' => $datos["ci_escolar"],
+					'tipo_est' => $datos["tipo_est"],
+					'fecha_n' => $datos["fecha_n"],
+					'lugar_n' => $datos["lugar_n"],
+					'nacionalidad_e' => $datos["nacionalidad_e"],
+					'sexo' => $datos["sexo"],
+					'pnom' => $datos["pnom"],
+					'segnom' => $datos["segnom"],
+					'pape' => $datos["pape"],
+					'segape' => $datos["segape"],
+					'condicion_s' => $datos["condicion_s"],
+					'obervacion_s' => $datos["obervacion_s"],
+					'pariente_representate' => $datos["pariente_representate"],
+          'mensaje' => $this -> mensaje = $e -> getMessage()
+        ];
+      }
 		}
 
 		// Metodo para asignar profesores a las secciones

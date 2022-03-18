@@ -30,9 +30,9 @@
 			);
 
 
-			$this -> usuario_modelo -> agregar_usuario($datos);
-  			if (empty($this -> usuario_modelo -> mensaje)){
-  				Helper::redireccionar('/Login/login');
+			$usuario_registrado = $this -> usuario_modelo -> agregar_usuario($datos);
+  			if ($usuario_registrado['code'] == 0){
+  				$this -> vista('/Login/login', $usuario_registrado);
   			} else {
 					$datos = array("mensaje" => $this -> usuario_modelo -> mensaje);
 					$this -> vista('Usuarios/registrar_usuario',$datos);
@@ -167,7 +167,5 @@
 			$this -> vista("Usuarios/comprobar_usuario");
 		}			
 	}
-
-		
 
 }

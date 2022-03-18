@@ -16,7 +16,7 @@
         <div class="row justify-content-center mt-5">
           <div class="col-md-6 text-center">
             <div class="form-group">
-              <button type="submit" class="btn boton-de-envio">Asignar seccion</button>
+              <button type="submit" class="btn btn-success">Asignar seccion</button>
             </div>
           </div>
         </div>
